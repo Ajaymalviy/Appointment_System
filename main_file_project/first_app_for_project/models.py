@@ -45,4 +45,23 @@ class User(models.Model):
     role = models.CharField(max_length=100)
     email = models.EmailField()
 
+from django.db import connections
+from passlib.hash import sha256_crypt
+
+def authenticate_user(username, password):
+    # Get the MongoDB connection from Django's ORM
+    db_connection = connections['phone']
+
+    # Access the MongoDB database and collection
+    db = db_connection.get_database('phone')  # Specify the database name
+    collection = db['user']  # Specify the collection name
+
+    # Find user by username
+    user = collection.find_one({'username': username})
+
+    if user:
+        # Check if password matches
+        if sha256_crypt.verify(password, user['password']):
+            return True, user
+    return False, None
 

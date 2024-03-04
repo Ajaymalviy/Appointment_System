@@ -20,6 +20,7 @@ from first_app_for_project.views import index
 
 from django.conf import settings
 from django.conf.urls.static import static
+from first_app_for_project import views
 urlpatterns = [
     path('admin/', admin.site.urls),
 ]
@@ -27,5 +28,7 @@ urlpatterns = [
 
 urlpatterns = [
     path('', index, name='about'),
+    path('login/', views.login_view, name='login'),
+    path('register/', views.register_user, name='register'),
+    # Other URL patterns...
 ]
-# +static(settings.STATIC_URL,document_root=settings.STATIC_ROOT)
