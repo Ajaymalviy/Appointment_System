@@ -42,8 +42,8 @@ class Schedule(models.Model):
 class User(models.Model):
     username = models.CharField(max_length=100)
     password = models.CharField(max_length=100)
-    role = models.CharField(max_length=100)
     email = models.EmailField()
+    phone = models.CharField(max_length=15)
 
 from django.db import connections
 from passlib.hash import sha256_crypt
