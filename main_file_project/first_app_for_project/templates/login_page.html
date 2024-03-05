@@ -33,7 +33,7 @@
       margin-bottom: 5px;
     }
     .form-group input {
-      width: 100%;
+      width: 90%;
       padding: 10px;
       border: 1px solid #ccc;
       border-radius: 5px;
@@ -57,12 +57,62 @@
       background-color: #28a745;
       color: #fff;
     }
+
+    .breadcrumbs nav {
+      background-color: none;
+      padding: 20px 0;
+      margin-left:5px;
+    }
+
+    .breadcrumbs nav ol {
+      display: flex;
+      flex-wrap: wrap;
+      list-style: none;
+      margin: 0;
+      padding: 0;
+      font-size: 16px;
+      font-weight: 600;
+      color: var(--color-secondary);
+    }
+
+    .breadcrumbs nav ol a {
+      color: var(--color-primary);
+      transition: 0.3s;
+    }
+
+    .breadcrumbs nav ol a:hover {
+      text-decoration: underline;
+    }
+
+    .breadcrumbs nav ol li+li {
+      padding-left: 10px;
+    }
+
+    .breadcrumbs nav ol li+li::before {
+      display: inline-block;
+      padding-right: 10px;
+      color: #4278cc;
+      content: "/";
+    }
+    body {
+      background: radial-gradient(circle, #ff0000, #87ceeb); /* Red to Green */
+  }
   </style>
 </head>
 <body>
+  <div class="breadcrumbs">
+    <nav>
+      <div class="container">
+        <ol>
+          <li><a href="#header">Home</a></li>
+          <li>login</li>
+        </ol>
+      </div>
+    </nav>
   <div class="login-container">
     <h2>Login</h2>
     <form method="POST">
+      {% csrf_token %}
       <div class="form-group">
         <label for="username">Username</label>
         <input type="text" id="username" name="username" required>
