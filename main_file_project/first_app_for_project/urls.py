@@ -6,3 +6,10 @@ urlpatterns = [
     path('', index, name='about'),
 ]
 # +static(settings.STATIC_URL,document_root=settings.STATIC_ROOT)
+from django.urls import path
+from .views import home, login
+
+urlpatterns = [
+    path('/home', home, name='home'),
+    # Other URL patterns for your application
+]
