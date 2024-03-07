@@ -72,3 +72,32 @@ def register_user(request):
 
 def home(request):
     return render(request, 'index.html')
+
+#--------------------search-company------------------------
+from django.http import JsonResponse
+from first_app_for_project.models import phone
+
+def getting_data(request):
+    if request.method == 'POST':
+        company_name = request.POST.get('company_name')
+
+        if not company_name:
+            print('the end!!')
+            return JsonResponse({'error': 'Invalid company name'})
+            
+        try:
+            # Query MongoDB using Django model
+            company_details = phone.objects.filter(company_name=company_name)
+
+            if company_details:
+                # Convert queryset to dictionary and return as JSON response
+                return JsonResponse({'company_details': list(company_details.values())})
+            else:
+                return JsonResponse({'error': 'No details found for the selected company'})
+
+        except Exception as e:
+            # Handle any exceptions
+            return JsonResponse({'error': str(e)})
+
+    # # Handle other request methods as needed
+    return JsonResponse({'error': 'Invalid request'})
