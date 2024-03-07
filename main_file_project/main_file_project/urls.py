@@ -17,7 +17,7 @@ Including another URLconf
 
 from django.contrib import admin
 from django.urls import path
-from first_app_for_project.views import index,home
+from first_app_for_project.views import index,home,getting_data
 
 from django.conf import settings
 from django.conf.urls.static import static
@@ -32,6 +32,7 @@ urlpatterns = [
     path('login/', views.login, name='login'),
     path('register/', views.register_user, name='register'),
     path('home/', home, name='home'),
+    path('search/', getting_data, name='getting_data'),
     # Other URL patterns...
 ]
 
