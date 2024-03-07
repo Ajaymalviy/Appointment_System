@@ -1,4 +1,5 @@
 from django.db import models
+
 # from mongoengine import Document, fields
 
 # class phone(Document):
@@ -30,7 +31,8 @@ class Company(models.Model):
     email = models.EmailField()
     location = models.CharField(max_length=100)
     company_schedule = models.CharField(max_length=100)
-
+    def __str__(self):
+        return self.company_name
     
 class Schedule(models.Model):
     schedule_id = models.CharField(max_length=100)
