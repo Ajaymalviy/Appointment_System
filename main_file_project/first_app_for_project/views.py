@@ -75,29 +75,38 @@ def home(request):
 
 #--------------------search-company------------------------
 from django.http import JsonResponse
-from first_app_for_project.models import phone
+import pymongo
+import json
+from bson import ObjectId 
 
-def getting_data(request):
-    if request.method == 'POST':
-        company_name = request.POST.get('company_name')
+def get_company_data(request):
 
-        if not company_name:
-            print('the end!!')
-            return JsonResponse({'error': 'Invalid company name'})
-            
-        try:
-            # Query MongoDB using Django model
-            company_details = phone.objects.filter(company_name=company_name)
+    if request.method != 'POST':
+        return JsonResponse({'error': 'Invalid request method. Use POST to retrieve company data.'})
 
-            if company_details:
-                # Convert queryset to dictionary and return as JSON response
-                return JsonResponse({'company_details': list(company_details.values())})
-            else:
-                return JsonResponse({'error': 'No details found for the selected company'})
+    company_name = request.POST.get('company_name')
 
-        except Exception as e:
-            # Handle any exceptions
-            return JsonResponse({'error': str(e)})
+    if not company_name:
+        return JsonResponse({'error': 'Invalid company name'})
 
-    # # Handle other request methods as needed
-    return JsonResponse({'error': 'Invalid request'})
+    try:
+        # Establish a connection to the MongoDB database
+        client = pymongo.MongoClient('mongodb://localhost:27017/')  # Replace with your connection string
+        db = client['phone']  # Replace with your database name (ensure collection exists)
+
+        # Query MongoDB collection for company details
+        collection = db['first_app_for_project_company']  # Replace with the actual collection name
+        company_details = collection.find({'company_name': company_name})
+
+        if company_details:
+            data_list = [{**doc, '_id': str(doc['_id'])} for doc in company_details]
+
+            # Convert results to a list of dictionaries and return as JSON response
+            # data_list = list(company_details)
+            return JsonResponse({'company_details': data_list})
+        else:
+            return JsonResponse({'error': 'No details found for the selected company'})
+
+    except Exception as e:
+        # Handle any exceptions during database connection or retrieval
+        return JsonResponse({'error': f'An error occurred: {str(e)}'})
