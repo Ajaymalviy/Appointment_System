@@ -104,8 +104,9 @@
           <h2 data-aos="fade-up">Explore as much as possible.</h2>
           <p data-aos="fade-up" data-aos-delay="100">You can search the Company in which you want to take appointment .</p>
 
-          <form action="/search" class="form-search d-flex align-items-stretch mb-3" data-aos="fade-up" data-aos-delay="200" style="height:70px;">
-            <input type="text" id='company-name' class="form-control" placeholder="Enter A Company Name">
+          <form action="/search/"  method="POST" class="form-search d-flex align-items-stretch mb-3" data-aos="fade-up" data-aos-delay="200" style="height:70px;">
+            {% csrf_token %}
+            <input type="text" id='company-name' name="company_name" class="form-control" placeholder="Enter A Company Name">
             <div id="autocomplete-items" class="autocomplete-items"></div>
             <button type="submit" class="btn btn-primary">Search</button>
         </form>
