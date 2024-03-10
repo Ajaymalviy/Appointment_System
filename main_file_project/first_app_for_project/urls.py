@@ -8,10 +8,10 @@ urlpatterns = [
 ]
 # +static(settings.STATIC_URL,document_root=settings.STATIC_ROOT)
 from django.urls import path
-from .views import home, login
+from .views import get_company_data, home, login
 
 urlpatterns = [
     path('/home', home, name='home'),
-    path('/search', getting_data, name='getting_data'),
+    path('/search', get_company_data, name='getting_company_data'),
     # Other URL patterns for your application
 ]
