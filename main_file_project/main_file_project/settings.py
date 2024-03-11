@@ -81,7 +81,7 @@ WSGI_APPLICATION = 'main_file_project.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'djongo',
-        'NAME': 'phone',  # Specify the name of your MongoDB database
+        'NAME': 'meetme',  # Specify the name of your MongoDB database
         'ENFORCE_SCHEMA': False,  # Optional: Set to True if you want to enforce schema validation
         'CLIENT': {
             'host': 'mongodb://localhost:27017/',  # Specify the MongoDB connection URI
