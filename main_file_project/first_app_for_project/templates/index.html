@@ -39,27 +39,27 @@
 
  <style>
 
+
   input[type="text"] {
     width: 100%;
     padding: 10px;
     margin-bottom: 20px;
-    border: 1px solid #666; /* Change the border color */
-    border-radius: 5px;
+   
     box-sizing: border-box;
 }
 
   .autocomplete-items {
     position: absolute;
-    border: 1px solid #d4d4d4;
     max-height: 150px;
     overflow-y: auto;
     z-index: 99;
-    width: 40%;
+    width: 30%;
     color:black;
+    background-color:white;
 }
 
 .autocomplete-item {
-    padding: 8px;
+    padding: 5px;
     cursor: pointer;
 }
 </style>
@@ -88,7 +88,7 @@
           <li><a href="#faq">Revelent</a></li>
          
           <li><a href="#contact">Contact</a></li>
-          <li><a class="get-a-quote" href="get-a-quote.html">Logout</a></li>
+          <li><a class="get-a-quote" href="{% url 'logout' %}">Logout</a></li>
         </ul>
       </nav><!-- .navbar -->
 
@@ -107,8 +107,8 @@
           <form action="/search/"  method="POST" class="form-search d-flex align-items-stretch mb-3" data-aos="fade-up" data-aos-delay="200" style="height:70px;">
             {% csrf_token %}
             <input type="text" id='company-name' name="company_name" class="form-control" placeholder="Enter A Company Name">
-            <div id="autocomplete-items" class="autocomplete-items"></div>
             <button type="submit" class="btn btn-primary">Search</button>
+            <div id="autocomplete-items" class="autocomplete-items"></div>
         </form>
         
 
@@ -279,7 +279,7 @@
           <div class="col-lg-8 text-center">
             <h3>Give Feedback</h3>
             <p> please give your feedback,via filling form if you organise a appointment.</p>
-            <a class="cta-btn" href="#">Call To Action</a>
+            <a class="cta-btn" href="{% url 'rating' %}">Call To Action</a>
           </div>
         </div>
 
@@ -381,10 +381,10 @@
 </section><!-- End Frequently Asked Questions Section -->
 <div class="breadcrumbs">
  
-  <nav>
+  <nav style="background-color:#F5F5F5">
     <div class="container">
       <ol>
-        <li><a href="about.html">Home</a></li>
+        <li><a href="{% url 'home' %}">Home</a></li>
         <li>Contact</li>
       </ol>
     </div>
@@ -407,7 +407,7 @@
           <i class="bi bi-geo-alt flex-shrink-0"></i>
           <div>
             <h4>Location:</h4>
-            <p>A108 Adam Street, New York, NY 535022</p>
+            <p>A108 Sapna-Sangeeta, Indore-India, IN 535022</p>
           </div>
         </div><!-- End Info Item -->
 
@@ -415,7 +415,7 @@
           <i class="bi bi-envelope flex-shrink-0"></i>
           <div>
             <h4>Email:</h4>
-            <p>info@example.com</p>
+            <p>meetme@gmail.com</p>
           </div>
         </div><!-- End Info Item -->
 
