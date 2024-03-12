@@ -1,14 +1,5 @@
 from django.db import models
 
-# from mongoengine import Document, fields
-
-# class phone(Document):
-#   name = fields.StringField()
-#   topic = fields.StringField()
-#   date = fields.DateTimeField()
-#   addition_info = fields.DictField()
-
-
 
 class User(models.Model):
     username = models.CharField(max_length=100)
@@ -18,21 +9,24 @@ class User(models.Model):
 
 
 
+class Company(models.Model):
+    company_name = models.CharField(max_length=100)
+    company_email = models.EmailField()
+    location = models.CharField(max_length=100)
+    company_schedule = models.CharField(max_length=100)
+    def __str__(self):
+        return self.company_name
+    
+
 class Employee(models.Model):
     employee_email = models.EmailField()
     employee_role = models.CharField(max_length=100)
     employee_name = models.CharField(max_length=100)
     experience = models.IntegerField()
     skills = models.JSONField()
+    company = models.ForeignKey('Company', on_delete=models.CASCADE) 
 
-class Company(models.Model):
-    company_name = models.CharField(max_length=100)
-    employee_email = models.EmailField()
-    email = models.EmailField()
-    location = models.CharField(max_length=100)
-    company_schedule = models.CharField(max_length=100)
-    def __str__(self):
-        return self.company_name
+
     
 class Schedule(models.Model):
     schedule_id = models.CharField(max_length=100)
