@@ -148,7 +148,7 @@ section {
 .breadcrumbs .page-header h2 {
   font-size: 56px;
   font-weight: 500;
-  color: #fff;
+  color: #f7eeee;
   font-family: var(--font-secondary);
 }
 
@@ -156,8 +156,10 @@ section {
   color: rgba(255, 255, 255, 0.8);
 }
 
-.breadcrumbs nav {
-  background-color: #f3f6fc;
+.breadcrumbs 
+
+{
+  background-color:rgba(255, 255, 255, 0.8);
   padding: 20px 0;
 }
 
@@ -188,7 +190,7 @@ section {
 .breadcrumbs nav ol li+li::before {
   display: inline-block;
   padding-right: 10px;
-  color: #4278cc;
+  color: #2c5daa;
   content: "/";
 }
 
@@ -1709,7 +1711,7 @@ section {
   background-position: center;
   position: relative;
   padding: 120px 0 60px 0;
-  color: rgba(255, 255, 255, 0.8);
+  color: rgba(224, 219, 219, 0.8);
 }
 
 .hero h2 {
@@ -1733,7 +1735,7 @@ section {
 }
 
 .hero form {
-  background: #fff;
+  background: #cfc8c8;
   padding: 10px;
   border-radius: 10px;
 }
