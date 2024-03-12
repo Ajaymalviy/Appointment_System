@@ -16,7 +16,7 @@
       background-color: #f4f4f4;
     }
     .registration-container {
-      width: 300px;
+      width: 330px;
       padding: 20px;
       background-color: #fff;
       border-radius: 8px;
@@ -54,85 +54,77 @@
       color: #fff;
     }
 
-    .breadcrumbs nav {
-      background-color: none;
-      padding: 20px 0;
-      margin-left:5px;
-    }
 
-    .breadcrumbs nav ol {
-      display: flex;
-      flex-wrap: wrap;
-      list-style: none;
-      margin: 0;
-      padding: 0;
-      font-size: 16px;
-      font-weight: 600;
-      color: var(--color-secondary);
-    }
-
-    .breadcrumbs nav ol a {
-      color: var(--color-primary);
-      transition: 0.3s;
-    }
-
-    .breadcrumbs nav ol a:hover {
-      text-decoration: underline;
-    }
-
-    .breadcrumbs nav ol li+li {
-      padding-left: 10px;
-    }
-
-    .breadcrumbs nav ol li+li::before {
-      display: inline-block;
-      padding-right: 10px;
-      color: #4278cc;
-      content: "/";
-    }
     body {
-      background: radial-gradient(circle, #ff0000, #87ceeb); /* Red to Green */
+      background: rgba(14, 29, 52, 0.9);
   }
   </style>
 </head>
 <body>
-  <div class="breadcrumbs">
-    <nav>
-      <div class="container">
-        <ol>
-          <li><a href="#header">Home</a></li>
-          <li>login</li>
-        </ol>
-      </div>
-    </nav>
   <div class="registration-container">
     <h2>Registration</h2>
     <form method="POST">
       {% csrf_token %}
       <div class="form-group">
         <label for="username">Username</label>
-        <input type="text" id="username" name="username" required>
+        <input type="text" id="username" name="username" required pattern="^[a-zA-Z0-9_]{6,20}$"
+               placeholder="Enter a username (letters, numbers, underscores)"
+               title="Username must be 6-20 characters long and can contain letters, numbers, or underscores.">
       </div>
       <div class="form-group">
         <label for="password">Password</label>
-        <input type="password" id="password" name="password" required>
+        <input type="password" id="password" name="password" required 
+               placeholder="Enter a strong password (min. 8 characters)"  minlength="8" maxlength="8"
+               title="Password must be at least 8 characters long and contain a mix of uppercase, lowercase letters, numbers, and symbols.">
+        <input type="checkbox" onclick="myFunction()" style="width:10% ; margin-left: 70%;">Show
+
       </div>
       <div class="form-group">
         <label for="confirm_password">Confirm Password</label>
-        <input type="password" id="confirm_password" name="confirm_password" required>
+        <input type="password" id="confirm_password" name="confirm_password" required
+               placeholder="Re-enter your password" oninput="validatePassword()" >
       </div>
       <div class="form-group">
         <label for="email">Email</label>
-        <input type="email" id="email" name="email" required>
+        <input type="email" id="email" name="email" required pattern="^[a-zA-Z0-9._%+-]+@gmail\.com$" 
+               placeholder="Enter your email address"
+               title="Please enter a valid email address (e.g., example@domain.com).">
       </div>
       <div class="form-group">
         <label for="phone">Phone Number</label>
-        <input type="tel" id="phone" name="phone" required>
+        <input type="tel" id="phone" name="phone" required patter="^[6789]\d{9}$"
+               placeholder="Enter your phone number "
+               title="Please enter your phone number ,as starts with number greater than 5 (e.g., ).">
       </div>
+      
       <div class="btn-container">
         <button type="submit" class="register">Register</button>
       </div>
     </form>
   </div>
 </body>
+<script>
+    function validatePassword() {
+       var newPassword = document.getElementById("password");
+       var confirmPassword = document.getElementById("confirm_password");
+
+       if (newPassword.value != confirmPassword.value) {
+           confirmPassword.setCustomValidity("Passwords do not match");
+       } else {
+           confirmPassword.setCustomValidity("");
+       }
+   }
+
+
+
+   function myFunction() {
+       var x = document.getElementById("password");
+       if (x.type === "password") {
+         x.type = "text";
+       } else {
+         x.type = "password";
+       }
+   }
+
+</script>
 </html>
