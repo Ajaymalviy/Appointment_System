@@ -1,9 +1,7 @@
 from django.http import HttpResponse
 
-from django.shortcuts import render
+from django.shortcuts import render,redirect
 
-def index(request):
-    return render(request, 'about.html')
 
 
 # def index(request):
@@ -16,6 +14,10 @@ from django.contrib.auth.hashers import check_password
 from .models import User
 
 
+def index(request):
+    return render(request, 'about.html')
+
+
 def login(request):
     if request.method == 'POST':
         username = request.POST.get('username')
@@ -25,7 +27,7 @@ def login(request):
             user = User.objects.get(username=username)
             print(username)
         except User.DoesNotExist:
-            # User does not exist, handle appropriately (e.g., show error message)
+            # User does not exist, (e.g., show error message)
             print('errror')
             return render(request, 'login_page.html', {'error': 'Invalid username or password'})
             
@@ -60,11 +62,11 @@ def register_user(request):
         # Create a new User object
         user = User(username=username, password=hashed_password, email=email, phone=phone)
         
-        # Save the user object to the MongoDB collection
+        # Save the user object to the MongoDB collection, which is user
         user.save()
         
-        # Redirect to the login page
-        return redirect(reverse('login'))  # Assuming 'login' is the name of your login URL pattern
+        # Redirect to the login page after register
+        return redirect(reverse('login'))  
 
     return render(request, 'registration.html')
 
@@ -78,6 +80,7 @@ from django.http import JsonResponse
 import pymongo
 import json
 from bson import ObjectId 
+from django.shortcuts import render
 
 def get_company_data(request):
 
@@ -91,22 +94,43 @@ def get_company_data(request):
 
     try:
         # Establish a connection to the MongoDB database
-        client = pymongo.MongoClient('mongodb://localhost:27017/')  # Replace with your connection string
-        db = client['phone']  # Replace with your database name (ensure collection exists)
-
+        client = pymongo.MongoClient('mongodb://localhost:27017/')  
+        db = client['meetme'] 
         # Query MongoDB collection for company details
-        collection = db['first_app_for_project_company']  # Replace with the actual collection name
-        company_details = collection.find({'company_name': company_name})
+        collection = db['Employee']  
+        employees = collection.find({'company_name': company_name})
 
-        if company_details:
-            data_list = [{**doc, '_id': str(doc['_id'])} for doc in company_details]
+        data_list = []
+        for employee in employees:
+            data_list.append({
+                'employee_name': employee['employee_name'],
+                'skills': employee['skills'],
+                'experience': str(employee['experience']) +'Yr'
+            })
 
-            # Convert results to a list of dictionaries and return as JSON response
-            # data_list = list(company_details)
-            return JsonResponse({'company_details': data_list})
+        if data_list:
+            return render(request, 'services.html', {'company_name': company_name, 'employees': data_list})
         else:
             return JsonResponse({'error': 'No details found for the selected company'})
 
     except Exception as e:
-        # Handle any exceptions during database connection or retrieval
         return JsonResponse({'error': f'An error occurred: {str(e)}'})
+    
+#---------------------rating page call-----------------------------------
+    
+def rating(request):
+    return render(request, 'rating.html')    
+
+#------------------------logout---------------------------------------------
+
+from django.contrib.auth import logout as auth_logout
+def logout(request):
+    auth_logout(request)  # Clear session and log out the user
+    return redirect('index')  # Redirect to the login page
+
+#__________takescheduleby___________user-------------------------
+
+def takeschedule(request):
+    return render(request, 'takeschedule.html')   
+
+
