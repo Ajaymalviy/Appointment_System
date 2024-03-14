@@ -27,7 +27,7 @@ urlpatterns = [
 
 
 urlpatterns = [
-    path('', index, name='about'),
+    path('', views.index, name='about'),
     path('login/', views.login, name='login'),
     path('logout/', views.logout, name='logout'),
     path('rating/', views.rating, name='rating'),
@@ -35,6 +35,6 @@ urlpatterns = [
     path('home/', home, name='home'),
     path('search/', get_company_data, name='getting_company_data'),
     path('takeschedule/', views.takeschedule, name='takeschedule'),
-    # Other URL patterns...
+    path('meeting_request/', views.save_request_for_meeting, name=''),
 ]
 
