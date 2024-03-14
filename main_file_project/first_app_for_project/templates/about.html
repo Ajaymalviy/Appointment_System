@@ -28,7 +28,7 @@
 <link href="{% static 'assets/vendor/aos/aos.css' %}" rel="stylesheet">
 
   <!-- Template Main CSS File -->
-  <link href="{% static 'assets/css/main.css' %}" rel="stylesheet">
+<link href="{% static 'assets/css/main.css' %}" rel="stylesheet">
 
   <!-- =======================================================
   * Template Name: Logis
@@ -45,7 +45,7 @@
   <header id="header" class="header d-flex align-items-center fixed-top">
     <div class="container-fluid container-xl d-flex align-items-center justify-content-between">
 
-      <a href="#header" class="logo d-flex align-items-center">
+      <a href="#homeee" class="logo d-flex align-items-center">
         <!-- Uncomment the line below if you also wish to use an image logo -->
         <!-- <img src="assets/img/logo.png" alt=""> -->
         <h1>meetMe</h1>
@@ -56,7 +56,7 @@
       <nav id="navbar" class="navbar">
         <ul>
           
-          <li><a href="#header" class="active">Home</a></li>
+          <li><a href="#homeee" class="active">Home</a></li>
           <li><a href="#about">About</a></li>
           <li><a href="#service">service</a></li>
           
@@ -64,9 +64,7 @@
           <li class="dropdown" style="color:White;"><a href="#"><span>Get-Start</span> <i class="bi bi-chevron-down dropdown-indicator"></i></a>
             <ul>
               <li><a href="{% url 'login' %}">Login</a></li>
-
-              <li><a href="{% url 'register' %}">Sign-In</a></li>
-               
+              <li><a href="{% url 'register' %}">Sign-In</a></li>   
             </ul>
           </li>
           </div>
@@ -79,11 +77,10 @@
   <!-- End Header -->
 
   <main id="main">
-
     <!-- ======= Breadcrumbs ======= -->
-    <div class="breadcrumbs" style="background-color:white;">
+    <div class="breadcrumbs" >
       <div class="page-header d-flex align-items-center" style="background-image: url({% static 'assets/img/backman.jpg' %});">
-        <div class="container position-relative">
+        <div class="container position-relative" id="homeee">
           <div class="row d-flex justify-content-center">
             <div class="col-lg-6 text-center">
               <h2 style="color: rgb(248, 228, 164);">hello!!</h2>
@@ -92,10 +89,10 @@
           </div>
         </div>
       </div>
-      <nav style="background-color:white;">
+      <nav>
         <div class="container">
           <ol>
-            <li><a href="#header">Home</a></li>
+            <li><a href="#homeee">Home</a></li>
             <li>About</li>
           </ol>
         </div>
