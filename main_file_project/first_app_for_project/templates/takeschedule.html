@@ -13,7 +13,7 @@
       justify-content: center;
       align-items: center;
       height: 100vh;
-      background-color: #f4f4f4;
+      background-color: #EBE6D9;
     }
     .login-container {
       width: 300px;
@@ -57,69 +57,24 @@
       background-color: #28a745;
       color: #fff;
     }
-
-    .breadcrumbs nav {
-      background-color: none;
-      padding: 20px 0;
-      margin-left:5px;
-    }
-
-    .breadcrumbs nav ol {
-      display: flex;
-      flex-wrap: wrap;
-      list-style: none;
-      margin: 0;
-      padding: 0;
-      font-size: 16px;
-      font-weight: 600;
-      color: var(--color-secondary);
-    }
-
-    .breadcrumbs nav ol a {
-      color: var(--color-primary);
-      transition: 0.3s;
-    }
-
-    .breadcrumbs nav ol a:hover {
-      text-decoration: underline;
-    }
-
-    .breadcrumbs nav ol li+li {
-      padding-left: 10px;
-    }
-
-    .breadcrumbs nav ol li+li::before {
-      display: inline-block;
-      padding-right: 10px;
-      color: #4278cc;
-      content: "/";
-    }
-    body {
-      background: radial-gradient(circle, #ff0000, #87ceeb); /* Red to Green */
-  }
+   
   </style>
 </head>
 <body>
-  <div class="breadcrumbs">
-    <nav>
-      <div class="container">
-        <ol>
-          <li><a href="#">Home</a></li>
-          <li>take-slote</li>
-        </ol>
-      </div>
-    </nav>
+
   <div class="login-container">
     <h2>Request For Empty-Slot</h2>
-    <form method="POST">
+    <form  action="/meeting_request" method="POST">
       {% csrf_token %}
       <div class="form-group">
-        <label for="username">Email</label>
-        <input type="text" id="username" name="username" placeholder="Enter Email" required>
+        <label for="email">Email</label>
+        <input type="email" id="email" minlength="6" maxlength="30" name="email" required
+               placeholder="Enter your email address"
+               title="Please enter a valid email address (e.g., example@domain.com).">
       </div>
       <div class="form-group">
         <label for="password">description</label>
-        <input type="password" id="password" name="password" placeholder="Enter Description Of Discuss" required>
+        <input type="description" id="description" name="password" placeholder="Enter Description Of Discuss" required style="height:50px">
       </div>
       <div>
         <label for="birthday">Date:</label>
@@ -127,10 +82,24 @@
       </div> 
       <br> 
       <div class="btn-container">
-        <button type="submit" class="login">Submit</button>
+        <button type="submit" class="login"  onclick="return validateForm()">Submit</button>
        
       </div>
     </form>
   </div>
 </body>
+<script>
+
+  function validateForm() {
+    let isValid = true;
+    // Email Validation (using a more relaxed regex)
+    const email = document.getElementById("email").value;
+    if (!/^[a-zA-Z][\w\.-]*\d+@[\w\.-]+\.[a-z]{2,}$/.test(email)) {
+      alert("Please ends email address with @gmail.com and starts with letters ");
+      isValid = false;
+    }
+  }
+  
+
+</script>
 </html>
