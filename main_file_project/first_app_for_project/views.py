@@ -1,6 +1,9 @@
 from django.http import HttpResponse
 
 from django.shortcuts import render,redirect
+from django.shortcuts import render, redirect
+from django.contrib.auth.hashers import check_password
+from .models import User
 
 
 
@@ -9,9 +12,6 @@ from django.shortcuts import render,redirect
 
 
 #--------------------------------Login------------------------------------------------------------
-from django.shortcuts import render, redirect
-from django.contrib.auth.hashers import check_password
-from .models import User
 
 
 def index(request):
@@ -22,26 +22,17 @@ def login(request):
     if request.method == 'POST':
         username = request.POST.get('username')
         password = request.POST.get('password')
-        
         try:
             user = User.objects.get(username=username)
             print(username)
         except User.DoesNotExist:
-            # User does not exist, (e.g., show error message)
             print('errror')
             return render(request, 'login_page.html', {'error': 'Invalid username or password'})
-            
-        
-        # Check if the password matches
+  
         if check_password(password, user.password):
             print('success')
-            # Password matches, login successful
-            # You may set session variables or use Django's built-in authentication mechanisms here
-            return redirect('home')  # Redirect to the home page after successful login
         else:
-            # Password does not match, handle appropriately (e.g., show error message)
-            return render(request, 'login_page.html', {'error': 'Invalid username or password'})
-    
+            return render(request, 'login_page.html', {'error': 'Invalid username or password'})  
     return render(request, 'login_page.html')
 
 #------------------------------------Registration--------------------------------------------
@@ -55,17 +46,9 @@ def register_user(request):
         password = request.POST.get('password')
         email = request.POST.get('email')
         phone = request.POST.get('phone')
-
-        # Hash the password
         hashed_password = make_password(password)
-        
-        # Create a new User object
         user = User(username=username, password=hashed_password, email=email, phone=phone)
-        
-        # Save the user object to the MongoDB collection, which is user
         user.save()
-        
-        # Redirect to the login page after register
         return redirect(reverse('login'))  
 
     return render(request, 'registration.html')
@@ -93,10 +76,8 @@ def get_company_data(request):
         return JsonResponse({'error': 'Invalid company name'})
 
     try:
-        # Establish a connection to the MongoDB database
         client = pymongo.MongoClient('mongodb://localhost:27017/')  
         db = client['meetme'] 
-        # Query MongoDB collection for company details
         collection = db['Employee']  
         employees = collection.find({'company_name': company_name})
 
@@ -105,7 +86,7 @@ def get_company_data(request):
             data_list.append({
                 'employee_name': employee['employee_name'],
                 'skills': employee['skills'],
-                'experience': str(employee['experience']) +'Yr'
+                'experience': str(employee['experience']) +'-Yr'
             })
 
         if data_list:
@@ -126,11 +107,38 @@ def rating(request):
 from django.contrib.auth import logout as auth_logout
 def logout(request):
     auth_logout(request)  # Clear session and log out the user
-    return redirect('index')  # Redirect to the login page
+    return render(request, 'about.html') 
 
 #__________takescheduleby___________user-------------------------
 
 def takeschedule(request):
     return render(request, 'takeschedule.html')   
+
+#---------------------Request_For_Schedule--------------------------method------------------
+from django.shortcuts import render
+from pymongo import MongoClient
+from datetime import datetime
+
+def save_request_for_meeting(request):
+    if request.method == 'POST':
+        email = request.POST.get('email')
+        description = request.POST.get('description')
+        date_str = request.POST.get('birthday')
+        date = datetime.strptime(date_str, '%Y-%m-%d')
+
+        client = MongoClient('mongodb://localhost:27017/')
+        db = client['meetme']  
+        collection = db['Request_for_meeting']
+        request_document = {
+            'email': email,
+            'description': description,
+            'date': date
+        }
+        collection.insert_one(request_document)
+        client.close()
+        return render(request, 'success_page.html')
+    
+    # If the request method is not POST, render the form template
+    return render(request, 'takeshcedule.html')
 
 
