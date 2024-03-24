@@ -5,6 +5,8 @@ from django.conf import settings
 from django.conf.urls.static import static
 from .views import get_company_data, home, login
 
+from django.contrib import admin
+
 urlpatterns = [
     path('', index, name='about'),
     path('/home', home, name='home'),
