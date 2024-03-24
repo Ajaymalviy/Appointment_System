@@ -39,15 +39,14 @@ import json
 from bson import ObjectId 
 from django.http import HttpResponse, JsonResponse
 from django.shortcuts import render,redirect
-from django.contrib.auth.hashers import check_password
-from django.contrib.auth import logout as auth_logout
+from django.contrib.auth.hashers import check_password, make_password
+from django.contrib.auth import logout as auth_logout , authenticate,login as auth_login
 from .models import User
-from django.contrib.auth.hashers import make_password
 from django.urls import reverse
 import pymongo
 from pymongo import MongoClient
 from datetime import datetime
-
+from django.contrib.auth.models import User
 
 
 def index(request):
@@ -58,33 +57,64 @@ def register_user(request):
         username = request.POST.get('username')
         password = request.POST.get('password')
         email = request.POST.get('email')
-        phone = request.POST.get('phone')
         hashed_password = make_password(password)
-        user = User(username=username, password=hashed_password, 
-                    email=email, phone=phone
-        )
+        user = User(username=username, password=hashed_password, email=email )
         user.save()
-        return redirect(reverse('login'))  
+        return render(request, 'login.html') 
     return render(request, 'registration.html')
 
-def login(request):
+
+
+def employee_login(request):
     if request.method == 'POST':
         username = request.POST.get('username')
         password = request.POST.get('password')
-        try:
-            user = User.objects.get(username=username)
-            print(username)
-        except User.DoesNotExist:
-            print('errror')
-            return render(request, 'login_page.html', {'error': 'Invalid username or password'})
-  
-        if check_password(password, user.password):
-            print('success')
-            return render(request, 'index.html')
+        user = authenticate(request, username=username, password=password)
+        if user is not None:
+            if user.is_employee:
+                auth_login(request, user)
+                return render(request, 'index1.html')   # Redirect to employee dashboard
+            else:
+                return render(request, 'login.html', {'error': 'You are not an employee'})
         else:
-            return render(request, 'login_page.html', 
-                        {'error':'Invalid username or password' })  
-    return render(request, 'login_page.html')
+            return render(request, 'login.html', {'error': 'Invalid username or password'})
+    return render(request, 'login.html')
+
+
+def user_login(request):
+    if request.method == 'POST':
+        username = request.POST.get('username')
+        password = request.POST.get('password')
+        user = authenticate(request, username=username, password=password)
+        if user is not None:
+            if not user.is_employee:
+                auth_login(request, user)
+                return render(request, 'index.html')  # Redirect to user dashboard
+            else:
+                return render(request, 'login.html', {'error': 'You are not a user'})
+        else:
+            return render(request, 'login.html', {'error': 'Invalid username or password'})
+    return render(request, 'login.html')
+
+
+# def login(request):
+#     if request.method == 'POST':
+#         username = request.POST.get('username')
+#         password = request.POST.get('password')
+#         try:
+#             user = User.objects.get(username=username)
+#             print(username)
+#         except User.DoesNotExist:
+#             print('errror')
+#             return render(request, 'login_page.html', {'error': 'Invalid username or password'})
+  
+#         if check_password(password, user.password):
+#             print('success')
+#             return render(request, 'index.html')
+#         else:
+#             return render(request, 'login_page.html', 
+#                         {'error':'Invalid username or password' })  
+#     return render(request, 'login_page.html')
 
 
 def home(request):
@@ -105,6 +135,8 @@ def get_company_data(request):
         data_list = []
         for employee in employees:
             data_list.append({
+                'employee_email': employee['employee_email'],
+                'employee_role': employee['employee_role'],
                 'employee_name': employee['employee_name'],
                 'skills': employee['skills'],
                 'experience': str(employee['experience']) +'-Yr'
