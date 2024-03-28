@@ -8,6 +8,7 @@ from .views import get_company_data, home, login
 from django.contrib import admin
 
 urlpatterns = [
+    path('/admin', ),
     path('', index, name='about'),
     path('/home', home, name='home'),
     path('/search', get_company_data, name='getting_company_data'),
