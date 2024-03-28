@@ -41,7 +41,7 @@ from django.http import HttpResponse, JsonResponse
 from django.shortcuts import render,redirect
 from django.contrib.auth.hashers import check_password, make_password
 from django.contrib.auth import logout as auth_logout , authenticate,login as auth_login
-from .models import User
+from .models import User,Employee
 from django.urls import reverse
 import pymongo
 from pymongo import MongoClient
@@ -65,19 +65,40 @@ def register_user(request):
 
 
 
+
 def employee_login(request):
+
     if request.method == 'POST':
-        username = request.POST.get('username')
+        print("post method")
+        email = str(request.POST.get('email'))
+        print(type(email))
         password = request.POST.get('password')
-        user = authenticate(request, username=username, password=password)
-        if user is not None:
-            if user.is_employee:
+        print(email,password)
+        
+        # Check if the email exists in the Employee collection
+        try:
+            # Extracting the first element assuming email is a list
+            employee = Employee.objects.get(employee_email=email)
+            print(employee)
+
+        except Employee.DoesNotExist:
+            return render(request, 'login.html', {'error': 'Invalid email or password'})
+        print(email,password)
+        # Check if the password matches
+        if employee.password == password:
+            # Authenticate the user
+            user = authenticate(request, username=email[0], password=password)  # Extracting the first element assuming email is a list
+            print(user)
+            if user is not None:
+                # Login the user
                 auth_login(request, user)
-                return render(request, 'index1.html')   # Redirect to employee dashboard
+                # Redirect to the employee dashboard
+                return render(request, 'employee_dashboard.html')
             else:
-                return render(request, 'login.html', {'error': 'You are not an employee'})
+                return render(request, 'login.html', {'error': 'Invalid email or password'})
         else:
-            return render(request, 'login.html', {'error': 'Invalid username or password'})
+            return render(request, 'login.html', {'error': 'Invalid email or password'})
+    
     return render(request, 'login.html')
 
 
@@ -85,17 +106,20 @@ def user_login(request):
     if request.method == 'POST':
         username = request.POST.get('username')
         password = request.POST.get('password')
-        user = authenticate(request, username=username, password=password)
-        if user is not None:
-            if not user.is_employee:
-                auth_login(request, user)
-                return render(request, 'index.html')  # Redirect to user dashboard
-            else:
-                return render(request, 'login.html', {'error': 'You are not a user'})
+        try:
+            user = User.objects.get(username=username)
+            print(username)
+        except User.DoesNotExist:
+            print('errror')
+            return render(request, 'login_page.html', {'error': 'Invalid username or password'})
+  
+        if check_password(password, user.password):
+            print('success')
+            return render(request, 'index.html')
         else:
-            return render(request, 'login.html', {'error': 'Invalid username or password'})
+            return render(request, 'login.html', 
+                        {'error':'Invalid username or password' })  
     return render(request, 'login.html')
-
 
 # def login(request):
 #     if request.method == 'POST':
