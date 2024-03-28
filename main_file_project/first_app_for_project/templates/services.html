@@ -34,6 +34,22 @@
   * Author: BootstrapMade.com
   * License: https://bootstrapmade.com/license/
   ======================================================== -->
+  <style>
+    #tempbutton {
+      display: inline-block;
+      background-color: #0e1d34; /* Button background color */
+      color: white; /* Button text color */
+      padding: 10px 20px; /* Button padding */
+      border: none; /* Remove button border */
+      border-radius: 5px; /* Rounded corners */
+      text-decoration: none; /* Remove underline from text */
+      transition: background-color 0.3s ease; /* Smooth transition */
+  }
+  
+  #tempbutton:hover {
+      background-color: #0056b3; /* Change background color on hover */
+  }
+</style>  
 </head>
 
 <body>
@@ -88,16 +104,26 @@
           <div class="row gy-4">
   
             {% for employee in employees %}
-              <div class="col-lg-4 col-md-6 service-item d-flex"  data-aos-delay="100" >
-                <div class="icon flex-shrink-0" style="background-color:none;height:0px;"><i class="fas fa-user"></i></div>
-                <div>
-                  <h4 class="title" style="color:black;">{{ employee.employee_name }}</h4>
-                  <p class="description" style="color:black;">Skills: {{ employee.skills }}</p>
-                  <p class="description" style="color:black;">Experience: {{ employee.experience }}</p>
-                  <a href="{% url 'takeschedule' %}" class="readmore stretched-link" style="color:black;"><span>Take-Schedule</span><i class="bi bi-arrow-right"></i></a>
-                </div>
-              </div><!-- End Service Item -->
-            {% endfor %}
+            <div class="col-lg-4 col-md-6 service-item d-flex"  data-aos-delay="100" >
+              <div class="icon flex-shrink-0" style="background-color:none;height:0px;"><i class="fas fa-user"></i></div>
+              <div>
+                <h4 class="title" style="color:black;">{{ employee.employee_name }}</h4>
+                <p class="description" style="color:black;">Email: {{ employee.employee_email }}</p>
+                <p class="description" style="color:black;">Experience: {{ employee.experience }}</p>
+                <p class="description" style="color:black;">Roles: {{ employee.employee_role }}</p>
+                <!-- Skills initially hidden -->
+                <p class="description" id="skills_{{ forloop.counter }}" style="color:black;display:none;">Skills: {{ employee.skills }}</p>
+                <!-- Read More and Read Less buttons -->
+               
+                <a href="javascript:void(0);" onclick="toggleSkills({{ forloop.counter }})" class="readmore stretched-link" style="color:black;"><span id="readMore_{{ forloop.counter }}">Read More</span><span id="readLess_{{ forloop.counter }}" style="display:none;">Read Less</span><i class="bi bi-arrow-right"></i></a>
+                <p> </p>
+                
+               
+            </div><!-- End Service Item -->
+            
+        </div>
+        
+          {% endfor %}
           </div>
           
          </div>
@@ -189,6 +215,40 @@
   <!-- Template Main JS File -->
   <script src="{% static 'assets/js/main.js' %}"></script>
 
+  <script>
+    function toggleSkills(id) {
+      var skills = document.getElementById('skills_' + id);
+      var readMoreBtn = document.getElementById('readMore_' + id);
+      var readLessBtn = document.getElementById('readLess_' + id);
+  
+      if (skills.style.display === "none") {
+        skills.style.display = "block";
+        readMoreBtn.innerHTML = "Read Less";
+      } else {
+        skills.style.display = "none";
+        readMoreBtn.innerHTML = "Read More";
+      }
+    }
+  </script>
+
 </body>
 
 </html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
