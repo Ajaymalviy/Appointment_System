@@ -41,7 +41,7 @@ from django.http import HttpResponse, JsonResponse
 from django.shortcuts import render,redirect
 from django.contrib.auth.hashers import check_password, make_password
 from django.contrib.auth import logout as auth_logout , authenticate,login as auth_login
-from .models import User,Employee
+from first_app_for_project.models import User, Employee
 from django.urls import reverse
 import pymongo
 from pymongo import MongoClient
@@ -64,42 +64,45 @@ def register_user(request):
     return render(request, 'registration.html')
 
 
-
+import json
+from django.shortcuts import render, redirect
+from django.contrib.auth import authenticate, login  # Optional for built-in auth
+from .models import Employee
 
 def employee_login(request):
-
     if request.method == 'POST':
-        print("post method")
-        email = str(request.POST.get('email'))
-        print(type(email))
+        username = request.POST.get('username')
+        print("email is type of" , type(username)) 
         password = request.POST.get('password')
-        print(email,password)
-        
-        # Check if the email exists in the Employee collection
-        try:
-            # Extracting the first element assuming email is a list
-            employee = Employee.objects.get(employee_email=email)
-            print(employee)
-
-        except Employee.DoesNotExist:
-            return render(request, 'login.html', {'error': 'Invalid email or password'})
-        print(email,password)
-        # Check if the password matches
-        if employee.password == password:
-            # Authenticate the user
-            user = authenticate(request, username=email[0], password=password)  # Extracting the first element assuming email is a list
-            print(user)
-            if user is not None:
-                # Login the user
-                auth_login(request, user)
-                # Redirect to the employee dashboard
-                return render(request, 'employee_dashboard.html')
+        print(username, password)
+        if username and password:    
+            try:
+                # employee = Employee.objects.get(employee_email=email[0])
+                employee = Employee.objects.get(employee_name=username)
+                print(json.dumps(employee))
+                print(employee) 
+            except Employee.DoesNotExist as e:
+                print("inside base ex")
+                print(e)
+                error_message = 'Invalid email or password.'
             else:
-                return render(request, 'login.html', {'error': 'Invalid email or password'})
+                if employee.check_password(password):
+                    print(employee.check_password(password))  # Replace with secure password comparison
+                    user = authenticate(request, employee=employee)
+                    if user is not None:
+                        login(request, user)
+                        return redirect('employee_dashboard')  # Redirect to employee dashboard
+                    else:
+                        error_message = 'An error occurred during login.'
+                else:
+                    error_message = 'Invalid email or password.'
         else:
-            return render(request, 'login.html', {'error': 'Invalid email or password'})
-    
+            error_message = 'Email and password are required.'
+
+        return render(request, 'login.html', {'error_message': error_message})
+
     return render(request, 'login.html')
+
 
 
 def user_login(request):
