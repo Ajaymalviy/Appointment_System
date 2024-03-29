@@ -41,11 +41,17 @@
 
 <body>
 
-  <!-- ======= Header ======= -->
-  <header id="header" class="header d-flex align-items-center fixed-top">
-    <div class="container-fluid container-xl d-flex align-items-center justify-content-between">
 
-      <a href="#homeee" class="logo d-flex align-items-center">
+
+
+
+  
+
+  <!-- ======= Header ======= -->
+  <header id="header" class="header d-flex align-items-center fixed-top" style="margin-top:0%">
+    <div class="container-fluid container-xl d-flex align-items-center justify-content-between" style="margin-top:0%">
+
+      <a href="#homeee" class="logo d-flex align-items-center"  >
         <!-- Uncomment the line below if you also wish to use an image logo -->
         <!-- <img src="assets/img/logo.png" alt=""> -->
         <h1>meetMe</h1>
@@ -63,7 +69,7 @@
           <li><a href="#faq">Revelent</a></li>
           <li class="dropdown" style="color:White;"><a href="#"><span>Get-Start</span> <i class="bi bi-chevron-down dropdown-indicator"></i></a>
             <ul>
-              <li><a href="{% url 'login' %}">Login</a></li>
+              <li><a href="{% url 'user_login' %}">Login</a></li>
               <li><a href="{% url 'register' %}">Sign-In</a></li>   
             </ul>
           </li>
@@ -150,14 +156,13 @@
         <div class="section-header">
           <span>Services</span>
           <h2 id="service" >Services</h2>
-
         </div>
 
         <div class="row" data-aos="fade-up" data-aos-delay="100">
 
           <div class="col-lg-4 col-md-6 d-flex">
             <div class="member">
-              <img src="{% static 'assets/img/team/online1.png' %}" class="img-fluid" alt="">
+              <img src="{% static 'assets/img/team/aja.avif' %}" class="img-fluid" alt="">
               <div class="member-content">
                 <h4>Online-Booking</h4>
                 <span>system</span>
@@ -195,7 +200,7 @@
 
           <div class="col-lg-4 col-md-6 d-flex">
             <div class="member">
-              <img src="{% static 'assets/img/team/Appoin.jpg' %}" class="img-fluid" alt="">
+              <img src="{% static 'assets/img/team/schedule5.jpg' %}" class="img-fluid" alt="">
               <div class="member-content">
                 <h4>Appointment Scheduling</h4>
                 <span>Works:</span>
