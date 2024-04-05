@@ -37,18 +37,18 @@
   <style>
     #tempbutton {
       display: inline-block;
-      background-color: #0e1d34; /* Button background color */
-      color: white; /* Button text color */
-      padding: 10px 20px; /* Button padding */
-      border: none; /* Remove button border */
-      border-radius: 5px; /* Rounded corners */
-      text-decoration: none; /* Remove underline from text */
-      transition: background-color 0.3s ease; /* Smooth transition */
+      background-color: #052c65;;
+      color: white;
+      padding: 10px 20px;
+      border: none; 
+      border-radius: 5px;
+      text-decoration: none; 
+      transition: background-color 0.3s ease;
   }
   
-  #tempbutton:hover {
-      background-color: #0056b3; /* Change background color on hover */
-  }
+    #tempbutton:hover {
+       background-color: #007aff; 
+    }
 </style>  
 </head>
 
@@ -117,8 +117,8 @@
                
                 <a href="javascript:void(0);" onclick="toggleSkills({{ forloop.counter }})" class="readmore stretched-link" style="color:black;"><span id="readMore_{{ forloop.counter }}">Read More</span><span id="readLess_{{ forloop.counter }}" style="display:none;">Read Less</span><i class="bi bi-arrow-right"></i></a>
                 <p> </p>
-                
-               
+                <a href="{% url 'takeschedule' %}" class="btn btn-primary" id="#tempbutton" onclick="stopPropagation(event)">Request</a>
+                               
             </div><!-- End Service Item -->
             
         </div>
@@ -229,6 +229,10 @@
         readMoreBtn.innerHTML = "Read More";
       }
     }
+
+    function stopPropagation(event) {
+      event.stopPropagation();
+  }
   </script>
 
 </body>
