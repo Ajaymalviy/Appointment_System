@@ -220,7 +220,7 @@
         <div class="container" id="container">
             
             <div class="form-container sign-in">
-                <form action="#" method="POST">
+                <form action="/register/" method="POST">
                     {% csrf_token %}
                  
                     <h1>Registration</h1>
@@ -237,22 +237,22 @@
                         <input type="password" id="password" name="password" required
                         minlength="8" maxlength="8" placeholder="Enter a strong password (min. 8 characters)"
                         title="Password must be at least 8 characters long and contain a mix of uppercase, lowercase letters, numbers, and symbols. Consider using a password manager for secure password creation and storage.">
-                        {% comment %} <input type="checkbox" onclick="myFunction()" style="width:10%; margin-left: 70%;">  {% endcomment %}
+                        {% comment %} <input type="checkbox" onclick="myFunction()" style="width:10%; margin-left: 70%;">show</input> {% endcomment %}
                    </div>
                
                     <div class="form-group">
-                        <label for="username">Confirm-Password:</label>
+                        <label for="password">Confirm-Password:</label>
                         <input type="password" id="confirm_password" name="confirm_password" maxlength="8" minlength="8" required
                           placeholder="Re-enter your password" oninput="validatePassword()">
                     </div>
                     <div class="form-group">
-                        <label for="password">Email:</label>
+                        <label for="email">Email:</label>
                         <input type="email" id="email" minlength="6" maxlength="30" name="email" required
                         placeholder="Enter your email address"
                         title="Please enter a valid email address (e.g., example@domain.com).">
                     </div>
                    
-                    <button>Login</button>
+                    <button>Register</button>
                 </form>
             </div>
             <div class="toggle-container">
@@ -281,8 +281,6 @@
            confirmPassword.setCustomValidity("");
        }
    }
-
-
 
    function myFunction() {
        var x = document.getElementById("password");
