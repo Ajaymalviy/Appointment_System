@@ -53,14 +53,16 @@ def index(request):
     return render(request, 'about.html')
 
 def register_user(request):
+    print('goodydm')
     if request.method == 'POST':
         username = request.POST.get('username')
         password = request.POST.get('password')
         email = request.POST.get('email')
+        print(username,password,email)
         hashed_password = make_password(password)
         user = User(username=username, password=hashed_password, email=email )
         user.save()
-        return render(request, 'login.html') 
+        return redirect('user_login') 
     return render(request, 'registration.html')
 
 
