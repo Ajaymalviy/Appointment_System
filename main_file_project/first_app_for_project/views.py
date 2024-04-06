@@ -66,44 +66,92 @@ def register_user(request):
     return render(request, 'registration.html')
 
 
+
+from django.shortcuts import render
+from .models import Employee,Company
+
+def employee_registration(request):
+    if request.method == 'POST':
+        # Retrieve data from the form
+        employee_email = request.POST.get('employee_email')
+        employee_role = request.POST.get('employee_role')
+        employee_name = request.POST.get('employee_name')
+        experience = request.POST.get('experience')
+        skills = request.POST.get('skills')
+        company_name = request.POST.get('company')
+        
+        company, created = Company.objects.get_or_create(company_name=company_name)
+
+        # if created:
+        #     company.save()
+        
+        password = request.POST.get('password')
+        
+        # Save data to the Employee model
+        employee = Employee(
+            employee_email=employee_email,
+            employee_role=employee_role,
+            employee_name=employee_name,
+            experience=experience,
+            skills=skills,
+            company=company_name,
+            password=password
+        )
+        employee.save()
+        
+        # Optionally, you can redirect to a success page
+        return render(request, 'login.html')
+    
+    return render(request, 'employee_register.html')
+
+
+
 import json
 from django.shortcuts import render, redirect
 from django.contrib.auth import authenticate, login  # Optional for built-in auth
 from .models import Employee
 
+import json
+
 def employee_login(request):
     if request.method == 'POST':
         username = request.POST.get('username')
-        print("email is type of" , type(username)) 
+        print("username is type of", type(username))
         password = request.POST.get('password')
-        print(username, password)
-        if username and password:    
+        if username and password:
             try:
-                # employee = Employee.objects.get(employee_email=email[0])
-                employee = Employee.objects.get(employee_name=username)
-                print(json.dumps(employee))
-                print(employee) 
-            except Employee.DoesNotExist as e:
-                print("inside base ex")
-                print(e)
-                error_message = 'Invalid email or password.'
-            else:
-                if employee.check_password(password):
-                    print(employee.check_password(password))  # Replace with secure password comparison
-                    user = authenticate(request, employee=employee)
-                    if user is not None:
-                        login(request, user)
-                        return redirect('employee_dashboard')  # Redirect to employee dashboard
+                print('employee_document')
+                list = [username]
+                # Assuming you're using PyMongo to interact with MongoDB
+                # Replace this part with your actual MongoDB query code
+                employee_document =  Employee.objects.get(employee_name=list[0])
+                print(employee_document)
+                if employee_document:
+                    # Extracting the username from the document
+                    employee_username = employee_document.get("employee_name")
+                    print(employee_username)
+                    # Converting the username to a list
+                    username_list = [employee_username]
+                    # Proceed with authentication
+                    if employee_document.get("password") == password:
+                        # Authentication successful
+                        print("Authentication successful")
+                        # Redirect to employee dashboard
+                        return redirect('employee_dashboard')
                     else:
-                        error_message = 'An error occurred during login.'
+                        error_message = 'Invalid email or password.'
                 else:
                     error_message = 'Invalid email or password.'
+            except Exception as e:
+                print("Exception occurred:", e)
+                error_message = 'An error occurred during login.'
         else:
             error_message = 'Email and password are required.'
 
         return render(request, 'login.html', {'error_message': error_message})
 
     return render(request, 'login.html')
+
 
 
 
