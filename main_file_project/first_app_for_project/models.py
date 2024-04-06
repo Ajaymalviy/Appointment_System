@@ -8,7 +8,7 @@ class User(models.Model):
   
 
 class Company(models.Model):
-    company_name = models.CharField(max_length=100)
+    company_name = models.CharField(max_length=100, primary_key=True)
     company_email = models.EmailField(default='xyz@gmail.com')
     location = models.CharField(max_length=100)
     company_schedule = models.CharField(max_length=100)
@@ -16,7 +16,7 @@ class Company(models.Model):
         return self.company_name
     
 
-class Employee(models.Model):
+class Employee(models.Model):    
     employee_email = models.EmailField()
     employee_role = models.CharField(max_length=100)
     employee_name = models.CharField(max_length=100)
