@@ -32,7 +32,6 @@ urlpatterns = [
     path('register/', views.register_user, name='register'),
     path('home/', home, name='home'),
     path('search/', get_company_data, name='getting_company_data'),
-    path('takeschedule/', views.takeschedule, name='takeschedule'),
-    path('meeting_request/', views.save_request_for_meeting, name=''),
+    path('meeting_request/', views.save_request_for_meeting, name='meeting_request'),
 ]
 
