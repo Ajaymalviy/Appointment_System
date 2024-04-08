@@ -79,7 +79,6 @@ def employee_registration(request):
         experience = request.POST.get('experience')
         skills = request.POST.get('skills')
         company_name = request.POST.get('company')
-        
         company, created = Company.objects.get_or_create(company_name=company_name)
 
         # if created:
@@ -94,10 +93,11 @@ def employee_registration(request):
             employee_name=employee_name,
             experience=experience,
             skills=skills,
-            company=company_name,
+            company=company,
             password=password
         )
         employee.save()
+        print('successful data entry')
         
         # Optionally, you can redirect to a success page
         return render(request, 'login.html')
@@ -109,7 +109,7 @@ def employee_registration(request):
 import json
 from django.shortcuts import render, redirect
 from django.contrib.auth import authenticate, login  # Optional for built-in auth
-from .models import Employee
+from .models import Employee, MeetingRequest
 
 import json
 
@@ -118,26 +118,21 @@ def employee_login(request):
         username = request.POST.get('username')
         print("username is type of", type(username))
         password = request.POST.get('password')
+        print(username,password)
         if username and password:
             try:
-                print('employee_document')
-                list = [username]
-                # Assuming you're using PyMongo to interact with MongoDB
-                # Replace this part with your actual MongoDB query code
-                employee_document =  Employee.objects.get(employee_name=list[0])
+                # list = [username]
+                employee_document =  Employee.objects.get(employee_name=username)
                 print(employee_document)
                 if employee_document:
-                    # Extracting the username from the document
-                    employee_username = employee_document.get("employee_name")
+                    employee_username = employee_document.employee_name
                     print(employee_username)
-                    # Converting the username to a list
                     username_list = [employee_username]
-                    # Proceed with authentication
-                    if employee_document.get("password") == password:
+                    if employee_document.password == password:
                         # Authentication successful
                         print("Authentication successful")
                         # Redirect to employee dashboard
-                        return redirect('employee_dashboard')
+                        return render(request, 'employee_dashboard.html', {'error':'not found employee dashboard'})
                     else:
                         error_message = 'Invalid email or password.'
                 else:
@@ -235,28 +230,44 @@ def logout(request):
     auth_logout(request)  
     return render(request, 'about.html') 
 
-def takeschedule(request):
-    return render(request, 'takeschedule.html')   
+from django.http import HttpResponseRedirect
+from django.urls import reverse
+from .models import MeetingRequest      
 
 def save_request_for_meeting(request):
     if request.method == 'POST':
-        email = request.POST.get('email')
+        employee_email = request.POST.get('employee_email')
+        requester_email = request.POST.get('requester_email')
         description = request.POST.get('description')
-        date_str = request.POST.get('birthday')
-        date = datetime.strptime(date_str, '%Y-%m-%d')
+        date_str = request.POST.get('date')
+        print("Employee Email:", employee_email)
+        print("Requester Email:", requester_email)
+        print("date is :" , date_str)
+        print("next from this data was not lodede")
+        # Check if employee_email is available in POST data
+        if employee_email:
+            date = datetime.strptime(date_str, '%Y-%m-%d')
+            meeting_request = MeetingRequest.objects.create(
+                employee_email=employee_email,
+                requester_email=requester_email,
+                description=description,
+                date=date
+            )
+            return render(request, 'services.html')
+        else:
+            # Handle the case where employee_email is missing (e.g., display an error message)
+            print("Employee email is missing in the form submission.")
+            return render(request, 'takeschedulee.html')  # Or redirect to an error page
 
-        client = MongoClient('mongodb://localhost:27017/')
-        db = client['meetme']  
-        collection = db['Request_for_meeting']
-        request_document = {
-            'email': email,
-            'description': description,
-            'date': date
-        }
+    # If the request is not POST, redirect to the form page with the employee's email in the URL
+    employee_email = request.GET.get('employee_email')
+    if employee_email:
+        print(employee_email)
+        return HttpResponseRedirect(reverse('meeting_request') + f'?employee_email={employee_email}')
+        
+    else:
+        return render(request, 'takeschedulee.html')
 
-        collection.insert_one(request_document)
-        client.close()
-        return render(request, 'success_page.html')
-    return render(request, 'takeshcedule.html')
+
 
 
