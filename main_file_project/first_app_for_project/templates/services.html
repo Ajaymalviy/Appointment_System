@@ -99,35 +99,27 @@
 
       <!-- ======= Featured Services Section ======= -->
       <section id="featured-services" class="featured-services">
-        <div class="container" >
-  
+        <div class="container">
           <div class="row gy-4">
-  
             {% for employee in employees %}
-            <div class="col-lg-4 col-md-6 service-item d-flex"  data-aos-delay="100" >
-              <div class="icon flex-shrink-0" style="background-color:none;height:0px;"><i class="fas fa-user"></i></div>
-              <div>
-                <h4 class="title" style="color:black;">{{ employee.employee_name }}</h4>
-                <p class="description" style="color:black;">Email: {{ employee.employee_email }}</p>
-                <p class="description" style="color:black;">Experience: {{ employee.experience }}</p>
-                <p class="description" style="color:black;">Roles: {{ employee.employee_role }}</p>
-                <!-- Skills initially hidden -->
-                <p class="description" id="skills_{{ forloop.counter }}" style="color:black;display:none;">Skills: {{ employee.skills }}</p>
-                <!-- Read More and Read Less buttons -->
-               
-                <a href="javascript:void(0);" onclick="toggleSkills({{ forloop.counter }})" class="readmore stretched-link" style="color:black;"><span id="readMore_{{ forloop.counter }}">Read More</span><span id="readLess_{{ forloop.counter }}" style="display:none;">Read Less</span><i class="bi bi-arrow-right"></i></a>
-                <p> </p>
-                <a href="{% url 'takeschedule' %}" class="btn btn-primary" id="#tempbutton" onclick="stopPropagation(event)">Request</a>
-                               
-            </div><!-- End Service Item -->
-            
-        </div>
-        
-          {% endfor %}
+              <div class="col-lg-4 col-md-6 service-item d-flex" data-aos-delay="100">
+                <div class="icon flex-shrink-0" style="background-color:none;height:0px;"><i class="fas fa-user"></i></div>
+                <div>
+                  <h4 class="title" style="color:black;">{{ employee.employee_name }}</h4>
+                  <p class="description" id= "employee_email" style="color:black;">Email: {{ employee.employee_email }}</p>
+                  <p class="description" style="color:black;">Experience: {{ employee.experience }}</p>
+                  <p class="description" style="color:black;">Roles: {{ employee.employee_role }}</p>
+                  <div class="skills-container" style="display: none;"> <p class="description" style="color:black;">Skills: {{ employee.skills }}</p>
+                  </div>
+                  <button class="read-more-btn">Read More</button>
+                  <a href="{% url 'meeting_request' %}?email={{ employee.employee_email }}" class="btn btn-primary" id="tempbutton">Request</a>
+                </div></div>
+            {% endfor %}
           </div>
-          
-         </div>
-      </section><!-- End Featured Services Section -->   
+        </div>
+
+      </section><!-- End Featured Services Section -->
+   
   </main><!-- End #main -->
 
   <!-- ======= Footer ======= -->
@@ -213,27 +205,38 @@
     <link href="{% static 'assets/vendor/swiper/swiper-bundle.min.css' %}" rel="stylesheet">
     <link href="{% static 'assets/vendor/aos/aos.css' %}" rel="stylesheet">
   <!-- Template Main JS File -->
-  <script src="{% static 'assets/js/main.js' %}"></script>
 
-  <script>
-    function toggleSkills(id) {
-      var skills = document.getElementById('skills_' + id);
-      var readMoreBtn = document.getElementById('readMore_' + id);
-      var readLessBtn = document.getElementById('readLess_' + id);
-  
-      if (skills.style.display === "none") {
-        skills.style.display = "block";
-        readMoreBtn.innerHTML = "Read Less";
-      } else {
-        skills.style.display = "none";
-        readMoreBtn.innerHTML = "Read More";
-      }
-    }
+    <script>
+   // Add this script to your template or within a `<script>` tag
 
-    function stopPropagation(event) {
-      event.stopPropagation();
-  }
+    document.addEventListener('DOMContentLoaded', function() {
+      const readMoreBtns = document.querySelectorAll('.read-more-btn');
+
+      readMoreBtns.forEach(function(btn) {
+        btn.addEventListener('click', function(event) {
+          event.preventDefault(); // Prevent default button behavior
+
+          const skillsContainer = this.nextElementSibling.querySelector('.skills-container');
+          skillsContainer.style.display = skillsContainer.style.display === 'none' ? 'block' : 'none';
+          this.textContent = skillsContainer.style.display === 'none' ? 'Read More' : 'Read Less'; // Update button text
+        });
+      });
+    });
+
   </script>
+  <script src="{% static 'assets/js/main.js' %}"></script>
+  <script> 
+
+
+      function fetchEmail() {
+          const email = document.getElementByID('employee_email');
+          const button = document.getElementByID('tempbutton');
+          button.addEventListner(e){
+            e.target.value()
+          }
+      }
+  </script>
+  
 
 </body>
 
