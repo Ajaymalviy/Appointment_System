@@ -41,7 +41,7 @@ from django.http import HttpResponse, JsonResponse
 from django.shortcuts import render,redirect
 from django.contrib.auth.hashers import check_password, make_password
 from django.contrib.auth import logout as auth_logout , authenticate,login as auth_login
-from first_app_for_project.models import User, Employee
+from first_app_for_project.models import User, Employee, Company
 from django.urls import reverse
 import pymongo
 from pymongo import MongoClient
@@ -123,16 +123,22 @@ def employee_login(request):
             try:
                 # list = [username]
                 employee_document =  Employee.objects.get(employee_name=username)
-                print(employee_document)
+                print("think is that it is a ", employee_document)
                 if employee_document:
                     employee_username = employee_document.employee_name
                     print(employee_username)
                     username_list = [employee_username]
                     if employee_document.password == password:
-                        # Authentication successful
                         print("Authentication successful")
+                        meeting_requests = MeetingRequest.objects.filter(employee_email=employee_document)
+                        print(meeting_requests)
                         # Redirect to employee dashboard
-                        return render(request, 'employee_dashboard.html', {'error':'not found employee dashboard'})
+                        if meeting_requests:
+                            for request in meeting_requests:
+                                print(request.employee_email, request.requester_email, request.description, request.date)
+                        else:
+                            print("No meeting requests found for the specified email.")
+                            return render(request, 'employee_dashboard.html', {'error':'not found employee dashboard'})
                     else:
                         error_message = 'Invalid email or password.'
                 else:
@@ -159,7 +165,6 @@ def user_login(request):
             print(username)
         except User.DoesNotExist:
             print('errror')
-            return render(request, 'login_page.html', {'error': 'Invalid username or password'})
   
         if check_password(password, user.password):
             print('success')
@@ -194,34 +199,38 @@ def home(request):
 
 def get_company_data(request):
     if request.method != 'POST':
-        return JsonResponse({'error': 'Invalid request method. Use POST to retrieve company data.'
-        })
+        return JsonResponse({'error': 'Invalid request method. Use POST to retrieve company data.'})
+    
     company_name = request.POST.get('company_name')
+    
     if not company_name:
         return JsonResponse({'error': 'Invalid company name'})
+    
     try:
-        client = pymongo.MongoClient('mongodb://localhost:27017/')  
-        db = client['meetme'] 
-        collection = db['Employee']  
-        employees = collection.find({'company_name': company_name})
+        # Retrieve company object using the company name
+        company = Company.objects.get(company_name=company_name)
+        
+        # Retrieve all employees of the company
+        employees = Employee.objects.filter(company_name=company)
+        
         data_list = []
         for employee in employees:
             data_list.append({
-                'employee_email': employee['employee_email'],
-                'employee_role': employee['employee_role'],
-                'employee_name': employee['employee_name'],
-                'skills': employee['skills'],
-                'experience': str(employee['experience']) +'-Yr'
+                'employee_email': employee.employee_email,
+                'employee_role': employee.employee_role,
+                'employee_name': employee.employee_name,
+                'skills': employee.skills,
+                'experience': f"{employee.experience}-Yr"
             })
+        
         if data_list:
-            return render(request, 'services.html', {
-                'company_name': company_name, 'employees': data_list
-            })
+            return render(request, 'services.html', {'company_name': company_name, 'employees': data_list})
         else:
-            return JsonResponse({'error':'No details found for the selected company'
-            })
+            return JsonResponse({'error': 'No details found for the selected company'})
+    
     except Exception as e:
-        return JsonResponse({'error': f'An error occurred: {str(e)}'})
+        return JsonResponse({'error': f'An error occurred: {str(e)}'})    
+    
     
 def rating(request):
     return render(request, 'rating.html')    
