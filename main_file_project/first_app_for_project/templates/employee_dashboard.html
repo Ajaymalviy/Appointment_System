@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
-
+{% load static %}
 <head>
   <meta charset="utf-8">
   <meta content="width=device-width, initial-scale=1.0" name="viewport">
@@ -10,24 +10,24 @@
   <meta content="" name="keywords">
 
   <!-- Favicons -->
-  <link href="assets/img/favicon.png" rel="icon">
-  <link href="assets/img/apple-touch-icon.png" rel="apple-touch-icon">
-
+  <link href="{% static 'assets/img/favicon.png' %}" rel="icon">
+  <link href="{% static 'assets/img/apple-touch-icon.png' %}" rel="apple-touch-icon">
+  
   <!-- Google Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,600;1,700&family=Poppins:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&family=Inter:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&display=swap" rel="stylesheet">
 
   <!-- Vendor CSS Files -->
-  <link href="assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
-  <link href="assets/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
-  <link href="assets/vendor/fontawesome-free/css/all.min.css" rel="stylesheet">
-  <link href="assets/vendor/glightbox/css/glightbox.min.css" rel="stylesheet">
-  <link href="assets/vendor/swiper/swiper-bundle.min.css" rel="stylesheet">
-  <link href="assets/vendor/aos/aos.css" rel="stylesheet">
-
+  <link href="{% static 'assets/vendor/bootstrap/css/bootstrap.min.css' %}" rel="stylesheet">
+  <link href="{% static 'assets/vendor/bootstrap-icons/bootstrap-icons.css' %}" rel="stylesheet">
+  <link href="{% static 'assets/vendor/fontawesome-free/css/all.min.css' %}" rel="stylesheet">
+  <link href="{% static 'assets/vendor/glightbox/css/glightbox.min.css' %}" rel="stylesheet">
+  <link href="{% static 'assets/vendor/swiper/swiper-bundle.min.css' %}" rel="stylesheet">
+  <link href="{% static 'assets/vendor/aos/aos.css' %}" rel="stylesheet">
+  
   <!-- Template Main CSS File -->
-  <link href="assets/css/main.css" rel="stylesheet">
+  <link href="{% static 'assets/css/main.css' %}" rel="stylesheet">
 
   <!-- =======================================================
   * Template Name: Logis
@@ -44,10 +44,10 @@
   <header id="header" class="header d-flex align-items-center fixed-top">
     <div class="container-fluid container-xl d-flex align-items-center justify-content-between">
 
-      <a href="index.html" class="logo d-flex align-items-center">
+      <a href="#" class="logo d-flex align-items-center">
         <!-- Uncomment the line below if you also wish to use an image logo -->
         <!-- <img src="assets/img/logo.png" alt=""> -->
-        <h1>Logis</h1>
+        <h1>meetMe</h1>
       </a>
 
       <i class="mobile-nav-toggle mobile-nav-show bi bi-list"></i>
@@ -55,28 +55,12 @@
       <nav id="navbar" class="navbar">
         <ul>
           <li><a href="index.html">Home</a></li>
-          <li><a href="about.html">About</a></li>
-          <li><a href="services.html">Services</a></li>
-          <li><a href="pricing.html" class="active">Pricing</a></li>
-          <li class="dropdown"><a href="#"><span>Drop Down</span> <i class="bi bi-chevron-down dropdown-indicator"></i></a>
-            <ul>
-              <li><a href="#">Drop Down 1</a></li>
-              <li class="dropdown"><a href="#"><span>Deep Drop Down</span> <i class="bi bi-chevron-down dropdown-indicator"></i></a>
-                <ul>
-                  <li><a href="#">Deep Drop Down 1</a></li>
-                  <li><a href="#">Deep Drop Down 2</a></li>
-                  <li><a href="#">Deep Drop Down 3</a></li>
-                  <li><a href="#">Deep Drop Down 4</a></li>
-                  <li><a href="#">Deep Drop Down 5</a></li>
-                </ul>
-              </li>
-              <li><a href="#">Drop Down 2</a></li>
-              <li><a href="#">Drop Down 3</a></li>
-              <li><a href="#">Drop Down 4</a></li>
-            </ul>
-          </li>
-          <li><a href="contact.html">Contact</a></li>
-          <li><a class="get-a-quote" href="get-a-quote.html">Get a Quote</a></li>
+          <li><a href="#">About</a></li>
+          <li><a href="#">Services</a></li>
+          <li><a href="#" class="active">Pricing</a></li>
+         
+          <li><a href="#">Contact</a></li>
+          <li><a class="get-a-quote" href="get-a-quote.html">Logout</a></li>
         </ul>
       </nav><!-- .navbar -->
 
@@ -88,12 +72,12 @@
 
     <!-- ======= Breadcrumbs ======= -->
     <div class="breadcrumbs">
-      <div class="page-header d-flex align-items-center" style="background-image: url('assets/img/page-header.jpg');">
+      <div class="page-header d-flex align-items-center" style="background-image: url({% static 'assets/img/company.avif' %});">
         <div class="container position-relative">
           <div class="row d-flex justify-content-center">
             <div class="col-lg-6 text-center">
-              <h2>Pricing</h2>
-              <p>Odio et unde deleniti. Deserunt numquam exercitationem. Officiis quo odio sint voluptas consequatur ut a odio voluptatem. Sit dolorum debitis veritatis natus dolores. Quasi ratione sint. Sit quaerat ipsum dolorem.</p>
+              <h2>company</h2>
+              <p> name </n>
             </div>
           </div>
         </div>
@@ -108,128 +92,457 @@
       </nav>
     </div><!-- End Breadcrumbs -->
 
-    <!-- ======= Pricing Section ======= -->
-    <section id="pricing" class="pricing">
-      <div class="container" data-aos="fade-up">
+    <section id='about' style="
+    body {
+      color: #797979;
+      background: #f1f2f7;
+      font-family: 'Open Sans', sans-serif;
+      padding: 5px !important;
+      margin: 0px !important;
+      font-size: 13px;
+      text-rendering: optimizeLegibility;
+      -webkit-font-smoothing: antialiased;
+      -moz-font-smoothing: antialiased;
+  }
+  
+  .profile-nav, .profile-info{
+      margin-top:30px;   
+  }
+  
+  .profile-nav .user-heading {
+      background: #fbc02d;
+      color: #fff;
+      border-radius: 4px 4px 0 0;
+      -webkit-border-radius: 4px 4px 0 0;
+      padding: 30px;
+      text-align: center;
+  }
+  
+  .profile-nav .user-heading.round a  {
+      border-radius: 50%;
+      -webkit-border-radius: 50%;
+      border: 10px solid rgba(255,255,255,0.3);
+      display: inline-block;
+  }
+  
+  .profile-nav .user-heading a img {
+      width: 112px;
+      height: 112px;
+      border-radius: 50%;
+      -webkit-border-radius: 50%;
+  }
+  
+  .profile-nav .user-heading h1 {
+      font-size: 22px;
+      font-weight: 300;
+      margin-bottom: 5px;
+  }
+  
+  .profile-nav .user-heading p {
+      font-size: 12px;
+  }
+  
+  .profile-nav ul {
+      margin-top: 1px;
+  }
+  
+  .profile-nav ul > li {
+      border-bottom: 1px solid #ebeae6;
+      margin-top: 0;
+      line-height: 30px;
+  }
+  
+  .profile-nav ul > li:last-child {
+      border-bottom: none;
+  }
+  
+  .profile-nav ul > li > a {
+      border-radius: 0;
+      -webkit-border-radius: 0;
+      color: #89817f;
+      border-left: 5px solid #fff;
+  }
+  
+  .profile-nav ul > li > a:hover, .profile-nav ul > li > a:focus, .profile-nav ul li.active  a {
+      background: #f8f7f5 !important;
+      border-left: 5px solid #fbc02d;
+      color: #89817f !important;
+  }
+  
+  .profile-nav ul > li:last-child > a:last-child {
+      border-radius: 0 0 4px 4px;
+      -webkit-border-radius: 0 0 4px 4px;
+  }
+  
+  .profile-nav ul > li > a > i{
+      font-size: 16px;
+      padding-right: 10px;
+      color: #bcb3aa;
+  }
+  
+  .r-activity {
+      margin: 6px 0 0;
+      font-size: 12px;
+  }
+  
+  
+  .p-text-area, .p-text-area:focus {
+      border: none;
+      font-weight: 300;
+      box-shadow: none;
+      color: #c3c3c3;
+      font-size: 16px;
+  }
+  
+  .profile-info .panel-footer {
+      background-color:#f8f7f5 ;
+      border-top: 1px solid #e7ebee;
+  }
+  
+  .profile-info .panel-footer ul li a {
+      color: #7a7a7a;
+  }
+  
+  .bio-graph-heading {
+      background: #fbc02d;
+      color: #fff;
+      text-align: center;
+      font-style: italic;
+      padding: 40px 110px;
+      border-radius: 4px 4px 0 0;
+      -webkit-border-radius: 4px 4px 0 0;
+      font-size: 16px;
+      font-weight: 300;
+  }
+  
+  .bio-graph-info {
+      color: #89817e;
+  }
+  
+  .bio-graph-info h1 {
+      font-size: 22px;
+      font-weight: 300;
+      margin: 0 0 20px;
+  }
+  
+  .bio-row {
+      width: 50%;
+      float: left;
+      margin-bottom: 10px;
+      padding:0 15px;
+  }
+  
+  .bio-row p span {
+      width: 100px;
+      display: inline-block;
+  }
+  
+  .bio-chart, .bio-desk {
+      float: left;
+  }
+  
+  .bio-chart {
+      width: 40%;
+  }
+  
+  .bio-desk {
+      width: 60%;
+  }
+  
+  .bio-desk h4 {
+      font-size: 15px;
+      font-weight:400;
+  }
+  
+  .bio-desk h4.terques {
+      color: #4CC5CD;
+  }
+  
+  .bio-desk h4.red {
+      color: #e26b7f;
+  }
+  
+  .bio-desk h4.green {
+      color: #97be4b;
+  }
+  
+  .bio-desk h4.purple {
+      color: #caa3da;
+  }
+  
+  .file-pos {
+      margin: 6px 0 10px 0;
+  }
+  
+  .profile-activity h5 {
+      font-weight: 300;
+      margin-top: 0;
+      color: #c3c3c3;
+  }
+  
+  .summary-head {
+      background: #ee7272;
+      color: #fff;
+      text-align: center;
+      border-bottom: 1px solid #ee7272;
+  }
+  
+  .summary-head h4 {
+      font-weight: 300;
+      text-transform: uppercase;
+      margin-bottom: 5px;
+  }
+  
+  .summary-head p {
+      color: rgba(255,255,255,0.6);
+  }
+  
+  ul.summary-list {
+      display: inline-block;
+      padding-left:0 ;
+      width: 100%;
+      margin-bottom: 0;
+  }
+  
+  ul.summary-list > li {
+      display: inline-block;
+      width: 19.5%;
+      text-align: center;
+  }
+  
+  ul.summary-list > li > a > i {
+      display:block;
+      font-size: 18px;
+      padding-bottom: 5px;
+  }
+  
+  ul.summary-list > li > a {
+      padding: 10px 0;
+      display: inline-block;
+      color: #818181;
+  }
+  
+  ul.summary-list > li  {
+      border-right: 1px solid #eaeaea;
+  }
+  
+  ul.summary-list > li:last-child  {
+      border-right: none;
+  }
+  
+  .activity {
+      width: 100%;
+      float: left;
+      margin-bottom: 10px;
+  }
+  
+  .activity.alt {
+      width: 100%;
+      float: right;
+      margin-bottom: 10px;
+  }
+  
+  .activity span {
+      float: left;
+  }
+  
+  .activity.alt span {
+      float: right;
+  }
+  .activity span, .activity.alt span {
+      width: 45px;
+      height: 45px;
+      line-height: 45px;
+      border-radius: 50%;
+      -webkit-border-radius: 50%;
+      background: #eee;
+      text-align: center;
+      color: #fff;
+      font-size: 16px;
+  }
+  
+  .activity.terques span {
+      background: #8dd7d6;
+  }
+  
+  .activity.terques h4 {
+      color: #8dd7d6;
+  }
+  .activity.purple span {
+      background: #b984dc;
+  }
+  
+  .activity.purple h4 {
+      color: #b984dc;
+  }
+  .activity.blue span {
+      background: #90b4e6;
+  }
+  
+  .activity.blue h4 {
+      color: #90b4e6;
+  }
+  .activity.green span {
+      background: #aec785;
+  }
+  
+  .activity.green h4 {
+      color: #aec785;
+  }
+  
+  .activity h4 {
+      margin-top:0 ;
+      font-size: 16px;
+  }
+  
+  .activity p {
+      margin-bottom: 0;
+      font-size: 13px;
+  }
+  
+  .activity .activity-desk i, .activity.alt .activity-desk i {
+      float: left;
+      font-size: 18px;
+      margin-right: 10px;
+      color: #bebebe;
+  }
+  
+  .activity .activity-desk {
+      margin-left: 70px;
+      position: relative;
+  }
+  
+  .activity.alt .activity-desk {
+      margin-right: 70px;
+      position: relative;
+  }
+  
+  .activity.alt .activity-desk .panel {
+      float: right;
+      position: relative;
+  }
+  
+  .activity-desk .panel {
+      background: #F4F4F4 ;
+      display: inline-block;
+  }
+  
+  
+  .activity .activity-desk .arrow {
+      border-right: 8px solid #F4F4F4 !important;
+  }
+  .activity .activity-desk .arrow {
+      border-bottom: 8px solid transparent;
+      border-top: 8px solid transparent;
+      display: block;
+      height: 0;
+      left: -7px;
+      position: absolute;
+      top: 13px;
+      width: 0;
+  }
+  
+  .activity-desk .arrow-alt {
+      border-left: 8px solid #F4F4F4 !important;
+  }
+  
+  .activity-desk .arrow-alt {
+      border-bottom: 8px solid transparent;
+      border-top: 8px solid transparent;
+      display: block;
+      height: 0;
+      right: -7px;
+      position: absolute;
+      top: 13px;
+      width: 0;
+  }
+  
+  .activity-desk .album {
+      display: inline-block;
+      margin-top: 10px;
+  }
+  
+  .activity-desk .album a{
+      margin-right: 10px;
+  }
+  
+  .activity-desk .album a:last-child{
+      margin-right: 0px;
+  }
+    ">
+      <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet">
+<div class="container bootstrap snippets bootdey">
+<div class="row">
+  <div class="profile-nav col-md-3">
+      <div class="panel" style="margin-left:98%;margin-top:25px; flex:right;">
+          <div class="user-heading round" style="margin-right=0%;">
+            
+              <h1>Camila Smith</h1>
+              <p>deydey@theEmail.com</p>
+          </div>
 
-        <div class="row gy-4">
+          <ul class="nav nav-pills nav-stacked">
+               <li><a href="#"> <i class="fa fa-edit"></i> Edit</a></li>
+          </ul>
+      </div>
+  </div>
+  <div class="profile-info col-md-9" style="margin-left=:10%">
+      <div class="panel" style="margin-left:50%; margin-top:15px;">
+          <div class="panel-body bio-graph-info">
+              <h1>Bio Graph</h1>
+              <div class="row">
+                  <div class="bio-row">
+                      <p><span> Name </span>: Camila</p>
+                  </div>
+                  <div class="bio-row">
+                      <p><span>Birthday</span>: 13 July 1983</p>
+                  </div>
+                  <div class="bio-row">
+                      <p><span>Email </span>: jsmith@flatlab.com</p>
+                  </div>
 
-          <div class="col-lg-4" data-aos="fade-up" data-aos-delay="100">
-            <div class="pricing-item">
-              <h3>Free Plan</h3>
-              <h4><sup>$</sup>0<span> / month</span></h4>
-              <ul>
-                <li><i class="bi bi-check"></i> Quam adipiscing vitae proin</li>
-                <li><i class="bi bi-check"></i> Nec feugiat nisl pretium</li>
-                <li><i class="bi bi-check"></i> Nulla at volutpat diam uteera</li>
-                <li class="na"><i class="bi bi-x"></i> <span>Pharetra massa massa ultricies</span></li>
-                <li class="na"><i class="bi bi-x"></i> <span>Massa ultricies mi quis hendrerit</span></li>
-              </ul>
-              <a href="#" class="buy-btn">Buy Now</a>
-            </div>
-          </div><!-- End Pricing Item -->
-
-          <div class="col-lg-4" data-aos="fade-up" data-aos-delay="200">
-            <div class="pricing-item featured">
-              <h3>Business Plan</h3>
-              <h4><sup>$</sup>29<span> / month</span></h4>
-              <ul>
-                <li><i class="bi bi-check"></i> Quam adipiscing vitae proin</li>
-                <li><i class="bi bi-check"></i> Nec feugiat nisl pretium</li>
-                <li><i class="bi bi-check"></i> Nulla at volutpat diam uteera</li>
-                <li><i class="bi bi-check"></i> Pharetra massa massa ultricies</li>
-                <li><i class="bi bi-check"></i> Massa ultricies mi quis hendrerit</li>
-              </ul>
-              <a href="#" class="buy-btn">Buy Now</a>
-            </div>
-          </div><!-- End Pricing Item -->
-
-          <div class="col-lg-4" data-aos="fade-up" data-aos-delay="300">
-            <div class="pricing-item">
-              <h3>Developer Plan</h3>
-              <h4><sup>$</sup>49<span> / month</span></h4>
-              <ul>
-                <li><i class="bi bi-check"></i> Quam adipiscing vitae proin</li>
-                <li><i class="bi bi-check"></i> Nec feugiat nisl pretium</li>
-                <li><i class="bi bi-check"></i> Nulla at volutpat diam uteera</li>
-                <li><i class="bi bi-check"></i> Pharetra massa massa ultricies</li>
-                <li><i class="bi bi-check"></i> Massa ultricies mi quis hendrerit</li>
-              </ul>
-              <a href="#" class="buy-btn">Buy Now</a>
-            </div>
-          </div><!-- End Pricing Item -->
-
-        </div>
+                  <div class="bio-row">
+                      <p><span>Phone </span>: 88 (02) 123456</p>
+                  </div>
+              </div>
+          </div>
+      </div>
 
       </div>
-    </section><!-- End Pricing Section -->
-
+  </div>
+</div>
+</div>
+    </section>  
     <!-- ======= Horizontal Pricing Section ======= -->
     <section id="horizontal-pricing" class="horizontal-pricing pt-0">
       <div class="container" data-aos="fade-up">
 
         <div class="section-header">
-          <span>Horizontal Pricing</span>
-          <h2>Horizontal Pricing</h2>
+          <span>Meeting-Request</span>
+          <h2>Meeting-Request</h2>
 
         </div>
 
+   
         <div class="row gy-4 pricing-item" data-aos="fade-up" data-aos-delay="100">
           <div class="col-lg-3 d-flex align-items-center justify-content-center">
-            <h3>Free Plan</h3>
+            <h5>Ajey43@gmail.com</h5>
           </div>
           <div class="col-lg-3 d-flex align-items-center justify-content-center">
-            <h4><sup>$</sup>0<span> / month</span></h4>
+            <h5><sup>02</sup><sup>/january</sup><sup>-12:30</sup></h5>
           </div>
           <div class="col-lg-3 d-flex align-items-center justify-content-center">
             <ul>
-              <li><i class="bi bi-check"></i> Quam adipiscing vitae proin</li>
-              <li><i class="bi bi-check"></i> Nulla at volutpat diam uteera</li>
-              <li class="na"><i class="bi bi-x"></i> <span>Pharetra massa massa ultricies</span></li>
+              <li><i class="bi bi-check"></i>wants to meeting for cloud-computing dicussion</li>
+           
             </ul>
           </div>
           <div class="col-lg-3 d-flex align-items-center justify-content-center">
-            <div class="text-center"><a href="#" class="buy-btn">Buy Now</a></div>
+            <div class="text-center"><a href="#" class="buy-btn">Accept</a></div>
           </div>
         </div><!-- End Pricing Item -->
 
-        <div class="row gy-4 pricing-item featured mt-4" data-aos="fade-up" data-aos-delay="200">
-          <div class="col-lg-3 d-flex align-items-center justify-content-center">
-            <h3>Business Plan</h3>
-          </div>
-          <div class="col-lg-3 d-flex align-items-center justify-content-center">
-            <h4><sup>$</sup>29<span> / month</span></h4>
-          </div>
-          <div class="col-lg-3 d-flex align-items-center justify-content-center">
-            <ul>
-              <li><i class="bi bi-check"></i> Quam adipiscing vitae proin</li>
-              <li><i class="bi bi-check"></i> <strong>Nec feugiat nisl pretium</strong></li>
-              <li><i class="bi bi-check"></i> Nulla at volutpat diam uteera</li>
-            </ul>
-          </div>
-          <div class="col-lg-3 d-flex align-items-center justify-content-center">
-            <div class="text-center"><a href="#" class="buy-btn">Buy Now</a></div>
-          </div>
-        </div><!-- End Pricing Item -->
-
-        <div class="row gy-4 pricing-item mt-4" data-aos="fade-up" data-aos-delay="300">
-          <div class="col-lg-3 d-flex align-items-center justify-content-center">
-            <h3>Developer Plan</h3>
-          </div>
-          <div class="col-lg-3 d-flex align-items-center justify-content-center">
-            <h4><sup>$</sup>49<span> / month</span></h4>
-          </div>
-          <div class="col-lg-3 d-flex align-items-center justify-content-center">
-            <ul>
-              <li><i class="bi bi-check"></i> Quam adipiscing vitae proin</li>
-              <li><i class="bi bi-check"></i> Nec feugiat nisl pretium</li>
-              <li><i class="bi bi-check"></i> Nulla at volutpat diam uteera</li>
-            </ul>
-          </div>
-          <div class="col-lg-3 d-flex align-items-center justify-content-center">
-            <div class="text-center"><a href="#" class="buy-btn">Buy Now</a></div>
-          </div>
-        </div><!-- End Pricing Item -->
+        
 
       </div>
     </section><!-- End Horizontal Pricing Section -->
@@ -312,15 +625,15 @@
   <div id="preloader"></div>
 
   <!-- Vendor JS Files -->
-  <script src="assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
-  <script src="assets/vendor/purecounter/purecounter_vanilla.js"></script>
-  <script src="assets/vendor/glightbox/js/glightbox.min.js"></script>
-  <script src="assets/vendor/swiper/swiper-bundle.min.js"></script>
-  <script src="assets/vendor/aos/aos.js"></script>
-  <script src="assets/vendor/php-email-form/validate.js"></script>
+  <script src="{% static 'assets/vendor/bootstrap/js/bootstrap.bundle.min.js' %}"></script>
+  <script src="{% static 'assets/vendor/purecounter/purecounter_vanilla.js' %}"></script>
+  <script src="{% static 'assets/vendor/glightbox/js/glightbox.min.js' %}"></script>
+  <script src="{% static 'assets/vendor/swiper/swiper-bundle.min.js' %}"></script>
+  <script src="{% static 'assets/vendor/aos/aos.js' %}"></script>
+  <script src="{% static 'assets/vendor/php-email-form/validate.js' %}"></script>
 
   <!-- Template Main JS File -->
-  <script src="assets/js/main.js"></script>
+  <script src="{% static 'assets/js/main.js' %}"></script>
 
 </body>
 
