@@ -93,7 +93,7 @@ def employee_registration(request):
             employee_name=employee_name,
             experience=experience,
             skills=skills,
-            company=company,
+            company_name=company,
             password=password
         )
         employee.save()
@@ -134,11 +134,14 @@ def employee_login(request):
                         print(meeting_requests)
                         # Redirect to employee dashboard
                         if meeting_requests:
-                            for request in meeting_requests:
-                                print(request.employee_email, request.requester_email, request.description, request.date)
+                            # for request in meeting_requests:
+                                # print(request.employee_email, request.requester_email, request.description, request.date)
+                            return render(request, 'temp.html', {'employee': employee_document, 'meeetin_requests':meeting_requests})
+                            # return render(request, 'employee_dashboard.html', {'error':'not found employee dashboard'})
+                            pass
                         else:
                             print("No meeting requests found for the specified email.")
-                            return render(request, 'employee_dashboard.html', {'error':'not found employee dashboard'})
+                            return render(request, 'employee_dashboard.html',{'employee': employee_document, 'error': 'No meeting requests found.'})
                     else:
                         error_message = 'Invalid email or password.'
                 else:
@@ -149,8 +152,7 @@ def employee_login(request):
         else:
             error_message = 'Email and password are required.'
 
-        return render(request, 'login.html', {'error_message': error_message})
-
+        return render(request, 'login.html')
     return render(request, 'login.html')
 
 
