@@ -10,8 +10,8 @@
   <meta content="" name="keywords">
 
   <!-- Favicons -->
-  <link href="{% static 'assets/img/favicon.png' %}" rel="icon">
-  <link href="{% static 'assets/img/apple-touch-icon.png' %}" rel="apple-touch-icon">
+  <link href="assets/img/favicon.png" rel="icon">
+  <link href="assets/img/apple-touch-icon.png" rel="apple-touch-icon">
 
   <!-- Google Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -19,13 +19,13 @@
   <link href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,600;1,700&family=Poppins:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&family=Inter:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&display=swap" rel="stylesheet">
 
   <!-- Vendor CSS Files --> 
-  <link href="{% static 'assets/vendor/bootstrap-icons/bootstrap-icons.css' %}" rel="stylesheet">
-  <link href="{% static 'assets/vendor/fontawesome-free/css/all.min.css' %}" rel="stylesheet">
-  <link href="{% static 'assets/vendor/glightbox/css/glightbox.min.css' %}" rel="stylesheet">
-  <link href="{% static 'assets/vendor/swiper/swiper-bundle.min.css' %}" rel="stylesheet">
-  <link href="{% static 'assets/vendor/aos/aos.css' %}" rel="stylesheet">
+    <link href="{% static 'assets/vendor/bootstrap-icons/bootstrap-icons.css' %}" rel="stylesheet">
+    <link href="{% static 'assets/vendor/fontawesome-free/css/all.min.css' %}" rel="stylesheet">
+    <link href="{% static 'assets/vendor/glightbox/css/glightbox.min.css' %}" rel="stylesheet">
+    <link href="{% static 'assets/vendor/swiper/swiper-bundle.min.css' %}" rel="stylesheet">
+    <link href="{% static 'assets/vendor/aos/aos.css' %}" rel="stylesheet">
   <!-- Template Main CSS File -->
-  <link href="{% static 'assets/css/main.css' %}" rel="stylesheet">
+    <link href="{% static 'assets/css/main.css' %}" rel="stylesheet">
 
   <!-- =======================================================
   * Template Name: Logis
@@ -37,19 +37,19 @@
   <style>
     #tempbutton {
       display: inline-block;
-      background-color: #052c65;
+      background-color: #052c65;;
       color: white;
       padding: 10px 20px;
       border: none; 
       border-radius: 5px;
       text-decoration: none; 
       transition: background-color 0.3s ease;
-    }
+  }
   
     #tempbutton:hover {
-      background-color: #007aff; 
+       background-color: #007aff; 
     }
-  </style>  
+</style>  
 </head>
 
 <body>
@@ -57,6 +57,7 @@
   <!-- ======= Header ======= -->
   <header id="header" class="header d-flex align-items-center fixed-top" style="margin-top:0px;">
     <div class="container-fluid container-xl d-flex align-items-center justify-content-between">
+
       <a href="index.html" class="logo d-flex align-items-center">
         <!-- Uncomment the line below if you also wish to use an image logo -->
         <!-- <img src="assets/img/logo.png" alt=""> -->
@@ -74,11 +75,13 @@
           <li><a class="get-a-quote" href="{% url 'logout' %}">Logout</a></li>
         </ul>
       </nav><!-- .navbar -->
+
     </div>
   </header><!-- End Header -->
   <!-- End Header -->
 
   <main id="main">
+
     <!-- ======= Breadcrumbs ======= -->
     <div class="breadcrumbs">
       <div class="page-header d-flex align-items-center" style="background-image: url({% static 'assets/img/company.avif' %});">
@@ -91,35 +94,37 @@
           </div>
         </div>
       </div>
+      
     </div><!-- End Breadcrumbs -->
 
-    <!-- ======= Featured Services Section ======= -->
-    <section id="featured-services" class="featured-services">
-      <div class="container">
-        <div class="row gy-4">
-          {% for employee in employees %}
-          <div class="col-lg-4 col-md-6 service-item" data-aos-delay="100">
-            <div class="icon flex-shrink-0" style="background-color:none;height:0px;"><i class="fas fa-user"></i></div>
-            <div>
-              <h4 class="title" style="color:black;">{{ employee.employee_name }}</h4>
-              <p class="description" id="employee_email" style="color:black;">Email: {{ employee.employee_email }}</p>
-              <p class="description" style="color:black;">Experience: {{ employee.experience }}</p>
-              <p class="description" style="color:black;">Roles: {{ employee.employee_role }}</p>
-              <div class="skills-container" style="display: none;">
-                <p class="description" style="color:black;">Skills: {{ employee.skills }}</p>
-              </div>
-              <button class="read-more-btn">Read More</button>
-              <a href="{% url 'meeting_request' %}?email={{ employee.employee_email }}" class="btn btn-primary" id="tempbutton">Request</a>
-            </div>
+      <!-- ======= Featured Services Section ======= -->
+      <section id="featured-services" class="featured-services">
+        <div class="container">
+          <div class="row gy-4">
+            {% for employee in employees %}
+              <div class="col-lg-4 col-md-6 service-item d-flex" data-aos-delay="100">
+                <div class="icon flex-shrink-0" style="background-color:none;height:0px;"><i class="fas fa-user"></i></div>
+                <div>
+                  <h4 class="title" style="color:black;">{{ employee.employee_name }}</h4>
+                  <p class="description" id= "employee_email" style="color:black;">Email: {{ employee.employee_email }}</p>
+                  <p class="description" style="color:black;">Experience: {{ employee.experience }}</p>
+                  <p class="description" style="color:black;">Roles: {{ employee.employee_role }}</p>
+                  <div class="skills-container" style="display: none;"> <p class="description" style="color:black;">Skills: {{ employee.skills }}</p>
+                  </div>
+                  <button  id="read-more-btn" class="read-more-btn">Read More</button>
+                  <a href="{% url 'meeting_request' %}?email={{ employee.employee_email }}" class="btn btn-primary" id="tempbutton">Request</a>
+                </div></div>
+            {% endfor %}
           </div>
-          {% endfor %}
         </div>
-      </div>
-    </section><!-- End Featured Services Section -->
+
+      </section><!-- End Featured Services Section -->
+   
   </main><!-- End #main -->
 
   <!-- ======= Footer ======= -->
   <footer id="footer" class="footer">
+
     <div class="container">
       <div class="row gy-4">
         <div class="col-lg-5 col-md-12 footer-info">
@@ -166,7 +171,9 @@
             <strong>Phone:</strong> +1 5589 55488 55<br>
             <strong>Email:</strong> info@example.com<br>
           </p>
+
         </div>
+
       </div>
     </div>
 
@@ -182,19 +189,22 @@
         Designed by <a href="https://bootstrapmade.com/">BootstrapMade</a>
       </div>
     </div>
+
   </footer><!-- End Footer -->
+  <!-- End Footer -->
 
   <a href="#" class="scroll-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
 
   <div id="preloader"></div>
 
   <!-- Vendor JS Files -->
-  <script src="{% static 'assets/vendor/bootstrap/js/bootstrap.bundle.min.js' %}"></script>
-  <script src="{% static 'assets/vendor/aos/aos.js' %}"></script>
-  <script src="{% static 'assets/vendor/glightbox/js/glightbox.min.js' %}"></script>
-  <script src="{% static 'assets/vendor/swiper/swiper-bundle.min.js' %}"></script>
+    <link href="{% static 'assets/vendor/bootstrap/css/bootstrap.min.css' %}" rel="stylesheet">
+    <link href="{% static 'assets/vendor/bootstrap-icons/bootstrap-icons.css' %}" rel="stylesheet">
+    <link href="{% static 'assets/vendor/fontawesome-free/css/all.min.css' %}" rel="stylesheet">
+    <link href="{% static 'assets/vendor/glightbox/css/glightbox.min.css' %}" rel="stylesheet">
+    <link href="{% static 'assets/vendor/swiper/swiper-bundle.min.css' %}" rel="stylesheet">
+    <link href="{% static 'assets/vendor/aos/aos.css' %}" rel="stylesheet">
   <!-- Template Main JS File -->
-  <script src="{% static 'assets/js/main.js' %}"></script>
 
   <script>
     document.addEventListener('DOMContentLoaded', function() {
@@ -204,13 +214,19 @@
         btn.addEventListener('click', function(event) {
           event.preventDefault(); // Prevent default button behavior
     
-          const skillsContainer = this.parentElement.querySelector('.skills-container');
+          const skillsContainer = this.previousElementSibling.querySelector('.skills-container');
           skillsContainer.style.display = skillsContainer.style.display === 'none' ? 'block' : 'none';
           this.textContent = skillsContainer.style.display === 'none' ? 'Read More' : 'Read Less'; // Update button text
         });
       });
     });
   </script>
+  
+  
+  <script src="{% static 'assets/js/main.js' %}"></script>
+
+  
 
 </body>
+
 </html>
