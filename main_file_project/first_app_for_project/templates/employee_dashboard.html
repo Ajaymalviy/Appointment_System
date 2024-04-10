@@ -477,8 +477,8 @@
       <div class="panel" style="margin-left:98%;margin-top:25px; flex:right;">
           <div class="user-heading round" style="margin-right=0%;">
             
-              <h1>Camila Smith</h1>
-              <p>deydey@theEmail.com</p>
+              <h1>Welcome {{ employee.employee_name }}</h1>
+              <p>Email: {{ employee.employee_email }}</p>
           </div>
 
           <ul class="nav nav-pills nav-stacked">
@@ -492,18 +492,20 @@
               <h1>Bio Graph</h1>
               <div class="row">
                   <div class="bio-row">
-                      <p><span> Name </span>: Camila</p>
-                  </div>
-                  <div class="bio-row">
-                      <p><span>Birthday</span>: 13 July 1983</p>
-                  </div>
-                  <div class="bio-row">
-                      <p><span>Email </span>: jsmith@flatlab.com</p>
+                      <p><span> Name </span>:  {{ employee.employee_name }}</p>
                   </div>
 
                   <div class="bio-row">
-                      <p><span>Phone </span>: 88 (02) 123456</p>
+                      <p><span>Email </span>: {{ employee.employee_email }}</p>
                   </div>
+
+                  <div class="bio-row">
+                      <p><span>Experience </span>: {{ employee.experience }}</p>
+                  </div>
+
+                  <div class="bio-row">
+                     <p><span>Roles:</span>: {{ employee.employee_role }}</p>
+                </div>
               </div>
           </div>
       </div>
@@ -516,33 +518,33 @@
     <!-- ======= Horizontal Pricing Section ======= -->
     <section id="horizontal-pricing" class="horizontal-pricing pt-0">
       <div class="container" data-aos="fade-up">
-
         <div class="section-header">
           <span>Meeting-Request</span>
           <h2>Meeting-Request</h2>
-
         </div>
 
-   
-        <div class="row gy-4 pricing-item" data-aos="fade-up" data-aos-delay="100">
-          <div class="col-lg-3 d-flex align-items-center justify-content-center">
-            <h5>Ajey43@gmail.com</h5>
-          </div>
-          <div class="col-lg-3 d-flex align-items-center justify-content-center">
-            <h5><sup>02</sup><sup>/january</sup><sup>-12:30</sup></h5>
-          </div>
-          <div class="col-lg-3 d-flex align-items-center justify-content-center">
-            <ul>
-              <li><i class="bi bi-check"></i>wants to meeting for cloud-computing dicussion</li>
-           
-            </ul>
-          </div>
-          <div class="col-lg-3 d-flex align-items-center justify-content-center">
-            <div class="text-center"><a href="#" class="buy-btn">Accept</a></div>
-          </div>
-        </div><!-- End Pricing Item -->
+          {% for request in meeting_requests %}
+          <div class="row gy-4 pricing-item" data-aos="fade-up" data-aos-delay="100">
+            <div class="col-lg-3 d-flex align-items-center justify-content-center">
+              <h5> {{ request.requester_email }}</h5>
+            </div>
 
-        
+            <div class="col-lg-3 d-flex align-items-center justify-content-center">
+              <h5><sup>{{ request.date }}</sup></h5>
+            </div>
+
+            <div class="col-lg-3 d-flex align-items-center justify-content-center">
+              <ul>
+                <li><i class="bi bi-check"></i>{{ request.description }}</li>
+              </ul>
+            </div>
+
+            <div class="col-lg-3 d-flex align-items-center justify-content-center">
+              <div class="text-center"><a href="#" class="buy-btn">Accept</a></div>
+            </div>
+
+          </div>
+          {% endfor %}
 
       </div>
     </section><!-- End Horizontal Pricing Section -->
@@ -569,6 +571,7 @@
 
         <div class="col-lg-2 col-6 footer-links">
           <h4>Useful Links</h4>
+          <p>error_message<p>
           <ul>
             <li><a href="#">Home</a></li>
             <li><a href="#">About us</a></li>
