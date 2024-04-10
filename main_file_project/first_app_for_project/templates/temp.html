@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Success Page</title>
+</head>
+<body>
+    <!-- Display employee details -->
+<h1>Welcome {{ employee.employee_name }}</h1>
+<p>Email: {{ employee.employee_email }}</p>
+<p>Experience: {{ employee.experience }}</p>
+<p>Roles: {{ employee.employee_role }}</p>
+
+<!-- Display meeting requests -->
+{% if meeting_requests %}
+  <h2>Meeting Requests:</h2>
+  <ul>
+    {% for request in meeting_requests %}
+      <li>
+        <p>Requester Email: {{ request.requester_email }}</p>
+        <p>Description: {{ request.description }}</p>
+        <p>Date: {{ request.date }}</p>
+      </li>
+    {% endfor %}
+  </ul>
+{% else %}
+  <p>No meeting requests found.</p>
+{% endif %}
+
+
+</body>
+</html>
