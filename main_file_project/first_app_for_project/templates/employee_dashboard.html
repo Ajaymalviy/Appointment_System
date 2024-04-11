@@ -76,8 +76,8 @@
         <div class="container position-relative">
           <div class="row d-flex justify-content-center">
             <div class="col-lg-6 text-center">
-              <h2>company</h2>
-              <p> name </n>
+              <h2>{{ employee.company_name }}</h2>
+      
             </div>
           </div>
         </div>
@@ -477,7 +477,7 @@
       <div class="panel" style="margin-left:98%;margin-top:25px; flex:right;">
           <div class="user-heading round" style="margin-right=0%;">
             
-              <h1>Welcome {{ employee.employee_name }}</h1>
+              <h1> {{ employee.employee_name }}</h1>
               <p>Email: {{ employee.employee_email }}</p>
           </div>
 
@@ -524,7 +524,7 @@
         </div>
 
           {% for request in meeting_requests %}
-          <div class="row gy-4 pricing-item" data-aos="fade-up" data-aos-delay="100">
+          <div class="row gy-4 pricing-item" data-aos="fade-up" data-aos-delay="100" style="background-color:#0E1D34; color:white;">
             <div class="col-lg-3 d-flex align-items-center justify-content-center">
               <h5> {{ request.requester_email }}</h5>
             </div>
@@ -535,7 +535,7 @@
 
             <div class="col-lg-3 d-flex align-items-center justify-content-center">
               <ul>
-                <li><i class="bi bi-check"></i>{{ request.description }}</li>
+                <li style='color:white'><i class="bi bi-check"></i>{{ request.description }}</li>
               </ul>
             </div>
 
