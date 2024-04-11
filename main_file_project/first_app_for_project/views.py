@@ -131,14 +131,12 @@ def employee_login(request):
                     if employee_document.password == password:
                         print("Authentication successful")
                         meeting_requests = MeetingRequest.objects.filter(employee_email=employee_document)
-                        print(meeting_requests)
+                        print(type(meeting_requests))
                         # Redirect to employee dashboard
                         if meeting_requests:
-                            # for request in meeting_requests:
-                                # print(request.employee_email, request.requester_email, request.description, request.date)
-                            return render(request, 'temp.html', {'employee': employee_document, 'meeetin_requests':meeting_requests})
-                            # return render(request, 'employee_dashboard.html', {'error':'not found employee dashboard'})
-                            pass
+                            print("yes metting req")
+                            return render(request, 'employee_dashboard.html', {'employee': employee_document, 
+                                                                'meeting_requests':meeting_requests}) 
                         else:
                             print("No meeting requests found for the specified email.")
                             return render(request, 'employee_dashboard.html',{'employee': employee_document, 'error': 'No meeting requests found.'})
