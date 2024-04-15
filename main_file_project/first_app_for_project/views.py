@@ -37,11 +37,11 @@ save_request_for_meeting: Saves meeting requests to a MongoDB collection. It ext
 
 import json
 from bson import ObjectId 
-from django.http import HttpResponse, JsonResponse
+from django.http import HttpResponse, JsonResponse, HttpResponseRedirect
 from django.shortcuts import render,redirect
 from django.contrib.auth.hashers import check_password, make_password
 from django.contrib.auth import logout as auth_logout , authenticate,login as auth_login
-from first_app_for_project.models import User, Employee, Company
+from first_app_for_project.models import User, Employee, Company,MeetingRequest
 from django.urls import reverse
 import pymongo
 from pymongo import MongoClient
@@ -67,8 +67,6 @@ def register_user(request):
 
 
 
-from django.shortcuts import render
-from .models import Employee,Company
 
 def employee_registration(request):
     if request.method == 'POST':
@@ -104,14 +102,7 @@ def employee_registration(request):
     
     return render(request, 'employee_register.html')
 
-
-
-import json
-from django.shortcuts import render, redirect
-from django.contrib.auth import authenticate, login  # Optional for built-in auth
-from .models import Employee, MeetingRequest
-
-import json
+   
 
 def employee_login(request):
     if request.method == 'POST':
@@ -135,7 +126,7 @@ def employee_login(request):
                         # Redirect to employee dashboard
                         if meeting_requests:
                             print("yes metting req")
-                            return render(request, 'employee_dashboard.html', {'employee': employee_document, 
+                            return render(request, 'employee_dashboard  .html', {'employee': employee_document, 
                                                                 'meeting_requests':meeting_requests}) 
                         else:
                             print("No meeting requests found for the specified email.")
@@ -173,25 +164,6 @@ def user_login(request):
             return render(request, 'login.html', 
                         {'error':'Invalid username or password' })  
     return render(request, 'login.html')
-
-# def login(request):
-#     if request.method == 'POST':
-#         username = request.POST.get('username')
-#         password = request.POST.get('password')
-#         try:
-#             user = User.objects.get(username=username)
-#             print(username)
-#         except User.DoesNotExist:
-#             print('errror')
-#             return render(request, 'login_page.html', {'error': 'Invalid username or password'})
-  
-#         if check_password(password, user.password):
-#             print('success')
-#             return render(request, 'index.html')
-#         else:
-#             return render(request, 'login_page.html', 
-#                         {'error':'Invalid username or password' })  
-#     return render(request, 'login_page.html')
 
 
 def home(request):
@@ -239,9 +211,7 @@ def logout(request):
     auth_logout(request)  
     return render(request, 'about.html') 
 
-from django.http import HttpResponseRedirect
-from django.urls import reverse
-from .models import MeetingRequest      
+  
 
 def save_request_for_meeting(request):
     if request.method == 'POST':
