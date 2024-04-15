@@ -201,7 +201,8 @@ def get_company_data(request):
             return JsonResponse({'error': 'No details found for the selected company'})
     
     except Exception as e:
-        return JsonResponse({'error': f'An error occurred: {str(e)}'})    
+        return JsonResponse({'error': f'An error occurred: {str(e)}'})   
+     
     
     
 def rating(request):
