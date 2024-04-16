@@ -49,6 +49,7 @@ from datetime import datetime
 from django.contrib.auth.models import User
 
 
+
 def index(request):
     return render(request, 'about.html')
 
