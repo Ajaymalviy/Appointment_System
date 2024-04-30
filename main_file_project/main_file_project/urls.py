@@ -33,5 +33,6 @@ urlpatterns = [
     path('home/', home, name='home'),
     path('search/', get_company_data, name='getting_company_data'),
     path('meeting_request/', views.save_request_for_meeting, name='meeting_request'),
+    path('sendmail/', views.sendmail, name='sendmail'),
 ]
 
