@@ -47,6 +47,8 @@ import pymongo
 from pymongo import MongoClient
 from datetime import datetime
 from django.contrib.auth.models import User
+from django.core.mail import send_mail
+from django.shortcuts import render
 
 
 
@@ -127,7 +129,7 @@ def employee_login(request):
                         # Redirect to employee dashboard
                         if meeting_requests:
                             print("yes metting req")
-                            return render(request, 'employee_dashboard  .html', {'employee': employee_document, 
+                            return render(request, 'employee_dashboard.html', {'employee': employee_document, 
                                                                 'meeting_requests':meeting_requests}) 
                         else:
                             print("No meeting requests found for the specified email.")
@@ -250,5 +252,15 @@ def save_request_for_meeting(request):
         return render(request, 'takeschedulee.html')
 
 
-
+def sendmail(request):
+    # Your email-sending logic here
+    send_mail(
+        'THANKYOU BY MEETME',
+        'Your requested schedule is fixed ',
+        'ajeymalviya143@gmail.com',
+        ['shubhamraikwar08j@gmail.com'],
+        fail_silently=False,
+    )
+    return HttpResponse('Email sent successfully!') 
+    #return render(request, 'employee_dashboard.html')
 
