@@ -5,7 +5,7 @@
   <meta charset="utf-8">
   <meta content="width=device-width, initial-scale=1.0" name="viewport">
 
-  <title>Logis Bootstrap Template - Pricing</title>
+  <title>meetMe</title>
   <meta content="" name="description">
   <meta content="" name="keywords">
 
@@ -57,10 +57,9 @@
           <li><a href="index.html">Home</a></li>
           <li><a href="#">About</a></li>
           <li><a href="#">Services</a></li>
-          <li><a href="#" class="active">Pricing</a></li>
          
           <li><a href="#">Contact</a></li>
-          <li><a class="get-a-quote" href="get-a-quote.html">Logout</a></li>
+          <li><a class="get-a-quote" href="{% url 'logout' %}">Logout</a></li>
         </ul>
       </nav><!-- .navbar -->
 
@@ -524,7 +523,7 @@
         </div>
 
           {% for request in meeting_requests %}
-          <div class="row gy-4 pricing-item" data-aos="fade-up" data-aos-delay="100" style="background-color:#0E1D34; color:white;">
+          <div class="row gy-4 pricing-item" data-aos="fade-up" data-aos-delay="20" style="background-color:#0E1D34; color:white;  padding: 20px; margin-top:30px; border-radius:10px;">
             <div class="col-lg-3 d-flex align-items-center justify-content-center">
               <h5> {{ request.requester_email }}</h5>
             </div>
@@ -540,10 +539,10 @@
             </div>
 
             <div class="col-lg-3 d-flex align-items-center justify-content-center">
-              <div class="text-center"><a href="#" class="buy-btn">Accept</a></div>
+              <div class="text-center"><a href="/sendmail/" class="buy-btn" onclick="changeBackgroundColor(this)">Accept</a></div>
             </div>
-
-          </div>
+            <br>
+          </div style=" padding: 20px;" >
           {% endfor %}
 
       </div>
@@ -639,5 +638,11 @@
   <script src="{% static 'assets/js/main.js' %}"></script>
 
 </body>
+<script>
+  function changeBackgroundColor(element) {
+    var parentDiv = element.closest(".pricing-item");
+    parentDiv.style.backgroundColor = "#1e90ff";
+  }
+  </script>
 
 </html>
