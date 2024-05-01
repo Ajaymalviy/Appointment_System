@@ -254,6 +254,7 @@ def save_request_for_meeting(request):
 
 def sendmail(request):
     # Your email-sending logic here
+    
     send_mail(
         'THANKYOU BY MEETME',
         'Your requested schedule is fixed ',
