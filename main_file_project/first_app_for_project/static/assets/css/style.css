@@ -1,6 +1,6 @@
 
 body{
-  background-color: #f8f9fa;
+  background-color: #ffffff;
 }
 
 /*--------------------------------------------------------------
@@ -322,7 +322,7 @@ body{
 .features .details {
   margin-top: 80px;
   padding: 120px 0;
-  background-color: #f8f9fa;
+  background-color: rgb(255, 255, 255);
 }
 
 
@@ -348,7 +348,7 @@ body{
   border-radius: 50px;
   transition: 0.5s;
   background-color: var(--color-primary);
-  color: #fff;
+  color: #292d52;
 }
 
 .features .details .btn-get-started:hover {
@@ -410,3 +410,38 @@ body{
 }
 
 
+.autocomplete-items {
+  max-height: 200px; /* Set maximum height for the dropdown */
+  overflow-y: auto; /* Enable vertical scroll if needed */
+}
+
+.autocomplete-item {
+  padding: 10px; /* Adjust padding as needed */
+}
+
+.autocomplete-item:hover {
+  background-color: #f1f1f1; /* Change background color on hover */
+}
+
+
+.container .btn-get-started {
+  font-family: "Raleway", sans-serif;
+  text-transform: uppercase;
+  font-weight: 500;
+  font-size: 14px;
+  letter-spacing: 0.5px;
+  display: inline-block;
+  padding: 10px 28px;
+  transition: 0.5s;
+  border: 2px solid #1f1919;
+  color: #020202;
+  height: auto;
+  width: auto;
+  background-color: rgb(190, 185, 185) ;
+}
+
+.container .btn-get-started:hover {
+  background: #cc1616;
+  border-color: #cc1616;
+  color: rgb(207, 207, 207);
+}

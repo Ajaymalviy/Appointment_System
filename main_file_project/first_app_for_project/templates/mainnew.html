@@ -11,7 +11,7 @@
     <link href="{% static 'assets/css/style.css' %}" rel="stylesheet">    
 
 </head>
-<body>
+<body style="background-color:ced4da;">
   <nav class="navbar navbar-expand-lg " style="background-color: rgb(168, 159, 159);">
     <div class="container-fluid">
       <a href="#" class="logo d-flex align-items-center"> 
@@ -37,6 +37,12 @@
           <li class="nav-item">
             <a class="nav-link" href="{% url 'contactpage' %}"  style="color: white;  margin-left: 10px;">contact</a>
           </li>
+        {% if user is authenticated %} 
+          <li class="nav-item">
+            <a class="nav-link" href="{% url 'meeting' %}" style="color: white; margin-left: 10px;">Meetings</a>
+          </li>
+        {% endif %}
+        
 
         </ul>
         <form class="d-flex" id="love" role="search">

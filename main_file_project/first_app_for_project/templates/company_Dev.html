@@ -78,13 +78,12 @@
                   </div>
                   <button  id="read-more-btn" class="read-more-btn">Read More</button>
 
-                  <a href=""{% url 'meeting_request' %}?email={{ employee.employee_email }}" " class="btn-get-started scrollto">Request</a>
-                  {% comment %} <a href="{% url 'meeting_request' %}?email={{ employee.employee_email }}" class="btn btn-primary" id="tempbutton">Request</a> {% endcomment %}
+                  <a href="{% url 'meeting_request' %}?email={{ employee.employee_email }}" class="btn btn-primary" id="tempbutton" style="background-color:grey; border:1px solid black;">Request</a>
+                                {% comment %} <a href="{% url 'meeting_request' %}?email={{ employee.employee_email }}" class="btn btn-primary" id="tempbutton">Request</a> {% endcomment %}
                 </div></div>
             {% endfor %}
           </div>
         </div>
-
       </section><!-- End Featured Services Section -->
    
   </main><!-- End #main -->

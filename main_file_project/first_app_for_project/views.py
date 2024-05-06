@@ -67,22 +67,25 @@ def contactpage(request):
 def back(request):
     return render(request, 'mainnew.html')
 
+from django.contrib.auth import authenticate, login
+from django.shortcuts import render, redirect
+from django.contrib import messages
+
+
 def loginnew(request):
     if request.method == 'POST':
         username = request.POST.get('username')
         password = request.POST.get('password')
-        try:
-            user = User.objects.get(username=username)
-            print(username)
-        except User.DoesNotExist:
-            print('errror')
-  
-        if check_password(password, user.password):
-            print('success')
-            return render(request, 'mainnew.html')
+
+        user = authenticate(username=username, password=password)
+        if user is not None:
+            login(request, user)  # Log the user in
+            messages.success(request, 'You have been successfully logged in.')
+            return redirect('meeting')
+ # Redirect to the 'meeting' view
         else:
-            return render(request, 'loginnew.html', 
-                        {'error':'Invalid username or password' })  
+            messages.error(request, 'Invalid username or password. Please try again.')
+
     return render(request, 'loginnew.html')
 
 
@@ -178,26 +181,43 @@ def employee_login(request):
     return render(request, 'login.html')
 
 
+# def user_login(request):
+#     if request.method == 'POST':
+#         username = request.POST.get('username')
+#         password = request.POST.get('password')
+#         try:
+#             user = User.objects.get(username=username)
+#             print(username)
+#         except User.DoesNotExist:
+#             print('Error: User does not exist')
+#             return render(request, 'loginnew.html', {'error': 'Invalid username or password'})
 
+#         if check_password(password, user.password):
+#             print('Success: Logged in as', username)
+#             return redirect('meeting', user=user)  # Redirect with user parameter
+#         else:
+#             print('Error: Invalid password')
+#             return render(request, 'loginnew.html', {'error': 'Invalid username or password'})
 
+#     print('No user')  
+#     return render(request, 'loginnew.html', {'user': None})
+# from django.contrib.auth import authenticate, login
 
 def user_login(request):
     if request.method == 'POST':
         username = request.POST.get('username')
         password = request.POST.get('password')
-        try:
-            user = User.objects.get(username=username)
-            print(username)
-        except User.DoesNotExist:
-            print('errror')
-  
-        if check_password(password, user.password):
-            print('success')
-            return render(request, 'mainnew.html')
+        user = authenticate(request, username=username, password=password)
+        if user is not None:
+            login(request, user)  # Log in the user
+            print(user)
+            return redirect('meeting')  # Redirect with user parameter
         else:
-            return render(request, 'loginnew.html', 
-                        {'error':'Invalid username or password' })  
+            print('Error: Invalid username or password')
+            return render(request, 'loginnew.html', {'error': 'Invalid username or password'})
+
     return render(request, 'loginnew.html')
+
 
 
 # def home(request):
@@ -245,8 +265,15 @@ def search_company_view(request):
      
     
     
-def meeting(request):
-    return render(request, 'mainnew.html')    
+def meeting(request, user=None):
+    if user is not None:
+        # You can access user information here (e.g., user.username)
+        print('User:', user.username)
+    else:
+        print('No user provided')
+    
+    return render(request, 'mainnew.html')
+
 
 def logout(request):
     auth_logout(request)  
@@ -273,7 +300,7 @@ def save_request_for_meeting(request):
                 description=description,
                 date=date
             )
-            return render(request, 'services.html')
+            return render(request, 'company_Dev.html')
         else:
             # Handle the case where employee_email is missing (e.g., display an error message)
             print("Employee email is missing in the form submission.")

@@ -39,11 +39,11 @@
           </li>
 
           {% if user.is_authenticated %}
-            <li class="nav-item">
-              <a class="nav-link" href="{% url 'meeting' %}"  style="color: white;  margin-left: 10px;">Meetings</a>
-            </li>
-          {% endif %}
-
+          <li class="nav-item">
+            <a class="nav-link" href="{% url 'meeting' %}" style="color: white; margin-left: 10px;">Meetings</a>
+          </li>
+        {% endif %}
+        
         </ul>
         <form class="d-flex" id="love" role="search">
           <a href="{% url 'loginnew' %}" class="btn-get-started scrollto" style="margin-right: 10px;">login</a>
@@ -60,11 +60,11 @@
     </div>
   </section><!-- End Hero -->
      <!-- ======= Features Section ======= -->
-  <section id="features" class="features" style="margin-top: 0px;background-color: #F9F6EE;">
-      <div class="details">
+  <section id="features" class="features" style="margin-top: 0px;">
+      <div class="details" >
         <div class="container" data-aos="fade-up" data-aos-delay="300">
-          <div class="row">
-            <div class="col-md-6">
+          <div class="row" style="background-color: white;">
+            <div class="col-md-6" style="background-color: white;">
               <h4>Any <br>Content</h4>
               <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Numquam nostrum molestias doloremque quae delectus odit minima corrupti blanditiis quo animi!</p>
               <a href="#about" class="btn-get-started" style="color:black">Get Started</a>

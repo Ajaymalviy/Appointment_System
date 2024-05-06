@@ -39,7 +39,7 @@
           </li>
 
 
-          {% if user.is_authenticated %}
+          {% if user%}
           <li class="nav-item">
             <a class="nav-link" href="{% url 'meeting' %}"  style="color: white;  margin-left: 10px;">Meetings</a>
           </li>
@@ -58,13 +58,50 @@
       <div class="details">
         <div class="container" data-aos="fade-up" data-aos-delay="300">
             <h4 style="margin-top: 0px;">About-Us</h4>
-          <div class="row">
-            <h4>This website is created by <br>Ajay-Malviya</h4>
-          </div>
-
         </div>
 
-        <br>
+        <section id="about" class="about">
+          <div class="container" data-aos="fade-up">
+    
+            <div class="row gy-4">
+              <div class="col-lg-6 position-relative align-self-start order-lg-last order-first">
+                <img src="{% static 'assets/img/about.jpg' %}" class="img-fluid" alt="">
+                <a href="https://www.youtube.com/watch?v=LXb3EKWsInQ" class="glightbox play-btn"></a>
+              </div>
+              <div class="col-lg-6 content order-last  order-lg-first">
+            
+                <p>
+                  "Welcome to our appointment system, your reliable companion for seamless scheduling. Streamline your bookings effortlessly, ensuring your time is optimized and appointments are never missed. Experience convenience and efficiency like never before with our user-friendly interface." </p>
+                <ul>
+                  <li data-aos="fade-up" data-aos-delay="100">
+                    <i class="bi bi-diagram-3"></i>
+                    <div>
+                      <h5>Feedback and Improvement:.</h5>
+                      <p> Communicate a commitment to gathering feedback from users to continuously improve the system and meet evolving needs.</p>
+                    </div>
+                  </li>
+                  <li data-aos="fade-up" data-aos-delay="200">
+                    <i class="bi bi-fullscreen-exit"></i>
+                    <div>
+                      <h5>User-Friendly Interface</h5>
+                      <p> This is easy for IT professionals to navigate and utilize effectively.</p>
+                    </div>
+                  </li>
+                  <li data-aos="fade-up" data-aos-delay="300">
+                    <i class="bi bi-broadcast"></i>
+                    <div>
+                      <h5>Generating meeting online.</h5>
+                      <p>You can fix a meeting with online .</p>
+                    </div>
+                  </li>
+                </ul>
+              </div>
+            </div>
+    
+          </div>
+        </section><!-- End About Us Section -->
+    
+    
         <div class="container" style="background-color: #dfe4e3; border-radius: 20px solid black;" >
           <div class="row">
             <div class="col-lg-7" data-aos="fade-up" data-aos-delay="100">
