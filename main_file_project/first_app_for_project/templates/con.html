@@ -38,10 +38,15 @@
             <a class="nav-link" href="{% url 'contactpage' %}"  style="color: white;  margin-left: 10px;">contact</a>
           </li>
 
+          {% if user.is_authenticated %}
+          <li class="nav-item">
+            <a class="nav-link" href="{% url 'meeting' %}"  style="color: white;  margin-left: 10px;">Meetings</a>
+          </li>
+        {% endif %}
         </ul>
         <form class="d-flex" id="love" role="search">
-          <a href="#about" class="btn-get-started scrollto" style="margin-right: 10px;">login</a>
-          <a href="#about" class="btn-get-started scrollto">Signin</a>
+          <a href="{% url 'loginnew' %}" class="btn-get-started scrollto" style="margin-right: 10px;">login</a>
+          <a href="{% url 'registernew' %}" class="btn-get-started scrollto">Signin</a>
         </form>
       </div>
     </div>
@@ -146,7 +151,7 @@
 
         <div class="col-lg-2 col-6 footer-links text-white">
           <h4 >Useful Links</h4>
-          <ul">
+          <ul>
             <li><a href="#" style="color: white;">Home</a></li>
             <li><a href="#about" style="color: white;" >About us</a></li>
             <li><a href="#service" style="color: white;">Services</a></li>
