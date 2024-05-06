@@ -53,9 +53,41 @@ from django.shortcuts import render
 
 
 def index(request):
-    return render(request, 'about.html')
+    return render(request, 'home.html')
 
-def register_user(request):
+def aboutpage(request):
+    return render(request, 'aboutus.html')
+
+def servicepage(request):
+    return render(request, 'service.html')
+
+def contactpage(request):
+    return render(request, 'con.html')
+
+def back(request):
+    return render(request, 'mainnew.html')
+
+def loginnew(request):
+    if request.method == 'POST':
+        username = request.POST.get('username')
+        password = request.POST.get('password')
+        try:
+            user = User.objects.get(username=username)
+            print(username)
+        except User.DoesNotExist:
+            print('errror')
+  
+        if check_password(password, user.password):
+            print('success')
+            return render(request, 'mainnew.html')
+        else:
+            return render(request, 'loginnew.html', 
+                        {'error':'Invalid username or password' })  
+    return render(request, 'loginnew.html')
+
+
+
+def registernew(request):
     print('goodydm')
     if request.method == 'POST':
         username = request.POST.get('username')
@@ -65,10 +97,8 @@ def register_user(request):
         hashed_password = make_password(password)
         user = User(username=username, password=hashed_password, email=email )
         user.save()
-        return redirect('user_login') 
-    return render(request, 'registration.html')
-
-
+        return redirect('loginnew') 
+    return render(request, 'registernew.html')
 
 
 def employee_registration(request):
@@ -150,6 +180,7 @@ def employee_login(request):
 
 
 
+
 def user_login(request):
     if request.method == 'POST':
         username = request.POST.get('username')
@@ -162,32 +193,37 @@ def user_login(request):
   
         if check_password(password, user.password):
             print('success')
-            return render(request, 'index.html')
+            return render(request, 'mainnew.html')
         else:
-            return render(request, 'login.html', 
+            return render(request, 'loginnew.html', 
                         {'error':'Invalid username or password' })  
-    return render(request, 'login.html')
+    return render(request, 'loginnew.html')
 
 
-def home(request):
-    return render(request, 'index.html')
+# def home(request):
+#     return render(request, 'index.html')
 
-def get_company_data(request):
+def search_company_view(request):
     if request.method != 'POST':
+        print('not yours')
         return JsonResponse({'error': 'Invalid request method. Use POST to retrieve company data.'})
     
     company_name = request.POST.get('company_name')
+    print(company_name)
     
     if not company_name:
+        print('not company name')
         return JsonResponse({'error': 'Invalid company name'})
     
     try:
+        print('gooooodydm')
         # Retrieve company object using the company name
         company = Company.objects.get(company_name=company_name)
+        print(company)
         
         # Retrieve all employees of the company
         employees = Employee.objects.filter(company_name=company)
-        
+        # print(employees)
         data_list = []
         for employee in employees:
             data_list.append({
@@ -199,7 +235,8 @@ def get_company_data(request):
             })
         
         if data_list:
-            return render(request, 'services.html', {'company_name': company_name, 'employees': data_list})
+            print('chal gya re baaba')
+            return render(request, 'company_Dev.html', {'company_name': company_name, 'employees': data_list})
         else:
             return JsonResponse({'error': 'No details found for the selected company'})
     
@@ -208,12 +245,12 @@ def get_company_data(request):
      
     
     
-def rating(request):
-    return render(request, 'rating.html')    
+def meeting(request):
+    return render(request, 'mainnew.html')    
 
 def logout(request):
     auth_logout(request)  
-    return render(request, 'about.html') 
+    return render(request, 'home.html') 
 
   
 
