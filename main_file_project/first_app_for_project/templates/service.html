@@ -38,10 +38,16 @@
             <a class="nav-link" href="{% url 'contactpage' %}"  style="color: white;  margin-left: 10px;">contact</a>
           </li>
 
+          {% if user.is_authenticated %}
+          <li class="nav-item">
+            <a class="nav-link" href="{% url 'meeting' %}"  style="color: white;  margin-left: 10px;">Meetings</a>
+          </li>
+        {% endif %}
+
         </ul>
         <form class="d-flex" id="love" role="search">
-          <a href="#about" class="btn-get-started scrollto" style="margin-right: 10px;">login</a>
-          <a href="#about" class="btn-get-started scrollto">Signin</a>
+          <a href="{% url 'loginnew' %}" class="btn-get-started scrollto" style="margin-right: 10px;">login</a>
+          <a href="{% url 'registernew' %}" class="btn-get-started scrollto">Signin</a>
         </form>
       </div>
     </div>
