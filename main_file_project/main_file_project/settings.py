@@ -12,6 +12,7 @@ https://docs.djangoproject.com/en/5.0/ref/settings/
 
 import os
 from pathlib import Path
+# import pdb 
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -42,10 +43,16 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+
+    'allauth',
+    'allauth.account',
+    'allauth.socialaccount',
+    'allauth.socialaccount.providers.google'
     
 ]
 
 MIDDLEWARE = [
+
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
@@ -53,14 +60,17 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'allauth.account.middleware.AccountMiddleware',  # Add this line
+  
 ]
+
 
 ROOT_URLCONF = 'main_file_project.urls'
 
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [TEMPLATES_DIR],
+        'DIRS': [BASE_DIR/'templates'], 
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -81,14 +91,21 @@ WSGI_APPLICATION = 'main_file_project.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'djongo',
-        'NAME': 'meetme',  # Specify the name of your MongoDB database
-        'ENFORCE_SCHEMA': False,  # Optional: Set to True if you want to enforce schema validation
-        'CLIENT': {
-            'host': 'mongodb://localhost:27017/',  # Specify the MongoDB connection URI
-        }
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': BASE_DIR / "db.sqlite3",
     }
 }
+
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'djongo',
+#         'NAME': 'meetme',  # Specify the name of your MongoDB database
+#         'ENFORCE_SCHEMA': False,  # Optional: Set to True if you want to enforce schema validation
+#         'CLIENT': {
+#             'host': 'mongodb://localhost:27017/',  # Specify the MongoDB connection URI
+#         }
+#     }
+# }
 
 # import mongoengine
 # mongoengine.connect(db='phone', host='localhost', username='root', password='password')
@@ -151,3 +168,29 @@ EMAIL_USE_TLS = True  # or False if you use SSL
 EMAIL_HOST_USER = 'ajeymalviya143@gmail.com'
 EMAIL_HOST_PASSWORD = 'yklm vyzm cmfo xyry'
 
+
+SOCIALACCOUNT_PROVIDERS = {
+        'google': {
+            'SCOPE' : [
+                'profile',
+                'email'
+            ],
+            'APP': {
+                'client_id': '1013600742983-vub3nbfd4oqmlkqopfa4rnv8jatn0fnv.apps.googleusercontent.com',
+                'secret': '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',
+            },
+            'AUTH_PARAMS': {
+                'access_type':'online',
+            }
+        }
+    }
+
+AUTHENTICATION_BACKENDS = [
+    'django.contrib.auth.backends.ModelBackend',
+    'allauth.account.auth_backends.AuthenticationBackend'
+]
+SITE_ID = 2
+
+LOGIN_REDIRECT_URL = '/'
+LOGOUT_REDIRECT_URL = '/'
+    
