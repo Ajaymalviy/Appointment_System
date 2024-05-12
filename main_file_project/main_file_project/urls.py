@@ -15,28 +15,45 @@ Including another URLconf
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
 from django.contrib import admin
-from django.urls import path
-from first_app_for_project.views import index, aboutpage,servicepage, contactpage,loginnew,registernew, user_login,employee_login,back, employee_registration, meeting
+from django.urls import path, include
+from first_app_for_project.views import index,choose, aboutpage,servicepage, contactpage,loginnew,registernew, employee_login,back,  meeting
+# from first_app_for_project.views import index,callback_view, profile_view,codemos,techritzy
 from django.conf import settings
 from django.conf.urls.static import static
 from first_app_for_project import views
+from django.views.generic import TemplateView #useful in displaying oauth.html template
+from django.contrib.auth.views import LogoutView
+
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('', views.index, name='index'),
+    path("", views.index, name="home"),
+    path('/homee', views.index, name='index'),
     path('about/', views.aboutpage, name='aboutpage'),
     path('service/', views.servicepage, name='servicepage'),
     path('contact/', views.contactpage, name='contactpage'),
     path('loginnew/', views.loginnew, name='loginnew'),
     path('registernew/', views.registernew, name='registernew'),
-    path('user_login/', views.user_login, name='user_login'),
-    path('employee_registration/', views.employee_registration, name='employee_registration'),
+    # path('user_login/', views.user_login, name='user_login'),
+    # path('employee_registration/', views.employee_registration, name='employee_registration'),
     path('employee_login/', views.employee_login, name='employee_login'),
     path('logout/', views.logout, name='logout'),
     path("meeting_home/", views.meeting,  name="meeting"),
     path('search/', views.search_company_view, name='search_company'),
     path('meeting_request/', views.save_request_for_meeting, name='meeting_request'),
     path('sendmail/', views.sendmail, name='sendmail'),
-    path('home/', views.back, name="back")
+    # path('home/', views.back, name="back"),
+    path('choose/', views.choose, name='choose'),
+
+
+
+    # path('app/',include('first_app_for_project.urls')), #app urls
+    # path('', TemplateView.as_view(template_name='oauth.html')),
+    # path('accounts/', include('allauth.urls')), # all OAuth operations will be performed under this route 
+    # path('logout/', LogoutView.as_view(), name='account_logout'),
+    # path('oauth/callback/', callback_view, name='oauth_callback'),
+    # path('profile/', profile_view, name='profile'),
+    # path('techritzy/', techritzy, name='tech'),
+    # path('codemos/', codemos, name='code'),
 ]
 
