@@ -1,5 +1,4 @@
 from django.db import models
-from django.contrib.auth.models import AbstractUser
 
 class User(models.Model):
     username = models.CharField(max_length=100)
@@ -37,7 +36,6 @@ class Schedule(models.Model):
     def __str__(self):
         return self.schedule_id
     
-
 class Appointment(models.Model):
     appointment_id = models.CharField(primary_key=True, max_length=100)
     date = models.DateField()
@@ -51,9 +49,6 @@ class Appointment(models.Model):
     def __str__(self):
         return self.appointment_id
 
-    
-
-
 class MeetingRequest(models.Model):
     employee_email = models.EmailField()
     requester_email = models.EmailField()
@@ -62,3 +57,7 @@ class MeetingRequest(models.Model):
 
     def __str__(self):
         return f"Meeting Request for {self.employee_email} on {self.date}"
+    
+
+
+
