@@ -40,36 +40,36 @@ import json
 from django.http import HttpResponse, JsonResponse, HttpResponseRedirect
 from django.shortcuts import render,redirect
 from django.contrib.auth.hashers import check_password, make_password
-from django.contrib.auth import logout as auth_logout , authenticate,login as auth_login
-# from first_app_for_project.models import User, Employee, Company,MeetingRequest
+from django.contrib.auth import logout as auth_logout, authenticate,login 
+from first_app_for_project.models import User, Employee, Company,MeetingRequest
 from django.urls import reverse
-# # import pymongo
-# from pymongo import MongoClient
-# from datetime import datetime
+import pymongo
+from pymongo import MongoClient
+from datetime import datetime
 from django.contrib.auth.models import User
 from django.core.mail import send_mail
 from django.shortcuts import render
-from allauth.socialaccount.models import SocialAccount
+# from allauth.socialaccount.models import SocialAccount
 import pdb
 
 
 def index(request):
     return render(request, 'home.html')
 
-def callback_view(request):
-    # Handle OAuth callback
-    return redirect('index')
+# def callback_view(request):
+#     # Handle OAuth callback
+#     return redirect('index')
 
-# views.py
+# # views.py
 
-def profile_view(request):
-    # Get user's social account
-    social_account = SocialAccount.objects.get(user=request.user)
-    print(social_account)
-    # Access user data through the social account
-    pdb.set_trace()
-    print('error counter')
-    print(social_account.extra_data)
+# def profile_view(request):
+#     # Get user's social account
+#     social_account = SocialAccount.objects.get(user=request.user)
+#     print(social_account)
+#     # Access user data through the social account
+#     pdb.set_trace()
+#     print('error counter')
+#     print(social_account.extra_data)
 
 # def techritzy(request):
 #     return render(request ,'techritzy.html')    
@@ -94,41 +94,41 @@ def choose(request):
     return render(request, 'choose_login.html') 
 
 
-# from django.contrib.auth import authenticate, login
-# from django.shortcuts import render, redirect
-# from django.contrib import messages
+from django.contrib.auth import authenticate, login
+from django.shortcuts import render, redirect
+from django.contrib import messages
 
 
-# def loginnew(request):
-#     if request.method == 'POST':
-#         username = request.POST.get('username')
-#         password = request.POST.get('password')
+def loginnew(request):
+    if request.method == 'POST':
+        username = request.POST.get('username')
+        password = request.POST.get('password')
 
-#         user = authenticate(username=username, password=password)
-#         if user is not None:
-#             login(request, user)  # Log the user in
-#             messages.success(request, 'You have been successfully logged in.')
-#             return redirect('meeting')
-#  # Redirect to the 'meeting' view
-#         else:
-#             messages.error(request, 'Invalid username or password. Please try again.')
+        user = authenticate(username=username, password=password)
+        if user is not None:
+            login(request, user)  # Log the user in
+            messages.success(request, 'You have been successfully logged in.')
+            return redirect('meeting')
+ # Redirect to the 'meeting' view
+        else:
+            messages.error(request, 'Invalid username or password. Please try again.')
 
-#     return render(request, 'loginnew.html')
+    return render(request, 'loginnew.html')
 
 
 
-# def registernew(request):
-#     print('goodydm')
-#     if request.method == 'POST':
-#         username = request.POST.get('username')
-#         password = request.POST.get('password')
-#         email = request.POST.get('email')
-#         print(username,password,email)
-#         hashed_password = make_password(password)
-#         user = User(username=username, password=hashed_password, email=email )
-#         user.save()
-#         return redirect('loginnew') 
-#     return render(request, 'registernew.html')
+def registernew(request):
+    print('goodydm')
+    if request.method == 'POST':
+        username = request.POST.get('username')
+        password = request.POST.get('password')
+        email = request.POST.get('email')
+        print(username,password,email)
+        hashed_password = make_password(password)
+        user = User(username=username, password=hashed_password, email=email )
+        user.save()
+        return redirect('loginnew') 
+    return render(request, 'registernew.html')
 
 
 # def employee_registration(request):
@@ -167,45 +167,45 @@ def choose(request):
 
    
 
-# def employee_login(request):
-#     if request.method == 'POST':
-#         username = request.POST.get('username')
-#         print("username is type of", type(username))
-#         password = request.POST.get('password')
-#         print(username,password)
-#         if username and password:
-#             try:
-#                 # list = [username]
-#                 employee_document =  Employee.objects.get(employee_name=username)
-#                 print("think is that it is a ", employee_document)
-#                 if employee_document:
-#                     employee_username = employee_document.employee_name
-#                     print(employee_username)
-#                     username_list = [employee_username]
-#                     if employee_document.password == password:
-#                         print("Authentication successful")
-#                         meeting_requests = MeetingRequest.objects.filter(employee_email=employee_document)
-#                         print(type(meeting_requests))
-#                         # Redirect to employee dashboard
-#                         if meeting_requests:
-#                             print("yes metting req")
-#                             return render(request, 'employee_dashboard1.html', {'employee': employee_document, 
-#                                                                 'meeting_requests':meeting_requests}) 
-#                         else:
-#                             print("No meeting requests found for the specified email.")
-#                             return render(request, 'employee_dashboard.html',{'employee': employee_document, 'error': 'No meeting requests found.'})
-#                     else:
-#                         error_message = 'Invalid email or password.'
-#                 else:
-#                     error_message = 'Invalid email or password.'
-#             except Exception as e:
-#                 print("Exception occurred:", e)
-#                 error_message = 'An error occurred during login.'
-#         else:
-#             error_message = 'Email and password are required.'
+def employee_login(request):
+    if request.method == 'POST':
+        username = request.POST.get('username')
+        print("username is type of", type(username))
+        password = request.POST.get('password')
+        print(username,password)
+        if username and password:
+            try:
+                # list = [username]
+                employee_document =  Employee.objects.get(employee_name=username)
+                print("think is that it is a ", employee_document)
+                if employee_document:
+                    employee_username = employee_document.employee_name
+                    print(employee_username)
+                    username_list = [employee_username]
+                    if employee_document.password == password:
+                        print("Authentication successful")
+                        meeting_requests = MeetingRequest.objects.filter(employee_email=employee_document)
+                        print(type(meeting_requests))
+                        # Redirect to employee dashboard
+                        if meeting_requests:
+                            print("yes metting req")
+                            return render(request, 'employee_dashboard1.html', {'employee': employee_document, 
+                                                                'meeting_requests':meeting_requests}) 
+                        else:
+                            print("No meeting requests found for the specified email.")
+                            return render(request, 'employee_dashboard.html',{'employee': employee_document, 'error': 'No meeting requests found.'})
+                    else:
+                        error_message = 'Invalid email or password.'
+                else:
+                    error_message = 'Invalid email or password.'
+            except Exception as e:
+                print("Exception occurred:", e)
+                error_message = 'An error occurred during login.'
+        else:
+            error_message = 'Email and password are required.'
 
-#         return render(request, 'employee_login.html')
-#     return render(request, 'employee_login.html')
+        return render(request, 'employee_login.html')
+    return render(request, 'employee_login.html')
 
 
 # def user_login(request):
@@ -247,12 +247,12 @@ def choose(request):
 
 
 
-# def home(request):
-#     return render(request, 'index.html')
+def home(request):
+    return render(request, 'index.html')
 
-# from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
+from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 
-# def search_company_view(request):
+def search_company_view(request):
     if request.method != 'POST':
         print('not yours')
         return JsonResponse({'error': 'Invalid request method. Use POST to retrieve company data.'})
@@ -310,14 +310,14 @@ def choose(request):
         return JsonResponse({'error': f'An error occurred: {str(e)}'}) 
 
     
-# def meeting(request, user=None):
-    # if user is not None:
-    #     # You can access user information here (e.g., user.username)
-    #     print('User:', user.username)
-    # else:
-    #     print('No user provided')
+def meeting(request, user=None):
+    if user is not None:
+        # You can access user information here (e.g., user.username)
+        print('User:', user.username)
+    else:
+        print('No user provided')
     
-    # return render(request, 'mainnew.html')
+    return render(request, 'mainnew.html')
 
 
 def logout(request):
@@ -326,39 +326,39 @@ def logout(request):
 
   
 
-# def save_request_for_meeting(request):
-#     if request.method == 'POST':
-#         employee_email = request.POST.get('employee_email')
-#         requester_email = request.POST.get('requester_email')
-#         description = request.POST.get('description')
-#         date_str = request.POST.get('date')
-#         print("Employee Email:", employee_email)
-#         print("Requester Email:", requester_email)
-#         print("date is :" , date_str)
-#         print("next from this data was not lodede")
-#         # Check if employee_email is available in POST data
-#         if employee_email:
-#             date = datetime.strptime(date_str, '%Y-%m-%d')
-#             meeting_request = MeetingRequest.objects.create(
-#                 employee_email=employee_email,
-#                 requester_email=requester_email,
-#                 description=description,
-#                 date=date
-#             )
-#             return render(request, 'company_Dev.html')
-#         else:
-#             # Handle the case where employee_email is missing (e.g., display an error message)
-#             print("Employee email is missing in the form submission.")
-#             return render(request, 'takeschedulee.html')  # Or redirect to an error page
+def save_request_for_meeting(request):
+    if request.method == 'POST':
+        employee_email = request.POST.get('employee_email')
+        requester_email = request.POST.get('requester_email')
+        description = request.POST.get('description')
+        date_str = request.POST.get('date')
+        print("Employee Email:", employee_email)
+        print("Requester Email:", requester_email)
+        print("date is :" , date_str)
+        print("next from this data was not lodede")
+        # Check if employee_email is available in POST data
+        if employee_email:
+            date = datetime.strptime(date_str, '%Y-%m-%d')
+            meeting_request = MeetingRequest.objects.create(
+                employee_email=employee_email,
+                requester_email=requester_email,
+                description=description,
+                date=date
+            )
+            return render(request, 'company_Dev.html')
+        else:
+            # Handle the case where employee_email is missing (e.g., display an error message)
+            print("Employee email is missing in the form submission.")
+            return render(request, 'takeschedulee.html')  # Or redirect to an error page
 
     # If the request is not POST, redirect to the form page with the employee's email in the URL
-    # employee_email = request.GET.get('employee_email')
-    # if employee_email:
-    #     print(employee_email)
-    #     return HttpResponseRedirect(reverse('meeting_request') + f'?employee_email={employee_email}')
+    employee_email = request.GET.get('employee_email')
+    if employee_email:
+        print(employee_email)
+        return HttpResponseRedirect(reverse('meeting_request') + f'?employee_email={employee_email}')
         
-    # else:
-    #     return render(request, 'takeschedulee.html')
+    else:
+        return render(request, 'takeschedulee.html')
 
 
 def sendmail(request):
@@ -380,18 +380,18 @@ def sendmail(request):
     else:
         return HttpResponse('Requester email not provided!')
 
-from django.shortcuts import render
-from django.contrib.auth.decorators import login_required
+# from django.shortcuts import render
+# from django.contrib.auth.decorators import login_required
 
-@login_required
-def codemos(request):
-    if request.user.username == 'ajay'  or request.user.username == 'it_2k21_04_ajaymalviya':
-        return render(request, 'codemos.html')
-    else:
-        return HttpResponse("You are not authorized to access this page.", status=403)
-@login_required
-def techritzy(request):
-    if request.user.username == 'ajayy' or request.user.username == 'it_2k21_04_ajaymalviya':
-        return render(request, 'techritzy.html')
-    else:
-        return HttpResponse("You are not authorized to access this page.", status=403)
+# @login_required
+# def codemos(request):
+#     if request.user.username == 'ajay'  or request.user.username == 'it_2k21_04_ajaymalviya':
+#         return render(request, 'codemos.html')
+#     else:
+#         return HttpResponse("You are not authorized to access this page.", status=403)
+# @login_required
+# def techritzy(request):
+#     if request.user.username == 'ajayy' or request.user.username == 'it_2k21_04_ajaymalviya':
+#         return render(request, 'techritzy.html')
+#     else:
+#         return HttpResponse("You are not authorized to access this page.", status=403)
