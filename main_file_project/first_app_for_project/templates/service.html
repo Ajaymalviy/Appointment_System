@@ -38,29 +38,105 @@
             <a class="nav-link" href="{% url 'contactpage' %}"  style="color: white;  margin-left: 10px;">contact</a>
           </li>
 
-          {% if user %}
+          {% if user.is_authenticated %}
           <li class="nav-item">
-            <a class="nav-link" href="{% url 'meeting' %}"  style="color: white;  margin-left: 10px;">Meetings</a>
+            <a class="nav-link" href="{% url 'meeting' %}" style="color: white; margin-left: 10px;">Meetings</a>
           </li>
         {% endif %}
-
         </ul>
-        <form class="d-flex" id="love" role="search">
-          <a href="{% url 'loginnew' %}" class="btn-get-started scrollto" style="margin-right: 10px;">login</a>
-          <a href="{% url 'registernew' %}" class="btn-get-started scrollto">Signin</a>
-        </form>
+        <form class="d-flex {% if user.is_authenticated %}justify-content-end{% else %}justify-content-start{% endif %}" id="love" role="search">
+          {% if user.is_authenticated %}
+          <a href="{% url 'logout' %}" class="btn-get-started scrollto" style="margin-left: 10px;">Logout</a>
+          {% else %}
+          <a href="{% url 'loginnew' %}" class="btn-get-started scrollto" style="margin-right: 10px;">Login</a>
+          <a href="{% url 'registernew' %}" class="btn-get-started scrollto">Signup</a>
+          {% endif %}
+      </form>
       </div>
     </div>
   </nav>      
   
-    <section id="hero" class="d-flex align-items-center h-1000">
+    <section id="hero" class="d-flex align-items-center h-1000" style="height:400px">
       <div class="container position-relative" data-aos="fade-up" data-aos-delay="500">
         <h1>Let's take Appointment</h1>
         <h2>Connecting You with Our Skilled Team for Hassle-Free Meetings</h2>
         <a href="#about" class="btn-get-started scrollto">Get Started</a>
       </div>
     </section><!-- End Hero -->
+    <br>
+     <!-- ======= Our Team Section ======= -->
+     <section id="team" class="team pt-0">
+      <div class="container" data-aos="fade-up">
+      <br>
+        <div class="section-header">
+          <h2 id="service" >Services</h2>
+        </div>
 
+        <div class="row" data-aos="fade-up" data-aos-delay="100">
+
+          <div class="col-lg-4 col-md-6 d-flex">
+            <div class="member">
+              <img src="{% static 'assets/img/team/aja.avif' %}" class="img-fluid" alt="">
+              <div class="member-content">
+                <h4>Online-Booking</h4>
+                <span>system</span>
+                <p>
+                  Enables clients or users to book appointments online through a website .
+                </p>
+                <div class="social">
+                  <a href=""><i class="bi bi-twitter"></i></a>
+                  <a href=""><i class="bi bi-facebook"></i></a>
+                  <a href=""><i class="bi bi-instagram"></i></a>
+                  <a href=""><i class="bi bi-linkedin"></i></a>
+                </div>
+              </div>
+            </div>
+          </div><!-- End Team Member -->
+
+          <div class="col-lg-4 col-md-6 d-flex">
+            <div class="member">
+              <img src="{% static 'assets/img/team/multiloc.jpg' %}" class="img-fluid" alt="">
+              <div class="member-content">
+                <h4>Multi-Location</h4>
+                <span> Support:</span>
+                <p>
+                  Supports multiple locations or branches, allowing users to book appointments at different locations.
+                </p>
+                <div class="social">
+                  <a href=""><i class="bi bi-twitter"></i></a>
+                  <a href=""><i class="bi bi-facebook"></i></a>
+                  <a href=""><i class="bi bi-instagram"></i></a>
+                  <a href=""><i class="bi bi-linkedin"></i></a>
+                </div>
+              </div>
+            </div>
+          </div><!-- End Team Member -->
+
+          <div class="col-lg-4 col-md-6 d-flex">
+            <div class="member">
+              <img src="{% static 'assets/img/team/schedule5.jpg' %}" class="img-fluid" alt="">
+              <div class="member-content">
+                <h4>Appointment Scheduling</h4>
+                <span>Works:</span>
+                <p>
+                  Allows users to book appointments with service providers or professionals based on availability.
+                </p>
+                <div class="social">
+                  <a href=""><i class="bi bi-twitter"></i></a>
+                  <a href=""><i class="bi bi-facebook"></i></a>
+                  <a href=""><i class="bi bi-instagram"></i></a>
+                  <a href=""><i class="bi bi-linkedin"></i></a>
+                </div>
+              </div>
+            </div>
+          </div><!-- End Team Member -->
+      </div>
+      </div>
+    </section><!-- End Our Team Section -->
+
+    <br>
+    <br>
+    <br>
 
 
   <footer id="footer" class="footer bdark.bg-gradient" >

@@ -46,16 +46,25 @@
       </div>
     </div>
   </nav>      
-    <div>
+
         <div class="login-page" style="margin-bottom:10px">
             <div class="form" style="margin-bottom:10px ; margin-top:0px">
                 <form class="login-form" method="post" action="#">
-                    <p>Have an account??</p>
-                    <input type="text" name="username" maxlength='25' title="Username" placeholder='Username' value="#" id="username" required/><span class="asterisk_required_field"></span>
-                    <input type="password" name="password" maxlength='25' title="Password" placeholder='Password' value="#" id="password" required/><span class="asterisk_required_field"></span>
-                    <input type="password" name="password" maxlength='25' title="Password" placeholder='confirm_password' value="#" id="password" required/><span class="asterisk_required_field"></span>
-                    <input type="password" name="password" maxlength='25' title="Password" placeholder='email' value="#" id="password" required/><span class="asterisk_required_field"></span>
-                    <input type="checkbox" onclick="myFunction()" style="width:10%">Show Password
+                    <p>User-Registration</p>
+                    <input type="text" name="username" maxlength="25" title="Username" placeholder="Username" id="username" pattern="^[a-zA-Z0-9_]{3,25}$" required />
+                    <span class="asterisk_required_field"></span>
+                    
+                    <input type="password" name="password" maxlength="8" title="Password" placeholder="Password" id="password" pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[a-zA-Z\d@$!%*?&]{8,25}$" required />
+                    <span class="asterisk_required_field"></span>
+  
+
+                    <input type="password" name="confirm_password" maxlength="8" title="Confirm Password" placeholder="Confirm Password" id="confirm_password" pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[a-zA-Z\d@$!%*?&]{8,25}$" required oninput="checkPasswordMatch();" />
+                    <span class="asterisk_required_field" id="confirmPasswordError"></span>
+                    
+                    <input type="email" name="email" title="Email" maxlength="8" placeholder="Email" id="email" pattern="^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$" required />
+                    <span class="asterisk_required_field"></span>
+                    
+                    <input type="checkbox" onclick="myFunction()"  id="showPasswordCheckbox" style="width:10%">Show Password
                     <button type="submit">Login</button>
                     <div>
                     </div>
@@ -63,7 +72,34 @@
                 </form>
             </div>
         </div>
-    </div>
+
+        <script>
+          function myFunction() {
+           var passwordInput = document.getElementById("password");
+           var showPasswordCheckbox = document.getElementById("showPasswordCheckbox");
+           
+           // Check if the checkbox is checked
+           if (showPasswordCheckbox.checked) {
+               // Change the input type to "text" to show the password
+               passwordInput.type = "text";
+           } else {
+               // Change the input type back to "password" to hide the password
+               passwordInput.type = "password";
+           }
+       }
+
+       function checkPasswordMatch() {
+        var password = document.getElementById("password").value;
+        var confirmPassword = document.getElementById("confirm_password").value;
+        var confirmPasswordError = document.getElementById("confirmPasswordError");
+    
+        if (password !== confirmPassword) {
+            confirmPasswordError.textContent = "Passwords do not match";
+        } else {
+            confirmPasswordError.textContent = "";
+        }
+    }
+       </script>
     
      <!-- ======= Footer ======= -->
  

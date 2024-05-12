@@ -43,12 +43,17 @@
             <a class="nav-link" href="{% url 'meeting' %}" style="color: white; margin-left: 10px;">Meetings</a>
           </li>
         {% endif %}
-        
         </ul>
-        <form class="d-flex" id="love" role="search">
-          <a href="{% url 'loginnew' %}" class="btn-get-started scrollto" style="margin-right: 10px;">login</a>
-          <a href="{% url 'registernew' %}" class="btn-get-started scrollto">Signin</a>
-        </form>
+
+        <form class="d-flex {% if user.is_authenticated %}justify-content-end{% else %}justify-content-start{% endif %}" id="love" role="search">
+          {% if user.is_authenticated %}
+          <a href="{% url 'logout' %}" class="btn-get-started scrollto" style="margin-left: 10px;">Logout</a>
+          {% else %}
+          <a href="{% url 'loginnew' %}" class="btn-get-started scrollto" style="margin-right: 10px;">Login</a>
+          <a href="{% url 'registernew' %}" class="btn-get-started scrollto">Signup</a>
+          {% endif %}
+      </form>
+      
       </div>
     </div>
   </nav>      
@@ -56,9 +61,10 @@
     <div class="container position-relative" data-aos="fade-up" data-aos-delay="500">
       <h1>Let's take Appointment</h1>
       <h2>Connecting You with Our Skilled Team for Hassle-Free Meetings</h2>
-      <a href="#about" class="btn-get-started scrollto">Get Started</a>
+      <a href="{% url 'choose' %}" class="btn-get-started scrollto">Get Started</a>
     </div>
   </section><!-- End Hero -->
+  
      <!-- ======= Features Section ======= -->
   <section id="features" class="features" style="margin-top: 0px;">
       <div class="details" >
@@ -66,8 +72,9 @@
           <div class="row" style="background-color: white;">
             <div class="col-md-6" style="background-color: white;">
               <h4>Any <br>Content</h4>
-              <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Numquam nostrum molestias doloremque quae delectus odit minima corrupti blanditiis quo animi!</p>
-              <a href="#about" class="btn-get-started" style="color:black">Get Started</a>
+              <p>User-Friendly Interface: Our intuitive interface allows you to easily navigate through available services and appointment slots.</p>
+             <p> Email Reminders: Never miss an appointment again! Our system sends automatic email reminders to ensure you're always informed and prepared for your upcoming appointments.</p>
+              
             </div>
           </div>
 
@@ -98,9 +105,9 @@
           <h4 >Useful Links</h4>
           <ul>
             <li><a href="#" style="color: white;">Home</a></li>
-            <li><a href="#about" style="color: white;" >About us</a></li>
-            <li><a href="#service" style="color: white;">Services</a></li>
-            <li><a href="#" style="color: white;">Terms of service</a></li>
+            <li><a  href="{% url 'aboutpage' %}" style="color: white;" >About us</a></li>
+            <li><a href="{% url 'servicepage' %}" style="color: white;">Services</a></li>
+            <li><a href="{% url 'contactpage' %}" style="color: white;">Contact</a></li>
             <li><a href="#" style="color: white;">Privacy policy</a></li>
           </ul>
         </div>
@@ -116,7 +123,7 @@
           </ul>
         </div>
 
-        <div class="col-lg-3 col-md-12 footer-contact text-center text-md-start" style="color: wheat;">
+        <div class="col-lg-3 col-md-12 footer-contact text-center text-md-start" style="color: white;">
           <h4>Contact Us</h4>
           <p>
             190-st Techritzy-pvt.LTD<br>

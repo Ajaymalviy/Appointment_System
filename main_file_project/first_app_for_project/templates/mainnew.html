@@ -37,7 +37,7 @@
           <li class="nav-item">
             <a class="nav-link" href="{% url 'contactpage' %}"  style="color: white;  margin-left: 10px;">contact</a>
           </li>
-        {% if user is authenticated %} 
+          {% if user.is_authenticated %}
           <li class="nav-item">
             <a class="nav-link" href="{% url 'meeting' %}" style="color: white; margin-left: 10px;">Meetings</a>
           </li>
@@ -63,25 +63,107 @@
       </form>
       
       <h2>You can search Company which you want for meeting</h2>
-      <a href="#about" class="btn-get-started scrollto">#</a>
+      {% comment %} <a href="#about" class="btn-get-started scrollto">#</a> {% endcomment %}
     </div>
   </section><!-- End Hero -->
-     <!-- ======= Features Section ======= -->
-  <section id="features" class="features" style="margin-top: 0px;background-color: #adb5bd;">
-      <div class="details">
-        <div class="container" data-aos="fade-up" data-aos-delay="300">
-          <div class="row">
-            <div class="col-md-6">
-              <h4>Any <br>Content</h4>
-              <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Numquam nostrum molestias doloremque quae delectus odit minima corrupti blanditiis quo animi!</p>
-              <a href="#about" class="btn-get-started">Get Started</a>
-            </div>
-          </div>
-
+   <br>
+   <br>
+   <br>
+     <!-- ======= Frequently Asked Questions Section ======= -->
+     <section id="faq" class="faq">
+      <div class="container" data-aos="fade-up">
+        <div class="section-header">
+          <h2>Frequently Asked Questions</h2>
         </div>
+        <br>
+
+        <div class="row justify-content-center" data-aos="fade-up" data-aos-delay="200">
+          <div class="col-lg-10">
+
+            <div class="accordion accordion-flush" id="faqlist">
+
+              <div class="accordion-item">
+                <h3 class="accordion-header">
+                  <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq-content-1">
+                    <i class="bi bi-question-circle question-icon"></i>
+                    What are the project objectives and key deliverables?
+                  </button>
+                </h3>
+                <div id="faq-content-1" class="accordion-collapse collapse" data-bs-parent="#faqlist">
+                  <div class="accordion-body">
+                    Understanding the overall goals of the project helps employees align their efforts and prioritize tasks effectively.
+                  </div>
+                </div>
+              </div><!-- # Faq item-->
+
+              <div class="accordion-item">
+                <h3 class="accordion-header">
+                  <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq-content-2">
+                    <i class="bi bi-question-circle question-icon"></i>
+                    What is the timeline and milestones for the project?
+                  </button>
+                </h3>
+                <div id="faq-content-2" class="accordion-collapse collapse" data-bs-parent="#faqlist">
+                  <div class="accordion-body">
+                    Having clarity on project timelines and milestones helps employees plan their work, manage expectations, and track progress effectively.                  </div>
+                </div>
+              </div><!-- # Faq item-->
+
+              <div class="accordion-item">
+                <h3 class="accordion-header">
+                  <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq-content-3">
+                    <i class="bi bi-question-circle question-icon"></i>
+                    What are the potential challenges or risks associated with the project?
+                  </button>
+                </h3>
+                <div id="faq-content-3" class="accordion-collapse collapse" data-bs-parent="#faqlist">
+                  <div class="accordion-body">
+                    Identifying challenges and risks upfront allows employees to proactively address them and develop contingency plans to ensure project success.                  </div>
+                </div>
+              </div><!-- # Faq item-->
+
+              <div class="accordion-item">
+                <h3 class="accordion-header">
+                  <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq-content-4">
+                    <i class="bi bi-question-circle question-icon"></i>
+                    What is the team structure and communication plan?
+                  </button>
+                </h3>
+                <div id="faq-content-4" class="accordion-collapse collapse" data-bs-parent="#faqlist">
+                  <div class="accordion-body">
+                    <i class="bi bi-question-circle question-icon"></i>
+                    Understanding the roles and responsibilities of team members, as well as the communication channels and frequency, fosters collaboration and smooth project execution.                  </div>
+                </div>
+              </div><!-- # Faq item-->
+
+              <div class="accordion-item">
+                <h3 class="accordion-header">
+                  <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq-content-5">
+                    <i class="bi bi-question-circle question-icon"></i>
+                    What opportunities are there for learning and growth within this project?
+                  </button>
+                </h3>
+                <div id="faq-content-5" class="accordion-collapse collapse" data-bs-parent="#faqlist">
+                  <div class="accordion-body">
+                    Employees often seek opportunities to enhance their skills and knowledge. Knowing the learning and growth prospects within the project motivates them to actively contribute and excel.
+
+                  </div>
+                </div>
+              </div><!-- # Faq item-->
+
+            </div>
+
+          </div>
+        </div>
+
       </div>
-   </section><!-- End Features Section -->
-    
+    </section><!-- End Frequently Asked Questions Section -->
+
+
+
+  <br>
+   <br>
+    <br>
      <!-- ======= Footer ======= -->
   <footer id="footer" class="footer bdark.bg-gradient" >
 

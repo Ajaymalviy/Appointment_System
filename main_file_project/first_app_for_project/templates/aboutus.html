@@ -39,70 +39,76 @@
           </li>
 
 
-          {% if user%}
+          {% if user.is_authenticated %}
           <li class="nav-item">
-            <a class="nav-link" href="{% url 'meeting' %}"  style="color: white;  margin-left: 10px;">Meetings</a>
+            <a class="nav-link" href="{% url 'meeting' %}" style="color: white; margin-left: 10px;">Meetings</a>
           </li>
         {% endif %}
 
         </ul>
-         <form class="d-flex" id="love" role="search">
-          <a href="{% url 'loginnew' %}" class="btn-get-started scrollto" style="margin-right: 10px;">login</a>
-          <a href="{% url 'registernew' %}" class="btn-get-started scrollto">Signin</a>
-        </form>
+        <form class="d-flex {% if user.is_authenticated %}justify-content-end{% else %}justify-content-start{% endif %}" id="love" role="search">
+          {% if user.is_authenticated %}
+          <a href="{% url 'logout' %}" class="btn-get-started scrollto" style="margin-left: 10px;">Logout</a>
+          {% else %}
+          <a href="{% url 'loginnew' %}" class="btn-get-started scrollto" style="margin-right: 10px;">Login</a>
+          <a href="{% url 'registernew' %}" class="btn-get-started scrollto">Signup</a>
+          {% endif %}
+      </form>
       </div>
     </div>
   </nav>      
-  
-  <section id="features" class="features" style="margin-top: 0px;background-color: #d5d6d6;">
-      <div class="details">
-        <div class="container" data-aos="fade-up" data-aos-delay="300">
-            <h4 style="margin-top: 0px;">About-Us</h4>
-        </div>
-
-        <section id="about" class="about">
-          <div class="container" data-aos="fade-up">
-    
-            <div class="row gy-4">
-              <div class="col-lg-6 position-relative align-self-start order-lg-last order-first">
-                <img src="{% static 'assets/img/about.jpg' %}" class="img-fluid" alt="">
-                <a href="https://www.youtube.com/watch?v=LXb3EKWsInQ" class="glightbox play-btn"></a>
-              </div>
-              <div class="col-lg-6 content order-last  order-lg-first">
-            
-                <p>
-                  "Welcome to our appointment system, your reliable companion for seamless scheduling. Streamline your bookings effortlessly, ensuring your time is optimized and appointments are never missed. Experience convenience and efficiency like never before with our user-friendly interface." </p>
-                <ul>
-                  <li data-aos="fade-up" data-aos-delay="100">
-                    <i class="bi bi-diagram-3"></i>
-                    <div>
-                      <h5>Feedback and Improvement:.</h5>
-                      <p> Communicate a commitment to gathering feedback from users to continuously improve the system and meet evolving needs.</p>
-                    </div>
-                  </li>
-                  <li data-aos="fade-up" data-aos-delay="200">
-                    <i class="bi bi-fullscreen-exit"></i>
-                    <div>
-                      <h5>User-Friendly Interface</h5>
-                      <p> This is easy for IT professionals to navigate and utilize effectively.</p>
-                    </div>
-                  </li>
-                  <li data-aos="fade-up" data-aos-delay="300">
-                    <i class="bi bi-broadcast"></i>
-                    <div>
-                      <h5>Generating meeting online.</h5>
-                      <p>You can fix a meeting with online .</p>
-                    </div>
-                  </li>
-                </ul>
+  <section id="hero" class="d-flex align-items-center h-1000" style="height:400px">
+    <div class="container position-relative" data-aos="fade-up" data-aos-delay="500">
+      <h1>Let's take Appointment</h1>
+      <h2>Connecting You with Our Skilled Team for Hassle-Free Meetings</h2>
+      <a href="#about" class="btn-get-started scrollto">Get Started</a>
+    </div>
+  </section><!-- End Hero -->
+    <section id="features" class="features" style="margin-top: 0px;background-color: white;">
+      <br>
+      <h2 style="margin-left:115px;">About-us</h2>
+    <br>  
+          <section id="about" class="about">
+            <div class="container" data-aos="fade-up">
+              <div class="row gy-4">
+                <div class="col-lg-6 position-relative align-self-start order-lg-last order-first">
+                  <img src="{% static 'assets/img/about.jpg' %}" class="img-fluid" alt="">
+                  <a href="https://www.youtube.com/watch?v=LXb3EKWsInQ" class="glightbox play-btn"></a>
+                </div>
+                <div class="col-lg-6 content order-last  order-lg-first">
+              
+                  <p>
+                    Welcome to our appointment system, your reliable companion for seamless scheduling. Streamline your bookings effortlessly, ensuring your time is optimized and appointments are never missed. Experience convenience and efficiency like never before with our user-friendly interface." </p>
+                  <ul>
+                    <li data-aos="fade-up" data-aos-delay="100">
+                      <i class="bi bi-diagram-3"></i>
+                      <div>
+                        <h5>Feedback and Improvement:.</h5>
+                        <p> Communicate a commitment to gathering feedback from users to continuously improve the system and meet evolving needs.</p>
+                      </div>
+                    </li>
+                    <li data-aos="fade-up" data-aos-delay="200">
+                      <i class="bi bi-fullscreen-exit"></i>
+                      <div>
+                        <h5>User-Friendly Interface</h5>
+                        <p> This is easy for IT professionals to navigate and utilize effectively.</p>
+                      </div>
+                    </li>
+                    <li data-aos="fade-up" data-aos-delay="300">
+                      <i class="bi bi-broadcast"></i>
+                      <div>
+                        <h5>Generating meeting online.</h5>
+                        <p>You can fix a meeting with online .</p>
+                      </div>
+                    </li>
+                  </ul>
+                </div>
               </div>
             </div>
+          </section><!-- End About Us Section -->
+      
     
-          </div>
-        </section><!-- End About Us Section -->
-    
-    
-        <div class="container" style="background-color: #dfe4e3; border-radius: 20px solid black;" >
+        <div class="container" style="background-color: white; border-radius: 20px solid black;" >
           <div class="row">
             <div class="col-lg-7" data-aos="fade-up" data-aos-delay="100">
               <h3>Powerful Features for <br>Your Business</h3>
@@ -166,14 +172,10 @@
                 </div><!-- End Icon List Item-->
               </div>
             </div>
-     
-
-  
-        </div>
-
-
+             </div>
    </section><!-- End Features Section -->
-    
+  </br>
+</br>
      <!-- ======= Footer ======= -->
   <footer id="footer" class="footer bdark.bg-gradient" >
 

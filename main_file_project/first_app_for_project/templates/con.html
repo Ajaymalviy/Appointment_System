@@ -38,26 +38,38 @@
             <a class="nav-link" href="{% url 'contactpage' %}"  style="color: white;  margin-left: 10px;">contact</a>
           </li>
 
-          {% if user %}
+          {% if user.is_authenticated %}
           <li class="nav-item">
             <a class="nav-link" href="{% url 'meeting' %}"  style="color: white;  margin-left: 10px;">Meetings</a>
           </li>
         {% endif %}
         </ul>
-        <form class="d-flex" id="love" role="search">
-          <a href="{% url 'loginnew' %}" class="btn-get-started scrollto" style="margin-right: 10px;">login</a>
-          <a href="{% url 'registernew' %}" class="btn-get-started scrollto">Signin</a>
-        </form>
+        <form class="d-flex {% if user.is_authenticated %}justify-content-end{% else %}justify-content-start{% endif %}" id="love" role="search">
+          {% if user.is_authenticated %}
+          <a href="{% url 'logout' %}" class="btn-get-started scrollto" style="margin-left: 10px;">Logout</a>
+          {% else %}
+          <a href="{% url 'loginnew' %}" class="btn-get-started scrollto" style="margin-right: 10px;">Login</a>
+          <a href="{% url 'registernew' %}" class="btn-get-started scrollto">Signup</a>
+          {% endif %}
+      </form>
       </div>
     </div>
   </nav>      
-  <br>
-<br>
 
+
+<section id="hero" class="d-flex align-items-center h-1000" style="height:400px">
+  <div class="container position-relative" data-aos="fade-up" data-aos-delay="500">
+    <h1>Let's take Appointment</h1>
+    <h2>Connecting You with Our Skilled Team for Hassle-Free Meetings</h2>
+    <a href="#about" class="btn-get-started scrollto">Get Started</a>
+  </div>
+</section><!-- End Hero -->
+<br>
 
   <!-- ======= Contact Section ======= -->
   <section id="contact" class="contact">
-    <h2 style="margin-left: 600px; font-style: initial;">Contact</h2>
+    <h2 style="margin-left: 60px; font-style: initial;">Contact</h2>
+    <br>
     <br>
     <br>
 
