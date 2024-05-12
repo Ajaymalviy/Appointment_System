@@ -19,6 +19,16 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 TEMPLATES_DIR=os.path.join(BASE_DIR, "templates")
 
 
+STATIC_URL = '/static/'
+DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+
+# STATICFILES_DIRS = [
+#     BASE_DIR / "static",
+#     "/first_app_for_project/templates/static",
+# ] 
+
+
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/5.0/howto/deployment/checklist/
@@ -44,11 +54,6 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
 
-    'allauth',
-    'allauth.account',
-    'allauth.socialaccount',
-    'allauth.socialaccount.providers.google'
-    
 ]
 
 MIDDLEWARE = [
@@ -60,7 +65,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
-    'allauth.account.middleware.AccountMiddleware',  # Add this line
+    # 'allauth.account.middleware.AccountMiddleware',  # Add this line
   
 ]
 
@@ -89,23 +94,23 @@ WSGI_APPLICATION = 'main_file_project.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/5.0/ref/settings/#databases
 
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / "db.sqlite3",
-    }
-}
-
 # DATABASES = {
 #     'default': {
-#         'ENGINE': 'djongo',
-#         'NAME': 'meetme',  # Specify the name of your MongoDB database
-#         'ENFORCE_SCHEMA': False,  # Optional: Set to True if you want to enforce schema validation
-#         'CLIENT': {
-#             'host': 'mongodb://localhost:27017/',  # Specify the MongoDB connection URI
-#         }
+#         'ENGINE': 'django.db.backends.sqlite3',
+#         'NAME': BASE_DIR / "db.sqlite3",
 #     }
 # }
+
+DATABASES = {
+    'default': {
+        'ENGINE': 'djongo',
+        'NAME': 'meetme',  # Specify the name of your MongoDB database
+        'ENFORCE_SCHEMA': False,  # Optional: Set to True if you want to enforce schema validation
+        'CLIENT': {
+            'host': 'mongodb://localhost:27017/',  # Specify the MongoDB connection URI
+        }
+    }
+}
 
 # import mongoengine
 # mongoengine.connect(db='phone', host='localhost', username='root', password='password')
@@ -157,9 +162,6 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/5.0/ref/settings/#default-auto-field
 
 
-STATIC_URL = '/static/'
-DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
-
 
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 EMAIL_HOST = 'smtp.gmail.com'
@@ -169,28 +171,28 @@ EMAIL_HOST_USER = 'ajeymalviya143@gmail.com'
 EMAIL_HOST_PASSWORD = 'yklm vyzm cmfo xyry'
 
 
-SOCIALACCOUNT_PROVIDERS = {
-        'google': {
-            'SCOPE' : [
-                'profile',
-                'email'
-            ],
-            'APP': {
-                'client_id': '1013600742983-vub3nbfd4oqmlkqopfa4rnv8jatn0fnv.apps.googleusercontent.com',
-                'secret': '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',
-            },
-            'AUTH_PARAMS': {
-                'access_type':'online',
-            }
-        }
-    }
+# SOCIALACCOUNT_PROVIDERS = {
+#         'google': {
+#             'SCOPE' : [
+#                 'profile',
+#                 'email'
+#             ],
+#             'APP': {
+#                 'client_id': '1013600742983-vub3nbfd4oqmlkqopfa4rnv8jatn0fnv.apps.googleusercontent.com',
+#                 'secret': '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',
+#             },
+#             'AUTH_PARAMS': {
+#                 'access_type':'online',
+#             }
+#         }
+#     }
 
-AUTHENTICATION_BACKENDS = [
-    'django.contrib.auth.backends.ModelBackend',
-    'allauth.account.auth_backends.AuthenticationBackend'
-]
-SITE_ID = 2
+# AUTHENTICATION_BACKENDS = [
+#     'django.contrib.auth.backends.ModelBackend',
+#     'allauth.account.auth_backends.AuthenticationBackend'
+# ]
+# SITE_ID = 2
 
-LOGIN_REDIRECT_URL = '/'
-LOGOUT_REDIRECT_URL = '/'
+# LOGIN_REDIRECT_URL = '/'
+# LOGOUT_REDIRECT_URL = '/'
     
