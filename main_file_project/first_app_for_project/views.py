@@ -207,6 +207,9 @@ def employee_login(request):
         return render(request, 'employee_login.html')
     return render(request, 'employee_login.html')
 
+def dashboard(request):
+    return render(request, 'employee_dashboard1.html')
+
 
 # def user_login(request):
 #     if request.method == 'POST':
@@ -329,9 +332,12 @@ def logout(request):
 def save_request_for_meeting(request):
     if request.method == 'POST':
         employee_email = request.POST.get('employee_email')
-        requester_email = request.POST.get('requester_email')
+        # requester_email = request.POST.get('requester_email')
         description = request.POST.get('description')
         date_str = request.POST.get('date')
+
+         # Retrieve the email of the logged-in user
+        requester_email = request.user.email
         print("Employee Email:", employee_email)
         print("Requester Email:", requester_email)
         print("date is :" , date_str)
