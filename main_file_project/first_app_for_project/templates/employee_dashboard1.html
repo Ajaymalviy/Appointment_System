@@ -38,11 +38,10 @@
             <a class="nav-link" href="{% url 'contactpage' %}"  style="color: white;  margin-left: 10px;">contact</a>
           </li>
 
-          {% if user.is_authenticated %}
           <li class="nav-item">
-            <a class="nav-link" href="{% url 'meeting' %}" style="color: white; margin-left: 10px;">Meetings</a>
+            <a class="nav-link" href="{% url 'dashboard' %}" style="color: white; margin-left: 10px;">Dashboard</a>
           </li>
-        {% endif %}
+
         </ul>
 
         <form class="d-flex {% if user.is_authenticated %}justify-content-end{% else %}justify-content-start{% endif %}" id="love" role="search">
