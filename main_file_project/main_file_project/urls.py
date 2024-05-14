@@ -16,7 +16,7 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
-from first_app_for_project.views import index,choose, aboutpage,servicepage, contactpage,loginnew,registernew, employee_login,back,  meeting
+from first_app_for_project.views import index,choose, aboutpage,servicepage, contactpage,loginnew,registernew, employee_login,back,  meeting,dashboard
 # from first_app_for_project.views import index,callback_view, profile_view,codemos,techritzy
 from django.conf import settings
 from django.conf.urls.static import static
@@ -28,7 +28,7 @@ from django.contrib.auth.views import LogoutView
 urlpatterns = [
     path('admin/', admin.site.urls),
     path("", views.index, name="home"),
-    path('/homee', views.index, name='index'),
+    path('/', views.index, name='index'),
     path('about/', views.aboutpage, name='aboutpage'),
     path('service/', views.servicepage, name='servicepage'),
     path('contact/', views.contactpage, name='contactpage'),
@@ -42,8 +42,9 @@ urlpatterns = [
     path('search/', views.search_company_view, name='search_company'),
     path('meeting_request/', views.save_request_for_meeting, name='meeting_request'),
     path('sendmail/', views.sendmail, name='sendmail'),
-    # path('home/', views.back, name="back"),
+    path('home/', views.back, name="back"),
     path('choose/', views.choose, name='choose'),
+    path("dashboard/",views.dashboard, name="dashboard"),
 
 
 
