@@ -15,7 +15,7 @@
   <nav class="navbar navbar-expand-lg " style="background-color: rgb(168, 159, 159);">
     <div class="container-fluid">
       <a href="#" class="logo d-flex align-items-center"> 
-        <h1 class="d-flex align-items-center" style="color: aqua; font-size: x-large; margin-top: 8px;">meetMe</h1>
+        <h1 class="d-flex align-items-center" style="color: white; font-size: x-large; margin-top: 8px;">meetMe</h1>
       </a>
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
@@ -60,7 +60,11 @@
       <div class="container position-relative" data-aos="fade-up" data-aos-delay="500">
         <h1>Let's take Appointment</h1>
         <h2>Connecting You with Our Skilled Team for Hassle-Free Meetings</h2>
-        <a href="#about" class="btn-get-started scrollto">Get Started</a>
+        {% if user.is_authenticated %}
+        <p> </P>
+        {% else %}  
+        <a href="{% url 'choose' %}" class="btn-get-started scrollto">Get Started</a>
+        {% endif %}
       </div>
     </section><!-- End Hero -->
     <br>
@@ -145,7 +149,7 @@
       <div class="row gy-4">
         <div class="col-lg-5 col-md-12 footer-info">
           <a href="index.html" class="logo d-flex align-items-center">
-            <span sty>meetMe</span>
+            <span sty style="color:white;">meetMe</span>
           </a>
           <p style="color: white;"> </style>Connect with us effortlessly through the following apps: Just a click away to streamline your communication and stay connected seamlessly!.</p>
           <div class="social-links d-flex mt-4 color-white"  >
@@ -179,7 +183,7 @@
           </ul>
         </div>
 
-        <div class="col-lg-3 col-md-12 footer-contact text-center text-md-start" style="color: wheat;">
+        <div class="col-lg-3 col-md-12 footer-contact text-center text-md-start" style="color: white;">
           <h4>Contact Us</h4>
           <p>
             190-st Techritzy-pvt.LTD<br>
