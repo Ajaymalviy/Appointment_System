@@ -61,7 +61,11 @@
     <div class="container position-relative" data-aos="fade-up" data-aos-delay="500">
       <h1>Let's take Appointment</h1>
       <h2>Connecting You with Our Skilled Team for Hassle-Free Meetings</h2>
+      {% if user.is_authenticated %}
+      <p> </P>
+      {% else %}  
       <a href="{% url 'choose' %}" class="btn-get-started scrollto">Get Started</a>
+      {% endif %}
     </div>
   </section><!-- End Hero -->
   
