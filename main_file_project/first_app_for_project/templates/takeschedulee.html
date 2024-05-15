@@ -53,9 +53,9 @@
                     {% csrf_token %}
                     <p>Meeting-Request</p>
                     <input type="hidden" name="employee_email" maxlength='25' title="Username" placeholder='Email' value="{{ request.GET.email }}" id="username" required/><span class="asterisk_required_field"></span>
-                    <input type="text" name="requester_email" maxlength='45' title="Username" placeholder='Email'  id="email" required/><span class="asterisk_required_field"></span>
                     <input type="text" name="description" maxlength='35' title="Password" placeholder='Description' id="password" required/><span class="asterisk_required_field"></span>
                     <input type="date" name="date" maxlength='25' title="Password" placeholder='Date' value="#" id="date" required/><span class="asterisk_required_field"></span>
+                    <input type="time" name="time" maxlength='25' title="Password" placeholder='Time' id="time" required/><span class="asterisk_required_field"></span>
                     <button type="submit">submit</button>
                     <br>
                     <a class="nav-link" href="#"  style="color: black;  margin-left: 1px;"> |back|</a>
