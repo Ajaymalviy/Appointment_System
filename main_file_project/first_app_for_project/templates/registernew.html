@@ -50,22 +50,24 @@
         <div class="login-page" style="margin-bottom:10px">
             <div class="form" style="margin-bottom:10px ; margin-top:0px">
                 <form class="login-form" method="post" action="#">
+                    {% csrf_token %}
                     <p>User-Registration</p>
-                    <input type="text" name="username" maxlength="25" title="Username" placeholder="Username" id="username" pattern="^[a-zA-Z0-9_]{3,25}$" required />
+                    <input type="text" name="username" maxlength="30" title="Username" placeholder="Username" id="username" pattern="^[a-zA-Z][a-zA-Z0-9_]{0,24}$"  required />
                     <span class="asterisk_required_field"></span>
                     
-                    <input type="password" name="password" maxlength="8" title="Password" placeholder="Password" id="password" pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[a-zA-Z\d@$!%*?&]{8,25}$" required />
+                    <input type="password" name="password" maxlength="8" title="Password" placeholder="Password" id="password" pattern="^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[!@#$%^&*()\-_+={:|;'<>,.?\/])[^\s]{8,}$
+                    " required />
                     <span class="asterisk_required_field"></span>
-  
 
-                    <input type="password" name="confirm_password" maxlength="8" title="Confirm Password" placeholder="Confirm Password" id="confirm_password" pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[a-zA-Z\d@$!%*?&]{8,25}$" required oninput="checkPasswordMatch();" />
+                    <input type="password" name="confirm_password" maxlength="8" title="Confirm Password" placeholder="Confirm Password" id="confirm_password" pattern="^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[!@#$%^&*()\-_+={:|;'<>,.?\/])[^\s]{8,}$
+                    "  required oninput="checkPasswordMatch();" />
                     <span class="asterisk_required_field" id="confirmPasswordError"></span>
                     
-                    <input type="email" name="email" title="Email" maxlength="8" placeholder="Email" id="email" pattern="^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$" required />
+                    <input type="email" name="email" title="Email" maxlength="30" minlength="7" placeholder="Email" id="email" pattern="^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$" required />
                     <span class="asterisk_required_field"></span>
                     
                     <input type="checkbox" onclick="myFunction()"  id="showPasswordCheckbox" style="width:10%">Show Password
-                    <button type="submit">Login</button>
+                    <button type="submit">Register</button>
                     <div>
                     </div>
                     <p class="message" style="color:red;">Not registered? <a href="#" style="color:blue;" >Create an account</a></p>
