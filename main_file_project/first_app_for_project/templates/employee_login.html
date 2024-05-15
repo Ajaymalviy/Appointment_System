@@ -53,8 +53,8 @@
                   {% csrf_token %}
                     <p>Employee-Login</p>
                     <input type="text" name="username" maxlength='25' title="Username" placeholder='Username'  id="username" required/><span class="asterisk_required_field"></span>
-                    <input type="password" name="password" maxlength='25' title="Password" placeholder='Password'  id="password" required/><span class="asterisk_required_field"></span>
-                    <input type="checkbox" onclick="myFunction()" style="width:10%">Show Password
+                    <input type="password" id="password" name="password" maxlength='25' title="Password" placeholder='Password'  id="password" required/><span class="asterisk_required_field"></span>
+                    <input type="checkbox" onclick="myFunction()"  id="showPasswordCheckbox" style="width:10%">Show Password
                     <button type="submit">Login</button>
                     <div>
                     </div>
@@ -69,5 +69,20 @@
   
         
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+  <script>
+    function myFunction() {
+     var passwordInput = document.getElementById("password");
+     var showPasswordCheckbox = document.getElementById("showPasswordCheckbox");
+     
+     // Check if the checkbox is checked
+     if (showPasswordCheckbox.checked) {
+         // Change the input type to "text" to show the password
+         passwordInput.type = "text";
+     } else {
+         // Change the input type back to "password" to hide the password
+         passwordInput.type = "password";
+     }
+ }
+ </script>
 </body>
 </html>
