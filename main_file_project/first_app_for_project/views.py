@@ -335,21 +335,25 @@ def save_request_for_meeting(request):
         # requester_email = request.POST.get('requester_email')
         description = request.POST.get('description')
         date_str = request.POST.get('date')
+        time_str = request.POST.get('time')
 
-         # Retrieve the email of the logged-in user
+        # Retrieve the email of the logged-in user
         requester_email = request.user.email
         print("Employee Email:", employee_email)
         print("Requester Email:", requester_email)
         print("date is :" , date_str)
+        print("time is :" , time_str)
         print("next from this data was not lodede")
         # Check if employee_email is available in POST data
         if employee_email:
             date = datetime.strptime(date_str, '%Y-%m-%d')
+            time_obj = datetime.strptime(time_str, '%H:%M').time()  # Assuming HH:MM format
             meeting_request = MeetingRequest.objects.create(
                 employee_email=employee_email,
                 requester_email=requester_email,
                 description=description,
-                date=date
+                date=date,
+                time=time_obj
             )
             return render(request, 'company_Dev.html')
         else:
