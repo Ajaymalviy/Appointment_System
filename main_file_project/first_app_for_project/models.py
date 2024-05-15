@@ -1,5 +1,5 @@
 from django.db import models
-
+from datetime import time
 
 class User(models.Model):
     username = models.CharField(max_length=100)
@@ -55,6 +55,7 @@ class MeetingRequest(models.Model):
     requester_email = models.EmailField()
     description = models.TextField()
     date = models.DateField()
+    time = models.TimeField(default=time(9, 0)) # Replace 'time' with your desired field name
 
     def __str__(self):
         return f"Meeting Request for {self.employee_email} on {self.date}"
