@@ -390,6 +390,24 @@ def sendmail(request):
     else:
         return HttpResponse('Requester email not provided!')
 
+def sendmailforcancel(request):
+    if 'email' in request.GET:
+        requester_email = request.GET['email']
+
+    # Your email-sending logic here
+        send_mail(
+            'THANKYOU BY MEETME',
+            f'Hi there,\n\nYour meeting request has been canced now. This is the busy schedule.\n\nThank you for using our services.\n\nBest regards,\n[Ajay-Malviya]',
+            'ajeymalviya143@gmail.com',
+            [requester_email],
+            fail_silently=False,
+        )
+        return render(request, 'emailsent.html')
+        # return HttpResponse('Email sent successfully!') 
+    #return render(request, 'employee_dashboard.html')
+    else:
+        return HttpResponse('Requester email not provided!')
+
 # from django.shortcuts import render
 # from django.contrib.auth.decorators import login_required
 
@@ -405,3 +423,32 @@ def sendmail(request):
 #         return render(request, 'techritzy.html')
 #     else:
 #         return HttpResponse("You are not authorized to access this page.", status=403)
+
+from django.contrib import messages
+from django.shortcuts import render, redirect
+from .models import ContactDetail
+
+def contactdetail(request):
+    if request.method == 'POST':
+        name = request.POST.get('name')
+        email = request.POST.get('email')
+        subject = request.POST.get('subject')
+        message = request.POST.get('message')
+        
+        # Save the form data to the database
+        contact = ContactDetail.objects.create(
+            name=name,
+            email=email,
+            subject=subject,
+            message=message
+        )
+        
+        # Add success message
+        success_message = "Your message has been sent successfully!"
+        messages.success(request, success_message)
+        print(message)
+        print('message')
+        # Render the same page with the success message
+        return render(request, 'conn.html')
+        
+    return render(request, 'conn.html')
