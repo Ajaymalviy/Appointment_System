@@ -25,6 +25,10 @@ from django.views.generic import TemplateView #useful in displaying oauth.html t
 from django.contrib.auth.views import LogoutView
 
 
+def trigger_error(request):
+    division_by_zero = 1 / 0
+
+
 urlpatterns = [
     path('admin/', admin.site.urls),
     path("", views.index, name="home"),
@@ -47,6 +51,8 @@ urlpatterns = [
     path('home/', views.back, name="back"),
     path('choose/', views.choose, name='choose'),
     path("dashboard/",views.dashboard, name="dashboard"),
+    path('sentry-debug/', trigger_error),
+    
 
 
 
