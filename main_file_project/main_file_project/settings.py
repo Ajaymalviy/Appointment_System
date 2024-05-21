@@ -14,6 +14,35 @@ import os
 from pathlib import Path
 # import pdb 
 
+
+# new one for monitoring which is sentry 
+# settings.py
+import sentry_sdk
+# from sentry_sdk.integrations.django.middleware import SentryMiddleware
+from sentry_sdk.integrations.django import DjangoIntegration
+import sentry_sdk
+from sentry_sdk.integrations.django import DjangoIntegration
+
+sentry_sdk.init(
+    dsn="https://3d03a0d34b11be7caef5602ffe501090@o4507288658182144.ingest.us.sentry.io/4507288664014848",
+
+    integrations=[DjangoIntegration()]
+)
+
+
+
+# sentry_sdk.init(
+#     dsn="https://3d03a0d34b11be7caef5602ffe501090@o4507288658182144.ingest.us.sentry.io/4507288664014848",
+#     # Set traces_sample_rate to 1.0 to capture 100%
+#     # of transactions for performance monitoring.
+#     traces_sample_rate=1.0,
+#     # Set profiles_sample_rate to 1.0 to profile 100%
+#     # of sampled transactions.
+#     # We recommend adjusting this value in production.
+#     profiles_sample_rate=1.0,
+# )    
+
+
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 TEMPLATES_DIR=os.path.join(BASE_DIR, "templates")
@@ -65,9 +94,10 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
-    # 'allauth.account.middleware.AccountMiddleware',  # Add this line
-    #for sentry monitoring 
     'sentry_sdk.integrations.django.middleware.SentryMiddleware',
+    'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    # 'allauth.account.middleware.AccountMiddleware',  # Add this line
+   
   
 ]
 
@@ -91,6 +121,7 @@ TEMPLATES = [
 ]
 
 WSGI_APPLICATION = 'main_file_project.wsgi.application'
+
 
 
 # Database
@@ -201,19 +232,3 @@ EMAIL_HOST_PASSWORD = 'yklm vyzm cmfo xyry'
 
 
 
-# new one for monitoring which is sentry 
-# settings.py
-import sentry_sdk
-from sentry_sdk.integrations.django.middleware import SentryMiddleware
-
-
-sentry_sdk.init(
-    dsn="https://3d03a0d34b11be7caef5602ffe501090@o4507288658182144.ingest.us.sentry.io/4507288664014848",
-    # Set traces_sample_rate to 1.0 to capture 100%
-    # of transactions for performance monitoring.
-    traces_sample_rate=1.0,
-    # Set profiles_sample_rate to 1.0 to profile 100%
-    # of sampled transactions.
-    # We recommend adjusting this value in production.
-    profiles_sample_rate=1.0,
-)    
