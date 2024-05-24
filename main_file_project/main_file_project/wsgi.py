@@ -12,5 +12,10 @@ import os
 from django.core.wsgi import get_wsgi_application
 
 os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'main_file_project.settings')
+# print('goodydm')
+
 
 application = get_wsgi_application()
+# print(application)
+app = application
+
