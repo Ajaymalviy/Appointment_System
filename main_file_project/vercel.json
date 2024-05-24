@@ -1,16 +1,8 @@
 {
   "version": 2,
-  "functions": {
-    "api": {
-      "runtime": "python3.9",
-      "handler": "vercel_entry.app"
-    }
-  },
   "routes": [
-    {
-      "src": "/(.*)",
-      "dest": "api"
-    }
+    { "handle": "filesystem" },
+    { "src": "/(.*)", "dest": "main_file_project/wsgi.py" }
   ],
   "env": {
     "DB_NAME": "meetme",
