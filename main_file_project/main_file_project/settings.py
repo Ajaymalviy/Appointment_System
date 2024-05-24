@@ -43,8 +43,11 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 TEMPLATES_DIR=os.path.join(BASE_DIR, "templates")
 
 
+# STATIC_URL = '/static/'
+# DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 STATIC_URL = '/static/'
-DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
+
 
 
 # STATICFILES_DIRS = [
@@ -140,20 +143,44 @@ WSGI_APPLICATION = 'main_file_project.wsgi.application'
 #         }
 #     }
 # }
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'djongo',
+#         'NAME': 'meetme',  # Your database name
+#         'CLIENT': {
+#             'host': os.getenv('mongodb+srv://ajeymalviya143:XoeezaNuVWudH0W9@cluster0.macr171.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0'),
+#             'username': os.getenv('ajeymalviya143'),
+#             'password': os.getenv('XoeezaNuVWudH0W9'),
+#             'authMechanism': 'SCRAM-SHA-1',
+#         }
+#     }
+# }
+
+
+from dotenv import load_dotenv
+import os
+
+# Load environment variables from .env file
+load_dotenv()
+
+# Print to verify environment variables are loaded
+print("DB_NAME:", os.getenv('DB_NAME'))
+print("DB_HOST:", os.getenv('DB_HOST'))
+print("DB_USER:", os.getenv('DB_USER'))
+print("DB_PASSWORD:", os.getenv('DB_PASSWORD'))
+
 DATABASES = {
     'default': {
         'ENGINE': 'djongo',
-        'NAME': 'meetme',  # Your database name
+        'NAME': os.getenv('DB_NAME'),  # Database name
         'CLIENT': {
-            'host': os.getenv('mongodb+srv://ajeymalviya143:XoeezaNuVWudH0W9@cluster0.macr171.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0'),
-            'username': os.getenv('ajeymalviya143'),
-            'password': os.getenv('XoeezaNuVWudH0W9'),
+            'host': os.getenv('DB_HOST'),
+            'username': os.getenv('DB_USER'),
+            'password': os.getenv('DB_PASSWORD'),
             'authMechanism': 'SCRAM-SHA-1',
         }
     }
 }
-
-
 
 
 # import mongoengine
