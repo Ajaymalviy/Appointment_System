@@ -1,10 +1,12 @@
 {
   "version": 2,
-  "functions": {
-    "api/**/*.js": {
-      "runtime": "python3.10"
+  "builds": [
+    {
+      "src": "main_file_project/wsgi.py",
+      "use": "@ardnt/vercel-python-wsgi",
+      "config": { "maxLambdaSize": "15mb" }
     }
-  },
+  ],
   "routes": [
     {
       "src": "/(.*)",
@@ -16,5 +18,10 @@
     "DB_HOST": "mongodb+srv://cluster0.macr171.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0",
     "DB_USER": "ajeymalviya143",
     "DB_PASSWORD": "XoeezaNuVWudH0W9"
+  },
+  "functions": {
+    "api/**/*.js": {
+      "runtime": "now-python@3.10"
+    }
   }
 }
