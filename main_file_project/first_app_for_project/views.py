@@ -450,5 +450,7 @@ def contactdetail(request):
         print('message')
         # Render the same page with the success message
         return render(request, 'conn.html')
-        
     return render(request, 'conn.html')
+
+
+#def include file for nginx setup :
