@@ -1,5 +1,5 @@
 
-{
+  {
     "version": 2,
     "builds": [
       {
@@ -16,7 +16,7 @@
     ],
     "env": {
       "DB_NAME": "meetme",
-      "DB_HOST": "mongodb+srv://ajeymalviya143:XoeezaNuVWudH0W9@cluster0.macr171.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0",
+      "DB_HOST": "mongodb+srv://cluster0.macr171.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0",
       "DB_USER": "ajeymalviya143",
       "DB_PASSWORD": "XoeezaNuVWudH0W9"
     }
