@@ -15,19 +15,14 @@ from pathlib import Path
 # import pdb 
 
 
-# new one for monitoring which is sentry 
-# settings.py
-import sentry_sdk
-# from sentry_sdk.integrations.django.middleware import SentryMiddleware
-from sentry_sdk.integrations.django import DjangoIntegration
-import sentry_sdk
-from sentry_sdk.integrations.django import DjangoIntegration
+# import sentry_sdk
+# from sentry_sdk.integrations.django import DjangoIntegration
 
-sentry_sdk.init(
-    dsn="https://3d03a0d34b11be7caef5602ffe501090@o4507288658182144.ingest.us.sentry.io/4507288664014848",
-
-    integrations=[DjangoIntegration()]
-)
+# sentry_sdk.init(
+#     dsn='https://4724542625b18f74686b82a21bba479e@o4507298582429696.ingest.us.sentry.io/4507298585968640',
+#     integrations=[DjangoIntegration()],
+#     traces_sample_rate=1.0  # Set to 1.0 to capture 100% of transactions
+# )
 
 
 
@@ -68,7 +63,7 @@ SECRET_KEY = 'django-insecure-+06&o2#s%jjwokth(y694o)&azmei0sqtn*=cr(+ddo=*&wpr!
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['.vercel.app']
 
 APPEND_SLASH = False
 
@@ -94,9 +89,9 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
-    'sentry_sdk.integrations.django.middleware.SentryMiddleware',
-    'django.middleware.clickjacking.XFrameOptionsMiddleware',
-    # 'allauth.account.middleware.AccountMiddleware',  # Add this line
+    # 'sentry_sdk.integrations.django.middleware.SentryMiddleware',
+    # 'django.middleware.clickjacking.XFrameOptionsMiddleware',
+  # 'allauth.account.middleware.AccountMiddleware',  # Add this line
    
   
 ]
@@ -124,6 +119,7 @@ WSGI_APPLICATION = 'main_file_project.wsgi.application'
 
 
 
+
 # Database
 # https://docs.djangoproject.com/en/5.0/ref/settings/#databases
 
@@ -134,16 +130,31 @@ WSGI_APPLICATION = 'main_file_project.wsgi.application'
 #     }
 # }
 
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'djongo',
+#         'NAME': 'meetme',  # Specify the name of your MongoDB database
+#         'ENFORCE_SCHEMA': False,  # Optional: Set to True if you want to enforce schema validation
+#         'CLIENT': {
+#             'host': 'mongodb://localhost:27017/',  # Specify the MongoDB connection URI
+#         }
+#     }
+# }
 DATABASES = {
     'default': {
         'ENGINE': 'djongo',
-        'NAME': 'meetme',  # Specify the name of your MongoDB database
-        'ENFORCE_SCHEMA': False,  # Optional: Set to True if you want to enforce schema validation
+        'NAME': 'meetme',  # Your database name
         'CLIENT': {
-            'host': 'mongodb://localhost:27017/',  # Specify the MongoDB connection URI
+            'host': os.getenv('mongodb+srv://ajeymalviya143:XoeezaNuVWudH0W9@cluster0.macr171.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0'),
+            'username': os.getenv('ajeymalviya143'),
+            'password': os.getenv('XoeezaNuVWudH0W9'),
+            'authMechanism': 'SCRAM-SHA-1',
         }
     }
 }
+
+
+
 
 # import mongoengine
 # mongoengine.connect(db='phone', host='localhost', username='root', password='password')
