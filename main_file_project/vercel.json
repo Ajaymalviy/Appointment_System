@@ -3,7 +3,7 @@
   "routes": [
     {
       "src": "/(.*)",
-      "dest": "main_file_project/wsgi.py"
+      "dest": "main_file_project.urls"
     }
   ],
   "env": {
