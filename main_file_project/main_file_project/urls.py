@@ -51,7 +51,7 @@ urlpatterns = [
     path('home/', views.back, name="back"),
     path('choose/', views.choose, name='choose'),
     path("dashboard/",views.dashboard, name="dashboard"),
-    path('sentry-debug/', trigger_error),
+    # path('sentry-debug/', trigger_error),
     
 
 
