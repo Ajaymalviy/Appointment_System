@@ -157,14 +157,13 @@ WSGI_APPLICATION = 'main_file_project.wsgi.application'
 #     }
 # }
 
-
 from dotenv import load_dotenv
 import os
 
 # Load environment variables from .env file
 load_dotenv()
 
-# Print to verify environment variables are loaded
+# Print to verify environment variables are loaded (for debugging)
 print("DB_NAME:", os.getenv('DB_NAME'))
 print("DB_HOST:", os.getenv('DB_HOST'))
 print("DB_USER:", os.getenv('DB_USER'))
