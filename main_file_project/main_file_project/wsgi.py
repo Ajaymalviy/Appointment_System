@@ -19,8 +19,8 @@ application = get_wsgi_application()
 # print(application)
 app = application
 
-from first_app_for_project import app
+# from first_app_for_project import app
 
-if __name__ == "__main__":
-    app.run()
+# if __name__ == "__main__":
+#     app.run()
 
