@@ -5,38 +5,41 @@ class User(models.Model):
     username = models.CharField(max_length=100)
     password = models.CharField(max_length=100)
     email = models.EmailField(primary_key=True)
-  
+
+    def __str__(self):
+        return self.email
 
 class Company(models.Model):
     company_name = models.CharField(max_length=100, primary_key=True)
     company_email = models.EmailField(default='xyz@gmail.com')
     location = models.CharField(max_length=100)
     company_schedule = models.CharField(max_length=100)
+
     def __str__(self):
         return self.company_name
-    
 
-class Employee(models.Model):    
-    employee_email = models.EmailField( primary_key=True)
+class Employee(models.Model):
+    employee_email = models.EmailField(primary_key=True)
     employee_role = models.CharField(max_length=100)
     employee_name = models.CharField(max_length=100)
     experience = models.IntegerField()
     skills = models.JSONField()
-    company_name = models.ForeignKey('Company', on_delete=models.CASCADE) 
-    password = models.CharField(max_length=50 , default='ajay')
+    company_name = models.ForeignKey('Company', on_delete=models.CASCADE)
+    password = models.CharField(max_length=50, default='ajay')
+
     def __str__(self):
         return self.employee_email
-    
-    
+
 class Schedule(models.Model):
-    schedule_id = models.CharField(primary_key=True,max_length=100)
+    schedule_id = models.CharField(primary_key=True, max_length=100)
     date = models.DateField()
     number_of_slots = models.IntegerField()
     available = models.BooleanField()
-    employee_email = models.ForeignKey('Employee', on_delete=models.CASCADE) 
+    employee_email = models.ForeignKey('Employee', on_delete=models.CASCADE)
+
     def __str__(self):
         return self.schedule_id
-    
+
 class Appointment(models.Model):
     appointment_id = models.CharField(primary_key=True, max_length=100)
     date = models.DateField()
@@ -55,11 +58,10 @@ class MeetingRequest(models.Model):
     requester_email = models.EmailField()
     description = models.TextField()
     date = models.DateField()
-    time = models.TimeField(default=time(9, 0)) # Replace 'time' with your desired field name
+    time = models.TimeField(default=time(9, 0))
 
     def __str__(self):
         return f"Meeting Request for {self.employee_email} on {self.date}"
-
 
 class ContactDetail(models.Model):
     name = models.CharField(max_length=100)
@@ -70,5 +72,3 @@ class ContactDetail(models.Model):
 
     def __str__(self):
         return self.name + " - " + self.email
-
-
