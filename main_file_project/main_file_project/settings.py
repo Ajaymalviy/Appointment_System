@@ -242,6 +242,7 @@ EMAIL_HOST_USER = 'ajeymalviya143@gmail.com'
 EMAIL_HOST_PASSWORD = 'yklm vyzm cmfo xyry'
 
 
+
 # SOCIALACCOUNT_PROVIDERS = {
 #         'google': {
 #             'SCOPE' : [
