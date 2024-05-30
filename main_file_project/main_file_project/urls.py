@@ -51,6 +51,7 @@ urlpatterns = [
     path('home/', views.back, name="back"),
     path('choose/', views.choose, name='choose'),
     path("dashboard/",views.dashboard, name="dashboard"),
+    
     # path('sentry-debug/', trigger_error),
     # path('app/',include('first_app_for_project.urls')), #app urls
     # path('', TemplateView.as_view(template_name='oauth.html')),
