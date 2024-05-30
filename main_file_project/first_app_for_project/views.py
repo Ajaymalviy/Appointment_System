@@ -54,6 +54,7 @@ import pdb
 
 
 def index(request):
+    print(request)
     return render(request, 'home.html')
 
 # def callback_view(request):
