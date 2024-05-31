@@ -390,6 +390,7 @@ def sendmail(request):
     #return render(request, 'employee_dashboard.html')
     else:
         return HttpResponse('Requester email not provided!')
+    
 
 def sendmailforcancel(request):
     if 'email' in request.GET:
