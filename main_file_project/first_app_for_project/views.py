@@ -165,7 +165,6 @@ def registernew(request):
 #         return render(request, 'login.html')
     
 #     return render(request, 'employee_register.html')
-
    
 
 def employee_login(request):
