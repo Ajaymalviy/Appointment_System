@@ -1,3 +1,4 @@
+# Appointment System
 #project overview
 The Appointment Management System is a web application designed to streamline the management or scheduling of interview metting b/w user and company employees. This system facilitates the efficient handling of appointment requests, schedules, and  information through a user-friendly interface. The project incorporates essential features such as CRUD operations, pagination, and robust authentication mechanisms to ensure secure access.
 
