@@ -2,6 +2,7 @@ from faker import Faker
 from pymongo import MongoClient
 import random
 import uuid
+for unique id
 
 # List of companies and IT developer skills
 companies = ["Apple Inc", "IBM", "Microsoft Corporation", "Amazon.com Inc", "Oracle Corporation", "Alphabet Inc. (Google)"]
