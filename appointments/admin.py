@@ -2,7 +2,7 @@ from django.contrib import admin
 
 # Register your models here.
 
-from first_app_for_project.models import Employee, Schedule, User, Company, Appointment,MeetingRequest
+from appointments.models import Employee, Schedule, User, Company, Appointment,MeetingRequest
 
 
 
