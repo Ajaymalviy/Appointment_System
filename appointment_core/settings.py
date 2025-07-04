@@ -76,7 +76,7 @@ APPEND_SLASH = False
 # Application definition
 
 INSTALLED_APPS = [
-    'first_app_for_project',
+    'appointments',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
