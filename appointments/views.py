@@ -41,7 +41,7 @@ from django.http import HttpResponse, JsonResponse, HttpResponseRedirect
 from django.shortcuts import render,redirect
 from django.contrib.auth.hashers import check_password, make_password
 from django.contrib.auth import logout as auth_logout, authenticate,login 
-from first_app_for_project.models import User, Employee, Company,MeetingRequest
+from appointments.models import User, Employee, Company,MeetingRequest
 from django.urls import reverse
 import pymongo
 from pymongo import MongoClient

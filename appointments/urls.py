@@ -1,6 +1,6 @@
 from django import views
 from django.urls import path,include
-from first_app_for_project.views import index,getting_data,servicepage,contactpage,aboutpage
+from appointments.views import index,getting_data,servicepage,contactpage,aboutpage
 from django.conf import settings
 from django.conf.urls.static import static
 from .views import get_company_data, home, login, sendmail
