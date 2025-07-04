@@ -1,0 +1,21 @@
+{
+  "version": 2,
+  "builds": [
+    {
+      "src": "main_file_project/wsgi.py",
+      "use": "@vercel/python"
+    }
+  ],
+  "routes": [
+    {
+      "src": "/(.*)",
+      "dest": "main_file_project/wsgi.py"
+    }
+  ],
+  "env": {
+    "DB_NAME": "meetme",
+    "DB_HOST": "mongodb+srv://cluster0.macr171.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0",
+    "DB_USER": "aje***ya143",
+    "DB_PASSWORD": "Xo********H0W9"
+  }
+}
