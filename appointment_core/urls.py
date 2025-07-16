@@ -1,5 +1,5 @@
 """
-URL configuration for main_file_project project.
+URL configuration for appointment_core project.
 
 
 The `urlpatterns` list routes URLs to views. For more information please see:
@@ -17,11 +17,11 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
-from first_app_for_project.views import index,choose, aboutpage,servicepage, contactpage,loginnew,registernew, employee_login,back,  meeting,dashboard,contactdetail
+from appointments.views import index,choose, aboutpage,servicepage, contactpage,loginnew,registernew, employee_login,back,  meeting,dashboard,contactdetail
 # from first_app_for_project.views import index,callback_view, profile_view,codemos,techritzy
 from django.conf import settings
 from django.conf.urls.static import static
-from first_app_for_project import views
+from appointments import views
 from django.views.generic import TemplateView #useful in displaying oauth.html template
 from django.contrib.auth.views import LogoutView
 

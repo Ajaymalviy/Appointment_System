@@ -103,7 +103,7 @@ MIDDLEWARE = [
 ]
 
 
-ROOT_URLCONF = 'main_file_project.urls'
+ROOT_URLCONF = 'appointment_core.urls'
 
 TEMPLATES = [
     {
@@ -121,7 +121,7 @@ TEMPLATES = [
     },
 ]
 
-WSGI_APPLICATION = 'main_file_project.wsgi.application'
+WSGI_APPLICATION = 'appointment_core.wsgi.application'
 
 
 
@@ -136,16 +136,16 @@ WSGI_APPLICATION = 'main_file_project.wsgi.application'
 #     }
 # }
 
-# DATABASES = {
-#     'default': {
-#         'ENGINE': 'djongo',
-#         'NAME': 'meetme',  # Specify the name of your MongoDB database
-#         'ENFORCE_SCHEMA': False,  # Optional: Set to True if you want to enforce schema validation
-#         'CLIENT': {
-#             'host': 'mongodb://localhost:27017/',  # Specify the MongoDB connection URI
-#         }
-#     }
-# }
+DATABASES = {
+    'default': {
+        'ENGINE': 'djongo',
+        'NAME': 'meetme',  # Specify the name of your MongoDB database
+        'ENFORCE_SCHEMA': False,  # Optional: Set to True if you want to enforce schema validation
+        'CLIENT': {
+            'host': 'mongodb://localhost:27017/',  # Specify the MongoDB connection URI
+        }
+    }
+}
 # DATABASES = {
 #     'default': {
 #         'ENGINE': 'djongo',
@@ -159,30 +159,30 @@ WSGI_APPLICATION = 'main_file_project.wsgi.application'
 #     }
 # }
 
-from dotenv import load_dotenv
-import os
+# from dotenv import load_dotenv
+# import os
 
 # Load environment variables from .env file
-load_dotenv()
+# load_dotenv()
 
-# Print to verify environment variables are loaded (for debugging)
-print("DB_NAME:", os.getenv('DB_NAME'))
-print("DB_HOST:", os.getenv('DB_HOST'))
-print("DB_USER:", os.getenv('DB_USER'))
-print("DB_PASSWORD:", os.getenv('DB_PASSWORD'))
+# # Print to verify environment variables are loaded (for debugging)
+# print("DB_NAME:", os.getenv('DB_NAME'))
+# print("DB_HOST:", os.getenv('DB_HOST'))
+# print("DB_USER:", os.getenv('DB_USER'))
+# print("DB_PASSWORD:", os.getenv('DB_PASSWORD'))
 
-DATABASES = {
-    'default': {
-        'ENGINE': 'djongo',
-        'NAME': os.getenv('DB_NAME'),  # Database name
-        'CLIENT': {
-            'host': os.getenv('DB_HOST'),
-            'username': os.getenv('DB_USER'),
-            'password': os.getenv('DB_PASSWORD'),
-            'authMechanism': 'SCRAM-SHA-1',
-        }
-    }
-}
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'djongo',
+#         'NAME': os.getenv('DB_NAME'),  # Database name
+#         'CLIENT': {
+#             'host': os.getenv('DB_HOST'),
+#             'username': os.getenv('DB_USER'),
+#             'password': os.getenv('DB_PASSWORD'),
+#             'authMechanism': 'SCRAM-SHA-1',
+#         }
+#     }
+# }
 
 
 # import mongoengine
