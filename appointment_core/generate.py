@@ -1,7 +1,7 @@
 import random
 from faker import Faker
 from datetime import datetime
-from first_app_for_project.models import Company, Employee, Schedule, Appointment, MeetingRequest
+from appointments.models import Company, Employee, Schedule, Appointment, MeetingRequest
 
 fake = Faker()
 
