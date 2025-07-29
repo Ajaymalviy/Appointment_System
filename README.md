@@ -107,9 +107,9 @@ Before proceeding with the installation and execution of the application, ensure
 
 4. Activate this 
 
-  ```bash
-  source venv/bin/activate    # On Windows: venv\Scripts\activate
-  ```
+    ```bash
+    source venv/bin/activate    # On Windows: venv\Scripts\activate
+    ```
 
 5. Install the required packages and libraries by executing:
 
