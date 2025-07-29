@@ -163,19 +163,19 @@ Before running the application, it's essential to initialize the database and co
   - Signup/Login using JWT
   - Secure user profile management
 
-3. Appointment Handling
+2. Appointment Handling
   - Create, update, delete appointments
   - Track and view upcoming meetings
 
-4. Employee Features
+3. Employee Features
   - Manage own schedule and availability
   - Respond to meeting requests
 
-5. Admin Features
+4. Admin Features
   - Manage companies and employees
   - View all appointment activity
 
-5.Contact System
+5. Contact System
   - Contact form for user feedback
   - Admin access to contact details
 
