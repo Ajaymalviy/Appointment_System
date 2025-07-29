@@ -158,25 +158,26 @@ Before running the application, it's essential to initialize the database and co
 
 
 ##Functionalities
+
 1. User Management
-  -Signup/Login using JWT
-  -Secure user profile management
+  - Signup/Login using JWT
+  - Secure user profile management
 
-2. Appointment Handling
-  -Create, update, delete appointments
-  -Track and view upcoming meetings
+3. Appointment Handling
+  - Create, update, delete appointments
+  - Track and view upcoming meetings
 
-3. Employee Features
-  -Manage own schedule and availability
-  -Respond to meeting requests
+4. Employee Features
+  - Manage own schedule and availability
+  - Respond to meeting requests
 
-4. Admin Features
-  -Manage companies and employees
-  -View all appointment activity
+5. Admin Features
+  - Manage companies and employees
+  - View all appointment activity
 
 5.Contact System
-  -Contact form for user feedback
-  -Admin access to contact details
+  - Contact form for user feedback
+  - Admin access to contact details
 
    
 
