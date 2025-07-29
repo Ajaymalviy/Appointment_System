@@ -94,7 +94,7 @@ Before proceeding with the installation and execution of the application, ensure
    git clone git@github.com:Ajaymalviy/Appointment_System.git
    ```
 
-2. Navigate to the "BMS" directory:
+2. Navigate to the "Appointment_System" directory:
 
    ```bash
    cd Appointment_System
@@ -107,17 +107,78 @@ Before proceeding with the installation and execution of the application, ensure
 
 4. Activate this 
 
-```bash
-source venv/bin/activate    # On Windows: venv\Scripts\activate
-```
+  ```bash
+  source venv/bin/activate    # On Windows: venv\Scripts\activate
+  ```
 
-5.  Install the required packages and libraries by executing:
+5. Install the required packages and libraries by executing:
 
    ```bash
    pip install -r requirements.txt
    ```
   
 ## Database Initialization and Configuration
+Before running the application, it's essential to initialize the database and configure the connection. Follow these steps:
+
+  1. Start your MongoDB server.
+  2. Open the MongoDB shell and create a new database:
+     '''sql
+     use meetme
+     '''
+  3. Update the DATABASES section in appointment_core/settings.py:
+     ```yaml
+       DATABASES = {
+        'default': {
+            'ENGINE': 'djongo',
+            'NAME': 'meetme',
+            'ENFORCE_SCHEMA': False,
+            'CLIENT': {
+                'host': 'mongodb://localhost:27017/',
+            }
+        }
+      }
+     ```
+  4. Now, You have to make db connection with this two commands:
+     ```bash
+       python3 manage.py makemigrations appointments
+       #for creating all collections in your db using ORM.
+       python3 manage.py migrate
+       #for migrating all the collection
+     ```
+  5. Populate the database with random data:
+     ```bash
+      python3 appointment_core/generate.py xx
+      #change xx with random number
+     ```
+## Running the Application
+   ```bash
+    python3 manage.py runserver
+    #now visit  http://127.0.0.0/8000
+  ```
+
+
+##Functionalities
+1. User Management
+  -Signup/Login using JWT
+  -Secure user profile management
+
+2. Appointment Handling
+  -Create, update, delete appointments
+  -Track and view upcoming meetings
+
+3. Employee Features
+  -Manage own schedule and availability
+  -Respond to meeting requests
+
+4. Admin Features
+  -Manage companies and employees
+  -View all appointment activity
+
+5.Contact System
+  -Contact form for user feedback
+  -Admin access to contact details
+
+   
 
 
 
